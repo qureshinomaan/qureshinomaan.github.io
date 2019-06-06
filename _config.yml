@@ -1,0 +1,19 @@
+title: Nomaan Qureshi
+author: Nomaan Qureshi
+url: ""
+baseurl: ""
+
+markdown: kramdown
+ins_logo: "./iiith_logo.png"
+
+tracking_id: #
+
+sass:
+    style: compressed
+    sass_dir: _sass
+
+nav:
+ - name: "Resume"
+   link: "resume.pdf"
+ - name: "Contact"
+   link: "contact"
