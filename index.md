@@ -36,8 +36,6 @@ I am additionally interesting in learning new things - this could be anything in
 ## Contact
 Please feel free to contact or interact with me through the following links:
 
-Email: nqafzal [at] gmail
-
-Twitter: [@MohammadNomaan8](https://twitter.com/MohammadNomaan8)
-
-GitHub: [qureshinomaan](github.com/qureshinomaan)
+* Email: nqafzal [at] gmail
+* Twitter: [@MohammadNomaan8](https://twitter.com/MohammadNomaan8)
+* GitHub: [qureshinomaan](github.com/qureshinomaan)

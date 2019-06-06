@@ -9,8 +9,8 @@ ins_logo: "./iiith_logo.png"
 tracking_id: #
 
 footer: yes
-footer_url: ""
-footer_text: ""
+footer_url: "qureshinomaan.github.io"
+footer_text: "Mohammad Nomaan Qureshi"
 
 sass:
     style: compressed
