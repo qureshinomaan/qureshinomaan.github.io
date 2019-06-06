@@ -33,7 +33,6 @@ I am additionally interesting in learning new things - this could be anything in
 8. C Programming
 2. Introduction to Deep Learning (Coursera)
 
-
 ## Contact
 Please feel free to contact or interact with me through the following links:
 
@@ -41,4 +40,4 @@ Email: nqafzal [at] gmail
 
 Twitter: [@MohammadNomaan8](https://twitter.com/MohammadNomaan8)
 
-GitHub: github.com/qureshinomaan
+GitHub: [qureshinomaan](github.com/qureshinomaan)

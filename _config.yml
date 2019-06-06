@@ -8,6 +8,10 @@ ins_logo: "./iiith_logo.png"
 
 tracking_id: #
 
+footer: yes
+footer_url: ""
+footer_text: ""
+
 sass:
     style: compressed
     sass_dir: _sass
