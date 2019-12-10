@@ -7,7 +7,7 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg"> 
 {% endcomment %} 
 
-Hi! I am a second year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in Statistics and Machine Learning, and their applications in Computer Vision.
+Hi! I am a second year student in the integrated B.Tech/MS program at IIIT Hyderabad, India. I am interested in Statistics and Machine Learning, and their applications in Computer Vision.
 
 ## Interests
 
