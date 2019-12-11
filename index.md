@@ -4,8 +4,8 @@ layout: default
 
 ## About Me
 
-{% comment %}  <img class="profile-picture" src="sherlock.jpg"> 
-{% endcomment %} 
+{% comment %}  <img class="profile-picture" src="sherlock.jpg">
+{% endcomment %}
 
 Hi! I am a second year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in Statistics and Machine Learning, and their applications in Computer Vision.
 
@@ -31,7 +31,13 @@ I am additionally interesting in learning new things - this could be anything in
 6. Digital Systems and Microcontrollers
 7. Computer System Organization
 8. C Programming
-2. Introduction to Deep Learning (Coursera)
+9. Probability and Statistics
+10. Computer System Engineering
+11. Algorithms Analysis and Design
+12. Data and Application
+13. Electronic Workshop
+14. Automata Theory
+15. Introduction to Deep Learning (Coursera)
 
 ## Contact
 Please feel free to contact or interact with me through the following links:
