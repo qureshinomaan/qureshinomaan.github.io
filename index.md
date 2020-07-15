@@ -37,7 +37,7 @@ I am additionally interesting in learning new things - this could be anything in
 12. Data and Application
 13. Electronic Workshop
 14. Automata Theory
-15. Introduction to Deep Learning (Coursera)
+15. Deep Learning Specialisation (Coursera)
 
 ## Contact
 Please feel free to contact or interact with me through the following links:
