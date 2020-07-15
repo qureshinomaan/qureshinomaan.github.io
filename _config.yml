@@ -6,7 +6,7 @@ baseurl: ""
 markdown: kramdown
 ins_logo: "./iiith_logo.png"
 
-tracking_id: #
+tracking_id: UA-172754754-1
 
 footer: yes
 footer_url: "qureshinomaan.github.io"
