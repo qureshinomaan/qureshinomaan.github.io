@@ -7,7 +7,7 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a second year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in Statistics and Machine Learning, and their applications in Computer Vision.
+Hi! I am a third year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in Statistics and Machine Learning, and their applications in Embodied Vision.
 
 ## Interests
 
@@ -23,21 +23,19 @@ I am additionally interesting in learning new things - this could be anything in
 * C++:    Somewhere between beginner and intermediate
 
 ## Selected Coursework
-1. Data Structure and Algorithms
-2. Linear Algebra
-3. Introduction to Software Systems
-4. Discrete Structures
-5. Real and Complex Analysis
-6. Digital Systems and Microcontrollers
-7. Computer System Organization
-8. C Programming
-9. Probability and Statistics
-10. Computer System Engineering
-11. Algorithms Analysis and Design
-12. Data and Application
-13. Electronic Workshop
-14. Automata Theory
-15. Deep Learning Specialisation (Coursera)
+
+1. Linear Algebra
+2. Discrete Structures
+3. Real and Complex Analysis
+4. Probability and Statistics
+5. Algorithms Analysis and Design
+6. Data Structure and Algorithms
+7. Computer System Engineering
+8. Mobile Robotics
+9. Machine, Data and Learning
+10. Statistical Methods in AI
+11. Topics in Applied Optimisation
+12. Deep Learning Specialisation (Coursera)
 
 ## Contact
 Please feel free to contact or interact with me through the following links:
