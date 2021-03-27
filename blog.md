@@ -4,7 +4,7 @@ is_contact: true
 ---
 ## Under Construction
 ---
-##  <span style="color:red"> [Cross Entropy Method]{https://qureshinomaan.github.io/cem} </span>
+## <a href="https://qureshinomaan.github.io/cem"> <span style="color:red"> Cross Entropy Method</span> </a>
 
 A simple yet powerful algorithm for optimisation problems.
 
