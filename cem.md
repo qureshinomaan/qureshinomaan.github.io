@@ -4,7 +4,26 @@ is_contact: true
 ---
 ##  <span style="color:red"> Cross Entropy Method </span>
 
-Sampling based approaches provide an alternative to
-Cross entropy method is a sampling based approach to optimisation. Although the method sounds fancy, it is fairly straightforward to understand. Let's start by trying to find minimum of f(x) =  $(x-5)^2$. We start with a distribution  x = [mean=0, variance=1]. We generate 'n' samples from this distribution. We update the mean of our distributing to to the mean of the top 'k' samples which have minimum values of f(x). The variance is also updated in a similar fashion. 
+### Introduction
+Cross entropy method is a sampling based approach to optimisation. Although the method sounds fancy, it is fairly straightforward to understand. Let's start by taking an example. Our objective is to minimise the function f(x) = $$ (x-5) ^2 $$. CEM algorithm is described as follows :
+1. Initialise a gaussian distribution.
+  * Let's take our mean = 0, variance = 0.
+2. Sample 'n' values of x from our distribution.
+3. Compute f(x) for each sample and sort them in ascending order.
+4. Update the mean and variance of our distribution to mean and variance of top 'k' samples.
+5. Terminate if converged, else go to step 2.
+
+Ya that's it.
+
+### Code
+
+
+### Mathematical Analysis
+
+### Applications of CEM
+
+#### Travelling Salesman Problem
+
+#### Model Predictive Control
 
 ---
