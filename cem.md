@@ -16,8 +16,9 @@ Cross entropy method is a sampling based approach to optimisation. Although the 
 Ya that's it.
 
 ### Code
-```
 <div style="background-color: rgb(250, 250, 250)">
+
+```
 import numpy as np
 
 def objective(x):
@@ -43,9 +44,9 @@ while ERROR > MIN_ERROR and ITER < MAX_ITERS:
     ERROR = objective(mu)
     ITER += 1
     
+```
 </div>
 
-```
 
 ### Mathematical Analysis
 
