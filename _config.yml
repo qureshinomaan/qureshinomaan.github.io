@@ -24,3 +24,11 @@ nav:
    link: "blog"
  - name: "Contact"
    link: "contact"
+
+nav_blog:
+ - name: "Resume"
+   link: "../resume.pdf"
+ - name: "Blog"
+   link: "../blog"
+ - name: "Contact"
+   link: "../contact"
