@@ -2,7 +2,7 @@
 layout: default0
 is_contact: true
 ---
-##  <span style="color:red"> Cross Entropy Method </span>
+##  <span style="color:red"> Visual Servoing </span>
 
 ### Introduction
 Visual servoing is controlling the motion of robot using a vision sensor or robot. What we mean by this is that given a target image and current image, we want to generate a sequence of velocity commands that takes us to the target image.
