@@ -5,6 +5,7 @@ baseurl: ""
 
 markdown: kramdown
 ins_logo: "./iiith_logo.png"
+ins_logo2: "../iiith_logo.png"
 
 tracking_id: UA-172754754-1
 
