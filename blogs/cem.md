@@ -3,7 +3,7 @@ layout: default0
 is_contact: true
 ---
 ##  <span style="color:red"> Cross Entropy Method </span>
-<img src="../images/CEM.jpg" alt="CEM" > </img>
+<img src="../images/CEM.jpg" alt="CEM" /> 
 
 ### Introduction
 Cross entropy method is a sampling based approach to optimisation. CEM belongs to the class of Monte-Carlo methods, where the general theme is to maximise the probability of favourable events. Although the method sounds fancy, it is fairly straightforward to understand. Let's start by taking an example. Our objective is to minimise the function f(x) = $$ (x-5) ^2 $$. CEM algorithm is described as follows :
