@@ -7,7 +7,7 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a third year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision based navigation and manipulation. I am an undergraduate researcher at [Robotics Research Center](https://robotics.iiit.ac.in), advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+Hi! I am a third year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
 ## Interests
 
@@ -21,16 +21,15 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 ## Selected Coursework
 
 1. Linear Algebra
-2. Discrete Structures
-3. Real and Complex Analysis
-4. Probability and Statistics
-5. Algorithms Analysis and Design
-6. Data Structure and Algorithms
-7. Computer System Engineering
-8. Mobile Robotics
-9. Machine, Data and Learning
-10. Statistical Methods in AI
-11. Topics in Applied Optimisation
+2. Probability and Statistics
+3. Algorithms Analysis and Design
+4. Data Structure and Algorithms
+5. Mobile Robotics
+6. Robotics, Planning and Navigation
+7. Machine, Data and Learning
+9. Statistical Methods in AI
+10. Topics in Applied Optimisation
+11. Optimisation Methods
 12. Deep Learning Specialisation (Coursera)
 
 ## news
