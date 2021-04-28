@@ -9,6 +9,8 @@ layout: default
 
 Hi! I am a third year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
+I will be spending my summer of 2021, working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University.
+
 ## Interests
 
 I find it fascinating that starting with bulding blocks in Probabilistic and Statistical thinking and throwing in some Linear Algebra and Calculus in the mix, we can accomplish extremely powerful function approximators that can emulate knowledge-based reasoning. At present I am focusing on laying down firm roots in the basics, and taking an applied look at ML and Robotics. As I move forward, I will explore the theoritical aspects of ML and Robotics more deeply when I am better equipped with fundamental tools.
