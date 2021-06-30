@@ -35,8 +35,8 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 12. Deep Learning Specialisation (Coursera)
 
 ## news
+* 06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,21!
 * 05/05/2021 : Started my internship at [R-PAD](https://r-pad.github.io), Carnegie Mellon University!
-* 03/05/2021 : Submitted a paper on realtime visual servoing to IROS,21!
 * 05/02/2020 : Started working at [Robotics Research Center](https://robotics.iiit.ac.in)!
 
 ## Contact
