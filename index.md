@@ -9,7 +9,9 @@ layout: default
 
 Hi! I am a third year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
-I will be spending my summer of 2021, working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University.
+I spent my summer of 2021, working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. My worked involved formulating a differentiable version of Linear Dynamic Systems. This LDS representation of trajectories can be used to accelerate transfer of policies.
+
+I have started working on a semester long project under [Prof. Makarand Tapaswi](https://makarandtapaswi.github.io). The aim of the project is to learn manipulation skills directly from human demonstrations like [these](https://paperswithcode.com/dataset/something-something-v2).
 
 ## Interests
 
@@ -35,7 +37,8 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 12. Deep Learning Specialisation (Coursera)
 
 ## news
-* 06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,21!
+* 09/15/2021 : Submitted our paper for table-top rearrangement-planning to ICRA,2022!
+* 06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,2021!
 * 05/05/2021 : Started my internship at [R-PAD](https://r-pad.github.io), Carnegie Mellon University!
 * 05/02/2020 : Started working at [Robotics Research Center](https://robotics.iiit.ac.in)!
 
