@@ -7,11 +7,11 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a third year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+Hi! I am a third-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision-based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
-I spent my summer of 2021, working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. My worked involved formulating a differentiable version of Linear Dynamic Systems. This LDS representation of trajectories can be used to accelerate transfer of policies.
+I spent my summer of 2021 working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.
 
-I have started working on a semester long project under [Prof. Makarand Tapaswi](https://makarandtapaswi.github.io). The aim of the project is to learn manipulation skills directly from human demonstrations like [these](https://paperswithcode.com/dataset/something-something-v2).
+I have recently started working on a semester-long project under [Prof. Makarand Tapaswi](https://makarandtapaswi.github.io). The project aims to learn manipulation policies directly from human demonstrations like [these](https://paperswithcode.com/dataset/something-something-v2).
 
 ## Interests
 
