@@ -7,7 +7,7 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a third-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision-based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+Hi! I am a fourth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision-based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
 I spent my summer of 2021 working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.
 
@@ -37,7 +37,10 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 12. Deep Learning Specialisation (Coursera)
 
 ## news
-* 09/15/2021 : Submitted our paper for table-top rearrangement-planning to ICRA,2022!
+* 03/18/2022 : Submitted our [paper]{https://sites.google.com/view/monocular-obstacle/home} on Monocular Obstacle Avoidance to CASE,2022!
+* 03/18/2022 : Submitted our paper on table-top sequence-planning to CASE,2022!
+* 03/01/2022 : Submitter a paper on skill learning using differentiable physics to IROS, 2022!
+* 01/29/2022 : Submitted our [paper]{https://openreview.net/forum?id=rF-fT4pN1Wc&referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D(%2Fprofile%3Fid%3D~Mohammad_Nomaan_Qureshi1)} on sequenced dynamical systems to ICML, 2022!
 * 06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,2021!
 * 05/05/2021 : Started my internship at [R-PAD](https://r-pad.github.io), Carnegie Mellon University!
 * 05/02/2020 : Started working at [Robotics Research Center](https://robotics.iiit.ac.in)!
