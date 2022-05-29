@@ -48,5 +48,6 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 Please feel free to contact or interact with me through the following links:
 
 * Email: nqafzal [at] gmail
+* Google Scholar: [M. Nomaan Qureshi](https://scholar.google.com/citations?user=ZmVf8kUAAAAJ&hl=en)
 * Twitter: [@MohammadNomaan8](https://twitter.com/MohammadNomaan8)
 * GitHub: [qureshinomaan](github.com/qureshinomaan)
