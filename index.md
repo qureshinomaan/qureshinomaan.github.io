@@ -37,10 +37,9 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 12. Deep Learning Specialisation (Coursera)
 
 ## news
-* 03/18/2022 : Submitted our [paper](https://sites.google.com/view/monocular-obstacle/home) on Monocular Obstacle Avoidance to CASE,2022!
-* 03/18/2022 : Submitted our paper on table-top sequence-planning to CASE,2022!
+* 26/05/2022 : Our [paper](https://sites.google.com/view/monocular-obstacle/home) on Monocular Obstacle Avoidance got accepted to CASE,2022!
 * 03/01/2022 : Submitter a paper on skill learning using differentiable physics to IROS, 2022!
-* 01/29/2022 : Submitted our [paper](https://openreview.net/forum?id=rF-fT4pN1Wc&referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D) on sequenced dynamical systems to ICML, 2022!
+* 01/29/2022 : Our [paper](https://openreview.net/forum?id=rF-fT4pN1Wc&referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D) on sequenced dynamical systems got accepted to GPL Workshop at ICLR, 2022!
 * 06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,2021!
 * 05/05/2021 : Started my internship at [R-PAD](https://r-pad.github.io), Carnegie Mellon University!
 * 05/02/2020 : Started working at [Robotics Research Center](https://robotics.iiit.ac.in)!
