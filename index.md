@@ -25,16 +25,18 @@ If you're in Hyderabad area and are looking for collaborators for ML/CV projects
 ## Publications
 
 ---
-## <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9636290&tag=1"> <span style="color:red"> RTVS: A Lightweight Dierentiable MPC Framework For Real Time Visual Servoing </span> </a>
+## <strong><small><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9636290&tag=1"> <span style="color:red"> RTVS: A Lightweight Dierentiable MPC Framework For Real Time Visual Servoing </span> </a></small></strong>
 
 M. Nomaan Qureshi, Pushkal Katara, Abhinav Gupta,…, K. Madhava Krishna
+
 International Conference on Intelligent Robots and Systems (IROS), 2021.
 
 ---
 
-## <a href="https://openreview.net/forum?id=rF-fT4pN1Wc"> <span style="color:red"> Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning/span> </a>
+## <a href="https://openreview.net/forum?id=rF-fT4pN1Wc"> <span style="color:red"> Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning </span> </a>
 
 M. Nomaan Qureshi, Ben Eisner, David Held
+
 GPL Workshop, International Conference on Learning Representations (ICLR), 2022
 ---
 
