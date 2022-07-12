@@ -22,19 +22,21 @@ I am additionally interesting in learning new things - this could be anything in
 If you're in Hyderabad area and are looking for collaborators for ML/CV projects, please feel free to get in touch!
 
 
-## Selected Coursework
+## Publications
 
-1. Linear Algebra
-2. Probability and Statistics
-3. Algorithms Analysis and Design
-4. Data Structure and Algorithms
-5. Mobile Robotics
-6. Robotics, Planning and Navigation
-7. Machine, Data and Learning
-9. Statistical Methods in AI
-10. Topics in Applied Optimisation
-11. Optimisation Methods
-12. Deep Learning Specialisation (Coursera)
+---
+## <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9636290&tag=1"> <span style="color:red"> RTVS: A Lightweight Dierentiable MPC Framework For Real Time Visual Servoing </span> </a>
+
+M. Nomaan Qureshi, Pushkal Katara, Abhinav Gupta,…, K. Madhava Krishna
+International Conference on Intelligent Robots and Systems (IROS), 2021.
+
+---
+
+## <a href="https://openreview.net/forum?id=rF-fT4pN1Wc"> <span style="color:red"> Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning/span> </a>
+
+M. Nomaan Qureshi, Ben Eisner, David Held
+GPL Workshop, International Conference on Learning Representations (ICLR), 2022
+---
 
 ## news
 * 30/06/2022 : Our paper on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
