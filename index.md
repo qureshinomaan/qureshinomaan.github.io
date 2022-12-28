@@ -7,7 +7,7 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a fourth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision-based navigation and manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+Hi! I am a fifth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision-based manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
 I spent my summer of 2021 working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.
 
@@ -19,22 +19,7 @@ I find it fascinating that starting with bulding blocks in Probabilistic and Sta
 
 I am additionally interesting in learning new things - this could be anything interesting in mathematics or computer science.
 
-If you're in Hyderabad area and are looking for collaborators for ML/CV projects, please feel free to get in touch!
-
-
-## Selected Coursework
-
-1. Linear Algebra
-2. Probability and Statistics
-3. Algorithms Analysis and Design
-4. Data Structure and Algorithms
-5. Mobile Robotics
-6. Robotics, Planning and Navigation
-7. Machine, Data and Learning
-9. Statistical Methods in AI
-10. Topics in Applied Optimisation
-11. Optimisation Methods
-12. Deep Learning Specialisation (Coursera)
+If you'relooking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
 * 30/06/2022 : Our paper on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
@@ -49,5 +34,5 @@ Please feel free to contact or interact with me through the following links:
 
 * Email: nqafzal [at] gmail
 * Google Scholar: [M. Nomaan Qureshi](https://scholar.google.com/citations?user=ZmVf8kUAAAAJ&hl=en)
-* Twitter: [@MohammadNomaan8](https://twitter.com/MohammadNomaan8)
+* Twitter: [@qunomaan](https://twitter.com/qunomaan)
 * GitHub: [qureshinomaan](github.com/qureshinomaan)
