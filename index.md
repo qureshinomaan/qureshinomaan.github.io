@@ -7,7 +7,7 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a fifth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in vision-based manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+Hi! I am a fifth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in machine learning for robot manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
 I spent my summer of 2021 working under [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.
 
