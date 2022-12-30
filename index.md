@@ -19,15 +19,13 @@ Why is it so hard for a robot to open a bottle robustly? While we have seen incr
 * <b><span style="color:red">Manipulation specific Inductive biases for RL</span></b>: RL provides a powerful paradigm to tackle problems across domains. However, solving real-world manipulation tasks using RL algorithms has proved challenging. Can we design inductive biases specific to manipulation to make exploration in RL more efficient?  For example, we know that while performing a task like ‘opening a bottle,’ the trajectory of the robot should be smooth. How can we design inductive biases for RL, which uses this knowledge to focus its exploration on harder parts of the problem (like the trajectory required for rotating the bottle’s cap)?
 * <b><span style="color:red">Learning From Demonstrations</span></b>: A major problem in robotics (compared to vision and language) is the availability of data to train robot policies on. We, as humans, can often watch a YouTube tutorial like this and learn new skills. We extract important information about trajectory and object property from videos and build on them to perform complicated behaviors. I aim to build algorithmic pipelines which facilitate similar learning of manipulation skills from such widely available data as YouTube videos. 
 * <b><span style="color:red">Object-Centric Representations</span></b>: So much of robotic manipulation requires dealing with complex objects. However, our knowledge about representing such objects is fairly trivial. For example, how do we represent an object as complex as an egg which changes its shape and form? Or a ‘bottle,’ how do we get a general representation of all the shapes and kinds of bottles available? In my research, I want to design representations of objects such that makes downstream manipulation planning becomes easier.
+
 <b><span style="color:red">Long-Term Goals</span></b>: Growing up in a rural area, I have seen the impact of simple automation tools on people’s lives. I have witnessed how even something as simple as an electronic mixer can save hundreds of hours for a mother, helping her to focus on her children’s education. My long-term goal is to build robots that can automate trivial aspects of people’s daily lives. For example, imagine a single parent who doesn’t have to worry about cleaning their home or cooking food. They can spend their time with their child or advance their careers. I hope that the robots I build during my career will help people focus on what really matters in their lives. 
-
-
-I am additionally interesting in learning new things - this could be anything interesting in mathematics or computer science.
 
 If you'relooking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
-* 30/06/2022 : Our paper on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
+* 30/06/2022 : Our [paper](https://arxiv.org/pdf/2208.01960.pdf) on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
 * 26/05/2022 : Our [paper](https://sites.google.com/view/monocular-obstacle/home) on Monocular Obstacle Avoidance got accepted to CASE,2022!
 * 01/29/2022 : Our [paper](https://openreview.net/forum?id=rF-fT4pN1Wc&referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D) on sequenced dynamical systems got accepted to GPL Workshop at ICLR, 2022!
 * 06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,2021!
