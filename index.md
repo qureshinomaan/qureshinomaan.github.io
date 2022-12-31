@@ -30,7 +30,7 @@ I want to work at the intersection of robotics, vision and reinforcement learnin
 
 
 
-If you'relooking for collaborators for Robotics/ML projects, please feel free to get in touch!
+If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
 * 30/06/2022 : Our [paper](https://arxiv.org/pdf/2208.01960.pdf) on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
