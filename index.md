@@ -15,10 +15,13 @@ I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.
 
 ## Interests
 
-<b><span style="color:red">Long-Term Goals</span></b>: Growing up in a rural area, I have seen the impact of automation tools on people’s lives. Even something as simple as an electronic mixer can save hundreds of hours for a mother, helping her to focus on her children’s education. My long-term goal is to build robots that can automate trivial aspects of people’s daily lives. For example, imagine a single parent who doesn’t have to worry about cleaning their home or cooking food. They can spend their time with their child or advance their careers. I hope that the algorithms I design during my career will help people focus on what really matters in their lives. 
+<b><span style="color:red">Long-Term Goals</span></b>
+
+Growing up in a rural area, I have seen the impact of automation tools on people’s lives. Even something as simple as an electronic mixer can save hundreds of hours for a mother, helping her to focus on her children’s education. My long-term goal is to build robots that can automate trivial aspects of people’s daily lives. For example, imagine a single parent who doesn’t have to worry about cleaning their home or cooking food. They can spend their time with their child or advance their careers. I hope that the algorithms I design during my career will help people focus on what really matters in their lives. 
 
 
 <b><span style="color:red">Current Focus</span></b>
+
 I want to work at the intersection of robotics, vision and reinforcement learning to build manipulation algorithms that can act in unstructured real-world environments. Currently, I am focused on the following directions to achieve this goal: 
 
 * <b><span style="color:red">Manipulation specific Inductive biases for RL</span></b>: RL provides a powerful paradigm to tackle problems across domains. However, solving real-world manipulation tasks using RL algorithms has proved challenging. Can we design inductive biases specific to manipulation to make exploration in RL more efficient?  For example, we know that while performing a task like ‘opening a bottle,’ the trajectory of the robot should be smooth. How can we design inductive biases for RL, which uses this knowledge to focus its exploration on harder parts of the problem (like the trajectory required for rotating the bottle’s cap)?
