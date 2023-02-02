@@ -32,7 +32,7 @@ I want to work at the intersection of robotics, vision and reinforcement learnin
 If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
-* 01/30/2022 : Submitted a paper on data-driven inverse kinematics to IJCNN!
+* 01/30/2023 : Submitted a paper on data-driven inverse kinematics to IJCNN, 2023!
 * 06/30/2022 : Our [paper](https://arxiv.org/pdf/2208.01960.pdf) on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
 * 05/26/2022 : Our [paper](https://sites.google.com/view/monocular-obstacle/home) on Monocular Obstacle Avoidance got accepted to CASE,2022!
 * 01/29/2022 : Our [paper](https://openreview.net/forum?id=rF-fT4pN1Wc&referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D) on sequenced dynamical systems got accepted to GPL Workshop at ICLR, 2022!
