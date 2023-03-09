@@ -4,8 +4,8 @@ url: ""
 baseurl: ""
 
 markdown: kramdown
-ins_logo: "./iiith_logo.png"
-ins_logo2: "../iiith_logo.png"
+ins_logo: "./hi.gif"
+ins_logo2: "../hi.gif"
 
 tracking_id: UA-172754754-1
 
@@ -20,8 +20,8 @@ sass:
 nav:
  - name: "Resume"
    link: "resume.pdf"
-#  - name: "Blog"
-#    link: "blog"
+ - name: "Blog"
+   link: "blog"
  - name: "Contact"
    link: "contact"
 
