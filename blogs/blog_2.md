@@ -1,0 +1,20 @@
+---
+layout: default
+is_contact: true
+---
+<span style="color:red;font-family:verdana;font-size:20px"> Mowgli and how do we use observations to learn complex skills?</span>
+
+**Disclaimer**: *This is an ongoing brain dump about something I have been thinking about. I will edit and re-edit it several times. Please don’t take it too seriously. If you read it and have some thoughts, please feel free to reach me at nqafzal [at] gmail [dot] com*
+
+Do you know the story ‘Jungle Book’ was inspired by a true story? So apparently, in the year 1872, they found this boy named Dina, who was raised by wolves. The hunters killed the pack and brought the boy home. He walked on all four legs and initially couldn’t walk on two feet. It’s a very interesting story and is well-covered by many websites. This story got me thinking about how humans learn their motor skills. How much do we learn by observing others? How much is it by rewards from the environment?
+
+The boy raised by wolves walked both hands and feet and couldn’t walk on 2 feet until he saw humans walking. So this indicates that we humans learn many motor skills by observing those around us. This seems pretty obvious. We learn speech (another motor skill) from those around us. But the point I am trying to make is the boy didn’t learn to walk on two legs, although he had the ability to do so. The boy learned to walk on four feet, not because he had four feet, but because he saw and visually imitated the actions of those animals around them. The existence of a higher level ‘skill’ of walking (walking on feet vs. using both hands and feet) is hard to discover. We observe those around us to learn about its existence and extract important information about the skill. Once the skill is decided, we get lower-level rewards from the environment. So there seems to be a combination of environmental rewards and imitation. 
+
+But how do we imitate? We certainly don’t get the joint configuration to accomplish the task. We can say we get video demonstrations of how to perform the skill. But what do we get from those demonstrations? I think we observe how we ‘change’ in the visual states of objects we interact with. For example, let’s consider the task of throwing an object. We notice how the objects move as a consequence of our actions and then try to make the ‘throwing’ motion on the object. We extract our rewards by following the object motions. 
+
+How do we learn locomotion skills, then? Here I think we are still trying to imitate the visual motion of other objects, the other objects being our fellow humans (or wolves in the case of Dina/Mowgli). 
+
+Here I believe there should be a difference between the role of imitation and rewards from the environment. So as mentioned earlier, high-level skills are learned using imitation. But as agents in the environment, we are constantly getting information from the environment about how it works. We learn that an object falls when left in the air, and we develop an understanding of friction and other contact forces. Lower-level skills might be learned through direct unsupervised interaction with the environment, for example, how an object moves. Then there are higher-level skills that get a huge boost if we use imitation and are very hard to discover in an unsupervised fashion. 
+
+To summarise, here is what I think is happening. There are two stages of learning complex skills: one in which humans autonomously explore to discover and develop internal representations of the world, for example, what is a rigid body, how it will behave to a push, and what are different forces in the environment, etc. Humans learn these representations by exploring their environment. Then there are skills that are very hard to learn autonomously, but get a huge boost if there are other humans/agents available in the environment, for example walking on two feet or tying a knot. We can only* learn them if we see other agents performing them.
+ 
