@@ -13,11 +13,11 @@ I spent my summer of 2021 and 2022 working with [Prof. David Held](https://www.r
 
 I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.io) on a project that aims to learn manipulation policies directly from human demonstrations like [these](https://paperswithcode.com/dataset/something-something-v2).
 
-## Interests
+## Research Interests
 
 <b><span style="color:red">Long-Term Goals</span></b>
 
-Growing up in a rural area, I have seen the impact of automation tools on people’s lives. I have witnessed how even something as simple as an electronic mixer can save a mother hundreds of hours, helping her focus on her children’s education. My long-term goal is to build robots that can automate trivial aspects of people’s daily lives. For example, imagine a single parent who doesn’t have to worry about cleaning their home or cooking food. They can spend their time with their child or advance their careers. I hope that the algorithms I design during my career will help people focus on what matters in their lives.
+ My long-term goal is to build robots that can automate trivial aspects of people’s daily lives. I hope that the algorithms I design during my career will help people focus on what really matters in their lives.
 
 <b><span style="color:red">Current Focus</span></b>
 
