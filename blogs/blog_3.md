@@ -1,0 +1,25 @@
+---
+layout: default
+is_contact: true
+---
+
+<span style="color:red;font-family:verdana;font-size:20px"> Favorite history channels on youtube. </span>
+
+When it comes to history, some people might think it's a dull and dry subject, but for me, it's endlessly fascinating. I owe much of that fascination to my father, a history buff who loved to tell me stories and engage in debates about famous figures and events. First and foremost, I grew up with a father who was a passionate history enthusiast. He would regale me with stories of great leaders, battles, and cultural movements, sparking my imagination and fueling my love for the subject. As I grew older, I found that studying history also had a humbling effect on me. Realizing that no matter how great you are, your memory will eventually fade into the annals of time is both sobering and liberating.  Additionally, I've found that exploring history can be a great way to improve reasoning skills and engage in lively discussions with others. Nowadays, I rely a lot on Youtube for my daily dose of history and have gotten somewhat familiar with many channels and their ‘style.’ Here is a list of my favorite ones.
+
+<b>Fall of Civilisations : </b>
+Very well-researched and high-quality podcasts from the historian and novelist Paul Cooper. Paul is a master storyteller who has a knack for setting the scene and immersing you in the culture and geography of civilization before diving into its rise and ultimate downfall. In particular, his episode on the Assyrians was a revelation for me - I had no idea we had such detailed information about their lives and culture. If you're looking for a deep dive into a particular civilization, I highly recommend listening to Fall of Civilisations.
+
+<b>Extra Credits, History : </b>
+EH produces a series of short, cute videos that cover a wide range of historical topics - from the history of coffee to the infamous emu war. What I appreciate about this channel is how they provide a quick overview of a particular event or phenomenon, making it an ideal starting point for anyone looking to dip their toes into history. While they don't delve into the technicalities in quite the same way as Fall of Civilisations, EH's range of topics is impressively broad, making it a great resource for anyone looking to broaden their historical horizons.
+
+<b>Oversimplified : </b>
+If you're in the mood for a lighthearted take on historical events, Oversimplified is a pretty cool channel. This channel specializes in taking widely-known topics and presenting them in a comical yet informative way. The host has a talent for explaining historical content in a hilarious way that will have you laughing out loud. Even if you're not particularly interested in history, you might find yourself tuning in just for laughs. In fact, many of my friends who normally wouldn't give history a second thought have become avid viewers of Oversimplified.
+
+<b>Crash Course World History : </b>
+
+One of the first history channels I stumbled upon on YouTube was Crash Course, and it's been a favorite of mine ever since. The host, John Green, has a unique way of looking at historical events that is both philosophical and thought-provoking. Although the content can sometimes feel a bit rushed, John frequently takes a deep dive into the moral and ethical questions surrounding historical events. I particularly appreciate his discussions on the boundary between good and bad and how we can overcome the biases of the individuals who recorded history in order to gain a complete understanding of the past.
+
+<b>Kings and Generals : </b>
+For those who are particularly interested in the intricacies of warfare, Kings and Generals is an excellent channel to check out. They produce long-form, meticulously researched videos that delve into a wide variety of battles and wars throughout history. Unlike some of the other channels I've mentioned, Kings and Generals tend to focus more on the technical aspects of these conflicts rather than storytelling. 
+
