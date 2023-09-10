@@ -7,7 +7,9 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a fifth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in machine learning for robot manipulation. I am an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+Hi! I am a first-year MS Robotics student at Carnegie Mellon University. I am interested in machine learning for robot manipulation. 
+
+Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
 I spent my summers of 2021 and 2022 working with [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.
 
@@ -16,7 +18,9 @@ I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.
 If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
-* 04/07/2023 : Our paper on data-driven inverse kinematics to IJCNN, 2023!
+* 09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!
+* 08/14/2023 : Started MS Robotics at CMU!
+* 04/07/2023 : Our paper on data-driven inverse kinematics got accepted to IJCNN, 2023!
 * 06/30/2022 : Our [paper](https://arxiv.org/pdf/2208.01960.pdf) on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!
 * 05/26/2022 : Our [paper](https://sites.google.com/view/monocular-obstacle/home) on Monocular Obstacle Avoidance got accepted to CASE,2022!
 * 01/29/2022 : Our [paper](https://openreview.net/forum?id=rF-fT4pN1Wc&referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D) on sequenced dynamical systems got accepted to GPL Workshop at ICLR, 2022!
