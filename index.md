@@ -22,16 +22,16 @@ If you're looking for collaborators for Robotics/ML projects, please feel free t
 <table style="border: none !important; border-collapse: collapse;">
   <tr>
     <td style="border: none !important;">
-      <img src="path-to-your-publication-image.jpg" alt="Publication Title" style="width: 200px; height: auto;"/>
+      <img src="images/rtvs.gif" alt="Publication Title" style="width: 200px; height: auto;"/>
     </td>
     <td style="border: none !important; padding-left: 20px;">
-      <strong><a href="link-to-publication">Publication Title</a></strong><br/>
-      Author Name, Co-Author Name<br/>
-      Conference or Journal Name, Year<br/>
-      A brief summary of the paper's contributions. It can be a couple of sentences long, describing the key points of the work.<br/>
-      <a href="link-to-paper">Paper</a> |
-      <a href="link-to-video">Video</a> |
-      <a href="link-to-code">Code</a>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
+      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
+      2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)<br/>
+      Making neural network based visual servoing controller real time!<br/>
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
 </table>
