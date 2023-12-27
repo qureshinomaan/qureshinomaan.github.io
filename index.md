@@ -17,6 +17,25 @@ I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.
 
 If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
+## Publications
+
+<table style="border: none !important; border-collapse: collapse;">
+  <tr>
+    <td style="border: none !important;">
+      <img src="path-to-your-publication-image.jpg" alt="Publication Title" style="width: 200px; height: auto;"/>
+    </td>
+    <td style="border: none !important; padding-left: 20px;">
+      <strong><a href="link-to-publication">Publication Title</a></strong><br/>
+      Author Name, Co-Author Name<br/>
+      Conference or Journal Name, Year<br/>
+      A brief summary of the paper's contributions. It can be a couple of sentences long, describing the key points of the work.<br/>
+      <a href="link-to-paper">Paper</a> |
+      <a href="link-to-video">Video</a> |
+      <a href="link-to-code">Code</a>
+    </td>
+  </tr>
+</table>
+
 ## news
 * 09/09/2023 : Teaching assistant for [Robot Learning Course](https://16-831.github.io/)!
 * 09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!
