@@ -7,15 +7,31 @@ layout: default
 {% comment %}  <img class="profile-picture" src="sherlock.jpg">
 {% endcomment %}
 
-Hi! I am a first-year MS Robotics student at Carnegie Mellon University. I am interested in machine learning for robot manipulation. 
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+  <div style="flex-grow: 1; margin-right: 20px;">
+    <p>Hi! I am a first-year MS Robotics student at Carnegie Mellon University. I am interested in machine learning for robot manipulation.</p>
 
-Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
+<p>Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. K. Madhava Krishna.</p>
 
-I spent my summers of 2021 and 2022 working with [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of polic09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!ies.
+<p>I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of polic09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!ies.</p>
 
-I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.io) on a project that aims to learn manipulation policies directly from human demonstrations like [these](https://paperswithcode.com/dataset/something-something-v2).
+<p>I also collaborate with Prof. Makarand Tapaswi on a project that aims to learn manipulation policies directly from human demonstrations like these.</p>
 
-If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
+<p>If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!</p>
+    <!-- More text about you... -->
+    <p>
+      <a href="mailto:nqafzal@gmail.com">Email</a> |
+      <a href="link-to-google-scholar">Google Scholar</a> |
+      <a href="link-to-cv">CV</a> |
+      <a href="link-to-github">GitHub</a> |
+      <a href="link-to-twitter">Twitter</a> |
+      <a href="link-to-linkedin">LinkedIn</a>
+    </p>
+  </div>
+  <div>
+    <img src="images/nomaan.png" alt="Your Name" style="width: 200px; height: auto;">
+  </div>
+</div>
 
 ## Publications
 
