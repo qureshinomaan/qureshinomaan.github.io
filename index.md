@@ -18,7 +18,7 @@ I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.
 If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
-* 09/09/2023 : Teaching assistant for [Robot Learning Course]([url](https://16-831.github.io/))!
+* 09/09/2023 : Teaching assistant for [Robot Learning Course](https://16-831.github.io/)!
 * 09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!
 * 08/14/2023 : Started MS Robotics at CMU!
 * 04/07/2023 : Our paper on data-driven inverse kinematics got accepted to IJCNN, 2023!
