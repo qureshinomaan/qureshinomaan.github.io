@@ -11,13 +11,14 @@ Hi! I am a first-year MS Robotics student at Carnegie Mellon University. I am in
 
 Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by [Prof. K. Madhava Krishna](https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en).
 
-I spent my summers of 2021 and 2022 working with [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.
+I spent my summers of 2021 and 2022 working with [Prof. David Held](https://www.ri.cmu.edu/ri-faculty/david-held/) at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of polic09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!ies.
 
 I also collaborate with [Prof. Makarand Tapaswi](https://makarandtapaswi.github.io) on a project that aims to learn manipulation policies directly from human demonstrations like [these](https://paperswithcode.com/dataset/something-something-v2).
 
 If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!
 
 ## news
+* 09/09/2023 : Teaching assistant for [Robot Learning Course]([url](https://16-831.github.io/))!
 * 09/09/2023 : Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!
 * 08/14/2023 : Started MS Robotics at CMU!
 * 04/07/2023 : Our paper on data-driven inverse kinematics got accepted to IJCNN, 2023!
