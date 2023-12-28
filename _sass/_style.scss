@@ -9,10 +9,20 @@ html {
     margin: 0;
     padding: 0;
 }
+p {
+    font-size: small;
+}
+
+table{
+    font-size: small;
+}
+
 body {
     margin: 0;
     font-family: "Spectral";
     height: 100%;
+    font-size: small;
+
 }
 a {
     text-decoration: none;
@@ -38,7 +48,7 @@ hr {
     display: inline-block;
 }
 .navbar {
-    padding: 50px 0 50px 0;
+    padding: 20px 0 20px 0;
 }
 .navbar-ul {
     display: inline-block;
@@ -126,6 +136,24 @@ hr {
 		margin: 0;
 	}
 }
+
+.news-container {
+    width: 100%; /* Adjust the width as needed */
+    height: 120px; /* Adjust the height to how much you want to show at once */
+    overflow-y: auto; /* This will add a scrollbar if the content exceeds the container's height */
+    margin-top: 0.5rem; /* Reduced margin-top for closer proximity to the news heading */
+    margin-bottom: 1rem; /* Adjust as needed */
+    padding: 0 1rem; /* Provides padding inside the container */
+}
+
+.news-container ul {
+    padding-left: 0; /* Removes the default padding from the ul */
+    // list-style-type: none; /* Removes the default list item bullets */
+    margin: 0; /* Removes default margin */
+}
+
+
+
 
 @import "typography";
 @import "tables";

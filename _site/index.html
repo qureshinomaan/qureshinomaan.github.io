@@ -4,7 +4,7 @@
     <title>Nomaan Qureshi</title>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--     <meta name="keywords" content="blog, accent, Nomaan Qureshi, Nomaan Qureshi, jekyll"> -->
     <meta name="author" content="Nomaan Qureshi">
     
@@ -35,8 +35,6 @@
 <body>
     <div class="wrapper">
         <div class="navbar container">
-            
-                <img id="ins-logo" src="./hi.gif" />
             
             <a id="author-name" class="alignable pull-left" href="">Nomaan Qureshi</a>
             <ul id="navlist" class="alignable pull-right navbar-ul">
@@ -70,42 +68,85 @@
         
             <div class="container content">
         
-                <h2 id="about-me">About Me</h2>
+                <h2 id="about-me--site-under-construction--">About Me (!! Site under Construction !! )</h2>
 
-<p>Hi! I am a fifth-year student in the integrated BS/MS program at IIIT Hyderabad, India. I am interested in machine learning for robot manipulation. I am an undergraduate researcher at Robotics Research Center, advised by <a href="https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&amp;hl=en">Prof. K. Madhava Krishna</a>.</p>
+<div style="display: flex; max-width: 1200px; margin: auto; gap: 20px;">
+    <!-- Container for Image and Links -->
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; margin-right: 20px;">
+        <!-- Image at the Top -->
+        <img src="images/nomaan.png" alt="Your Name" style="width: 100%; max-width: 200px; height: auto; border-radius: 10px; margin-bottom: 10px;" />
+        
+        <!-- Links Below Image -->
+        <div style="width: 100%; max-width: 400px; text-align: center;">
+            <a href="link-to-cv">CV</a> |
+            <a href="link-to-google-scholar">Google Scholar</a> |
+            <a href="link-to-google-scholar">Linkedin</a> |
+            <a href="link-to-github">Github</a> |
+                <a href="mailto:nqafzal@gmail.com">Email</a>
+            <div style="width: 100%; max-width: 400px; text-align: center; margin-bottom: 10px;">
+            
+    <!-- Other links ... -->
+    <!-- Twitter Follow Button -->
+    <a href="https://twitter.com/qunomaan?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @qunomaan</a>
+    <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+        </div>
+    </div>
 
-<p>I spent my summer of 2021 and 2022 working with <a href="https://www.ri.cmu.edu/ri-faculty/david-held/">Prof. David Held</a> at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies.</p>
+    <!-- Text Content to the Right -->
+    <div style="flex: 3; display: flex; flex-direction: column; ">
+        <!-- Text filling up the space -->
+        <div>
+            <p>Hi! I am a first-year MS Robotics student at Carnegie Mellon University. I am interested in machine learning for robot manipulation. Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. K. Madhava Krishna.</p>
+            <p>I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborate with Prof. Makarand Tapaswi on a project that aims to learn manipulation policies directly from human demonstrations like these.</p>
+            <p>If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!</p>
+            
+            <!-- More text about you... -->
+        </div>
+    </div>
+</div>
 
-<p>I also collaborate with <a href="https://makarandtapaswi.github.io">Prof. Makarand Tapaswi</a> on a project that aims to learn manipulation policies directly from human demonstrations like <a href="https://paperswithcode.com/dataset/something-something-v2">these</a>.</p>
-
-<h2 id="interests">Interests</h2>
-
-<p><b><span style="color:red">Long-Term Goals</span></b></p>
-
-<p>Growing up in a rural area, I have seen the impact of automation tools on people’s lives. I have witnessed how even something as simple as an electronic mixer can save a mother hundreds of hours, helping her focus on her children’s education. My long-term goal is to build robots that can automate trivial aspects of people’s daily lives. For example, imagine a single parent who doesn’t have to worry about cleaning their home or cooking food. They can spend their time with their child or advance their careers. I hope that the algorithms I design during my career will help people focus on what matters in their lives.</p>
-
-<p><b><span style="color:red">Current Focus</span></b></p>
-
-<p>I want to work at the intersection of robotics, vision and reinforcement learning to build manipulation algorithms that can act in unstructured real-world environments. Currently, I am focused on the following directions to achieve this goal:</p>
-
-<ul>
-  <li><b><span style="color:red">Manipulation specific Inductive biases for RL</span></b>: Can we design inductive biases specific to manipulation to make exploration in RL more efficient?  For example, we know that while performing a task like ‘opening a bottle,’ the trajectory of the robot should be smooth. How can we design inductive biases for RL, which uses this knowledge to focus its exploration on harder parts of the problem (like the trajectory required for rotating the bottle’s cap)?</li>
-  <li><b><span style="color:red">Learning From Demonstrations</span></b>: We humans, can often watch a YouTube tutorial like <a href="https://www.youtube.com/watch?v=o4G7iF8NKJ0">this</a> and learn new skills. We extract important information about trajectory and object property from videos and build on them to perform complicated behaviors. I aim to build algorithmic pipelines which facilitate similar learning of manipulation skills for robots from such widely available data sources as YouTube videos.</li>
-  <li><b><span style="color:red">Object-Centric Representations</span></b>: So much of robotic manipulation requires dealing with complex objects. However, our knowledge about representing such objects is fairly trivial. For example, how do we represent an object as complex as an egg which changes its shape and form over the course of its manipulation? In my research, I want to design representations of objects such that makes their downstream manipulation easier.</li>
-</ul>
-
-<p>If you’re looking for collaborators for Robotics/ML projects, please feel free to get in touch!</p>
+<hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));" />
 
 <h2 id="news">news</h2>
-<ul>
-  <li>01/30/2023 : Submitted a paper on data-driven inverse kinematics to IJCNN, 2023!</li>
-  <li>06/30/2022 : Our <a href="https://arxiv.org/pdf/2208.01960.pdf">paper</a> on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!</li>
-  <li>05/26/2022 : Our <a href="https://sites.google.com/view/monocular-obstacle/home">paper</a> on Monocular Obstacle Avoidance got accepted to CASE,2022!</li>
-  <li>01/29/2022 : Our <a href="https://openreview.net/forum?id=rF-fT4pN1Wc&amp;referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D">paper</a> on sequenced dynamical systems got accepted to GPL Workshop at ICLR, 2022!</li>
-  <li>06/30/2021 : Our work on Real Time Visual Servoing has been accepted for presentation at IROS,2021!</li>
-  <li>05/05/2021 : Started my internship at <a href="https://r-pad.github.io">R-PAD</a>, Carnegie Mellon University!</li>
-  <li>05/02/2020 : Started working at <a href="https://robotics.iiit.ac.in">Robotics Research Center</a>!</li>
-</ul>
+<div class="news-container">
+  <ul>
+    <li>Sep 09, 2023: Teaching assistant for <a href="https://16-831.github.io/">Robot Learning Course</a>!</li>
+<li>Sep 09, 2023: Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!</li>
+<li>Aug 14, 2023: Started MS Robotics at CMU!</li>
+<li>Apr 07, 2023: Our paper on data-driven inverse kinematics got accepted to IJCNN, 2023!</li>
+<li>Jun 30, 2022: Our <a href="https://arxiv.org/pdf/2208.01960.pdf">paper</a> on skill learning using differentiable physics has been accepted for presentation at IROS, 2022!</li>
+<li>May 26, 2022: Our <a href="https://sites.google.com/view/monocular-obstacle/home">paper</a> on Monocular Obstacle Avoidance got accepted to CASE,2022!</li>
+<li>Jan 29, 2022: Our <a href="https://openreview.net/forum?id=rF-fT4pN1Wc&amp;referrer=%5Bthe%20profile%20of%20Mohammad%20Nomaan%20Qureshi%5D">paper</a> on sequenced dynamical systems got accepted to GPL Workshop at ICLR, 2022!</li>
+<li>Jun 30, 2021: Our work on Real Time Visual Servoing has been accepted for presentation at IROS,2021!</li>
+<li>May 05, 2021: Started my internship at <a href="https://r-pad.github.io">R-PAD</a>, Carnegie Mellon University!</li>
+<li>May 02, 2020: Started working at <a href="https://robotics.iiit.ac.in">Robotics Research Center</a>!</li>
+
+  </ul>
+</div>
+
+<hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));" />
+
+<h2 id="publications">Publications</h2>
+
+<table style="border: none !important; border-collapse: collapse;">
+  <tr>
+    <td style="border: none !important;">
+      <img src="images/rtvs.gif" alt="Publication Title" style="width: 100%; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px" />
+    </td>
+    <td style="border: none !important; padding-left: 20px;">
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br />
+      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br />
+      IROS, 2021<br />
+      Making neural network based visual servoing controller real time!<br />
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <!-- <a href="link-to-code">Code</a> -->
+    </td>
+  </tr>
+</table>
+
+<hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));" />
 
 <h2 id="contact">Contact</h2>
 <p>Please feel free to contact or interact with me through the following links:</p>

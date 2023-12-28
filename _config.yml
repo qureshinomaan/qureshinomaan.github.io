@@ -4,8 +4,8 @@ url: ""
 baseurl: ""
 
 markdown: kramdown
-ins_logo: "./hi.gif"
-ins_logo2: "../hi.gif"
+# ins_logo: "./hi.gif"
+# ins_logo2: "../hi.gif"
 
 tracking_id: UA-172754754-1
 
@@ -18,10 +18,10 @@ sass:
     sass_dir: _sass
 
 nav:
- - name: "Resume"
-   link: "resume.pdf"
-#  - name: "Blog"
-#    link: "blog"
+#  - name: "Resume"
+#    link: "resume.pdf"
+ - name: "Blog"
+   link: "blog"
  - name: "Contact"
    link: "contact"
 

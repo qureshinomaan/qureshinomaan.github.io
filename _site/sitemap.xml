@@ -10,6 +10,12 @@
 <loc>http://localhost:4000/blogs/blog_2.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/blogs/blog_3.html</loc>
+</url>
+<url>
+<loc>http://localhost:4000/cem.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/contact.html</loc>
 </url>
 <url>
@@ -17,6 +23,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/resume.pdf</loc>
-<lastmod>2023-03-02T09:10:57+05:30</lastmod>
+<lastmod>2023-09-13T10:46:23-04:00</lastmod>
 </url>
 </urlset>
