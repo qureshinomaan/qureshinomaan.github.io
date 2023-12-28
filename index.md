@@ -32,8 +32,8 @@ layout: default
     <div style="flex: 3; display: flex; flex-direction: column; ">
         <!-- Text filling up the space -->
         <div >
-            <p >Hi! I am a first-year MS Robotics student at Carnegie Mellon University. I am interested in machine learning for robot manipulation. Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. K. Madhava Krishna.</p>
-            <p>I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborate with Prof. Makarand Tapaswi on a project that aims to learn manipulation policies directly from human demonstrations like these.</p>
+            <p >Hi! I am a first-year MS Robotics student at Carnegie Mellon University advised by Prof. George Kantor. I am interested in machine learning for robot manipulation. Currently, I am trying to build robot farmers. </p>
+            <p> Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. K. Madhava Krishna. I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborate with Prof. Makarand Tapaswi on a project that aims to learn manipulation policies directly from human demonstrations like these.</p>
             <p>If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!</p>
             
             <!-- More text about you... -->
