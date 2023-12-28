@@ -14,9 +14,9 @@ layout: default
         <!-- Links Below Image -->
         <div style="width: 100%; max-width: 400px; text-align: center;">
             <a href="link-to-cv">CV</a> |
-            <a href="link-to-google-scholar">Google Scholar</a> |
-            <a href="link-to-google-scholar">Linkedin</a> |
-            <a href="link-to-github">Github</a> |
+            <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&hl=en&user=ZmVf8kUAAAAJ&sortby=pubdate&authuser=1">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/qureshinomaan/">Linkedin</a> |
+            <a href="https://github.com/qureshinomaan">Github</a> |
                 <a href="mailto:nqafzal@gmail.com">Email</a>
             <div style="width: 100%; max-width: 400px; text-align: center; margin-bottom: 10px;">
             
@@ -72,12 +72,13 @@ layout: default
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/multihead.png" alt="Publication Title" style="background-color: #ffffe0;width: 100px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/multihead.png" alt="Publication Title" style="background-color: #ffffe0;width: 150px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
-      IROS, 2021<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks</a></strong><br/>
+      M. Nomaan Qureshi, Ben Eisner, David Held<br/>
+      Learning Meets Model-based Methods for Manipulation and Grasping Workshop @ IROS 2023
+<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
@@ -89,12 +90,12 @@ layout: default
 <table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
-      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 100px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
-      IROS, 2021<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation</a></strong><br/>
+      Vishal Reddy Mandadi, Kallol Saha, Dipanwita Guhathakurta, M Nomaan Qureshi, Aditya Agarwal, Bipasha Sen, Dipanjan Das, Brojeshwar Bhowmick, Arun Singh, Madhava Krishna<br/>
+      CASE, 2023<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
@@ -106,12 +107,12 @@ layout: default
 <table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
-      <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 100px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
-      IROS, 2021<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution</a></strong><br/>
+      Prajwal Thakur, M Nomaan Qureshi, Arun Kumar Singh, YVS Harish, Pushkal Katara, Houman Masnavi, K Madhava Krishna, Brojeshwar Bhowmick<br/>
+      IJCNN, 2023<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
@@ -123,12 +124,12 @@ layout: default
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 100px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
-      IROS, 2021<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Learning Object Manipulation Skills from Video via Approximate Differentiable Physics</a></strong><br/>
+      Vladimir Petrik, Mohammad Nomaan Qureshi, Josef Sivic, Makarand Tapaswi<br/>
+      IROS, 2022<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
@@ -140,12 +141,12 @@ layout: default
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/case.png" alt="Publication Title" style="background-color: #ffffe0;width: 100px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/case.png" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
-      IROS, 2021<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises</a></strong><br/>
+      Harshit K Sankhla, M Nomaan Qureshi, Shankara Narayanan V, Vedansh Mittal, Gunjan Gupta, Harit Pandya, K Madhava Krishna<br/>
+      CASE, 2022<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
@@ -157,12 +158,12 @@ layout: default
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/dlds.png" alt="Publication Title" style="background-color: #ffffe0;width: 100px;; max-width: 400px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/dlds.png" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 400px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
-      IROS, 2021<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning </a></strong><br/>
+      <b>M Nomaan Qureshi</b>,Ben Eisner, David Held<br/>
+      ICLR 2022 Workshop on Generalizable Policy Learning in Physical World<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
@@ -175,7 +176,7 @@ layout: default
 <table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
-      <img src="images/rtvs.gif" alt="Publication Title" style="background-color: #ffffe0;width: 100px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/rtvs.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
