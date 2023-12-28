@@ -84,10 +84,13 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+</table>
 
+<table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
       <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
@@ -99,10 +102,13 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+</table>
 
+<table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
       <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
@@ -114,10 +120,13 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+</table>
 
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
       <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
@@ -129,6 +138,7 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
@@ -144,6 +154,8 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
@@ -159,6 +171,7 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
@@ -177,6 +190,8 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
