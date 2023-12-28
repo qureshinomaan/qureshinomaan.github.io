@@ -2,7 +2,7 @@ title: Nomaan Qureshi
 author: Nomaan Qureshi
 url: ""
 baseurl: ""
-# favicon: "https://www.cmu.edu/favicon.ico"
+favicon: "https://www.cmu.edu/favicon.ico"
 
 markdown: kramdown
 # ins_logo: "./hi.gif"
@@ -19,17 +19,14 @@ sass:
     sass_dir: _sass
 
 nav:
-#  - name: "Resume"
-#    link: "resume.pdf"
- - name: "Blog"
+ - name: "research"
+   link: "research"
+ - name: "blog"
    link: "blog"
- - name: "Contact"
-   link: "contact"
+
 
 nav_blog:
- - name: "Resume"
-   link: "../resume.pdf"
- - name: "Blog"
-   link: "../blog"
- - name: "Contact"
-   link: "../contact"
+ - name: "research"
+   link: "research"
+ - name: "blog"
+   link: "blog"

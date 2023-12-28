@@ -13,7 +13,7 @@ layout: default
         
         <!-- Links Below Image -->
         <div style="width: 100%; max-width: 400px; text-align: center;">
-            <a href="link-to-cv">CV</a> |
+            <a href="./resume.pdf">CV</a> |
             <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&hl=en&user=ZmVf8kUAAAAJ&sortby=pubdate&authuser=1">Google Scholar</a> |
             <a href="https://www.linkedin.com/in/qureshinomaan/">Linkedin</a> |
             <a href="https://github.com/qureshinomaan">Github</a> |
@@ -69,10 +69,12 @@ layout: default
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
 ## Publications (!! need to update !!)
+Representative publications <span style="background-color: #ffffe0;">are higlighted.</span>
+
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/multihead.png" alt="Publication Title" style="background-color: #ffffe0;width: 150px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/multihead.png" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks</a></strong><br/>
@@ -85,12 +87,10 @@ layout: default
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
 
-<table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
-      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation</a></strong><br/>
@@ -102,12 +102,10 @@ layout: default
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
 
-<table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
-      <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution</a></strong><br/>
@@ -119,12 +117,10 @@ layout: default
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
 
-<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Learning Object Manipulation Skills from Video via Approximate Differentiable Physics</a></strong><br/>
@@ -136,12 +132,10 @@ layout: default
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
 
-<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/case.png" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/case.png" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises</a></strong><br/>
@@ -153,14 +147,12 @@ layout: default
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
 
-<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
-      <img src="images/dlds.png" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 400px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/dlds.png" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
-    <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
+    <td style="background-color: #ffffe0;border: none; padding-left: 20px; ">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning </a></strong><br/>
       <b>M Nomaan Qureshi</b>,Ben Eisner, David Held<br/>
       ICLR 2022 Workshop on Generalizable Policy Learning in Physical World<br/>
@@ -176,7 +168,7 @@ layout: default
 <table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
-      <img src="images/rtvs.gif" alt="Publication Title" style="background-color: #ffffe0;width: 150px;; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+      <img src="images/rtvs.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
