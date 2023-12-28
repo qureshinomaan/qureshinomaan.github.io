@@ -2,6 +2,7 @@ title: Nomaan Qureshi
 author: Nomaan Qureshi
 url: ""
 baseurl: ""
+# favicon: "https://www.cmu.edu/favicon.ico"
 
 markdown: kramdown
 # ins_logo: "./hi.gif"

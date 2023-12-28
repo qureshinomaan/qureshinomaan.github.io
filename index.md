@@ -89,6 +89,23 @@ layout: default
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
+      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 100px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
+    </td>
+    <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
+      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
+      IROS, 2021<br/>
+      Making neural network based visual servoing controller real time!<br/>
+      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <!-- <a href="link-to-code">Code</a> -->
+    </td>
+  </tr>
+</table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
+  <tr>
+    <td style="border: none;background-color: #ffffe0;">
       <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 100px; max-width: 300px; height: auto; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
