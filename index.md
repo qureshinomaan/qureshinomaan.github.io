@@ -45,6 +45,11 @@ layout: default
 
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
+## research
+Write about your research here.
+
+<hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
+
 ## news
 <div class="news-container">
   <ul>
@@ -69,7 +74,8 @@ layout: default
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
 ## Publications (!! need to update !!)
-Representative publications <span style="background-color: #ffffe0;">are higlighted.</span>
+Representative publications <span style="background-color: #ffffe0;">are higlighted.</span><br>
+( "\*" denotes equal contribution. )
 
 <table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
@@ -78,67 +84,93 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks</a></strong><br/>
-      M. Nomaan Qureshi, Ben Eisner, David Held<br/>
+      <b>M. Nomaan Qureshi</b>,  Ben Eisner, David Held<br/>
       Learning Meets Model-based Methods for Manipulation and Grasping Workshop @ IROS 2023
 <br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info7')">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('bib7')">Bibtex</a>
+
+      <div id="info7" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib7" class="hidden-info">
+                Bibtex for the first paper
+            </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
 
-<table style="border: none; border-collapse: collapse; width: 100%;">
-  <tr>
-    <td style="border: none;">
-      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
-    </td>
-    <td style="border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation</a></strong><br/>
-      Vishal Reddy Mandadi, Kallol Saha, Dipanwita Guhathakurta, M Nomaan Qureshi, Aditya Agarwal, Bipasha Sen, Dipanjan Das, Brojeshwar Bhowmick, Arun Singh, Madhava Krishna<br/>
-      CASE, 2023<br/>
-      Making neural network based visual servoing controller real time!<br/>
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
-      <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
-      <!-- <a href="link-to-code">Code</a> -->
-    </td>
-  </tr>
-</table>
-
-<table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
       <img src="images/case2023.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution</a></strong><br/>
-      Prajwal Thakur, M Nomaan Qureshi, Arun Kumar Singh, YVS Harish, Pushkal Katara, Houman Masnavi, K Madhava Krishna, Brojeshwar Bhowmick<br/>
-      IJCNN, 2023<br/>
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/10260462">Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation</a></strong><br/>
+      Vishal Reddy Mandadi, Kallol Saha, Dipanwita Guhathakurta, <b>M Nomaan Qureshi</b>, Aditya Agarwal, Bipasha Sen, Dipanjan Das, Brojeshwar Bhowmick, Arun Singh, Madhava Krishna<br/>
+      CASE, 2023<br/>
       Making neural network based visual servoing controller real time!<br/>
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://ieeexplore.ieee.org/abstract/document/10260462">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info6')">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('bib6')">Bibtex</a>
+
+      <div id="info6" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib6" class="hidden-info">
+                Bibtex for the first paper
+            </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
+  
+  <tr>
+    <td style="border: none;">
+      <img src="images/ijcnn.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
+    </td>
+    <td style="border: none; padding-left: 20px;">
+      <strong><a href="https://ieeexplore.ieee.org/abstract/document/10191434">Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution</a></strong><br/>
+      Prajwal Thakur*, <b>M Nomaan Qureshi*</b>, Arun Kumar Singh, YVS Harish, Pushkal Katara, Houman Masnavi, K Madhava Krishna, Brojeshwar Bhowmick<br/>
+      IJCNN, 2023<br/>
+      Making neural network based visual servoing controller real time!<br/>
+      <a href="https://ieeexplore.ieee.org/abstract/document/10191434">Paper</a> |
+      <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info5')">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('bib5')">Bibtex</a>
 
-<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
+      <div id="info5" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib5" class="hidden-info">
+                Bibtex for the first paper
+            </div>
+      <!-- <a href="link-to-code">Code</a> -->
+    </td>
+  </tr>
+
   <tr>
     <td style="border: none;background-color: #ffffe0;">
       <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Learning Object Manipulation Skills from Video via Approximate Differentiable Physics</a></strong><br/>
-      Vladimir Petrik, Mohammad Nomaan Qureshi, Josef Sivic, Makarand Tapaswi<br/>
+      <strong><a href="https://arxiv.org/pdf/2208.01960">Learning Object Manipulation Skills from Video via Approximate Differentiable Physics</a></strong><br/>
+      Vladimir Petrik, <b>M Nomaan Qureshi</b>, Josef Sivic, Makarand Tapaswi<br/>
       IROS, 2022<br/>
       Making neural network based visual servoing controller real time!<br/>
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://arxiv.org/pdf/2208.01960">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info4')">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('bib4')">Bibtex</a>
+
+      <div id="info4" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib4" class="hidden-info">
+                Bibtex for the first paper
+            </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
@@ -148,13 +180,21 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <img src="images/case.png" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px;">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises</a></strong><br/>
-      Harshit K Sankhla, M Nomaan Qureshi, Shankara Narayanan V, Vedansh Mittal, Gunjan Gupta, Harit Pandya, K Madhava Krishna<br/>
+      <strong><a href="https://arxiv.org/pdf/2207.03557">Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises</a></strong><br/>
+      Harshit K Sankhla*, <b>M Nomaan Qureshi*</b>, Shankara Narayanan V*, Vedansh Mittal, Gunjan Gupta, Harit Pandya, K Madhava Krishna<br/>
       CASE, 2022<br/>
       Making neural network based visual servoing controller real time!<br/>
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://arxiv.org/pdf/2207.03557">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info3')">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('bib3')">Bibtex</a>
+
+      <div id="info3" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib3" class="hidden-info">
+                Bibtex for the first paper
+            </div>
 
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -165,32 +205,48 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <img src="images/dlds.png" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="background-color: #ffffe0;border: none; padding-left: 20px; ">
-      <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning </a></strong><br/>
+      <strong><a href="https://openreview.net/forum?id=rF-fT4pN1Wc">Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning </a></strong><br/>
       <b>M Nomaan Qureshi</b>,Ben Eisner, David Held<br/>
       ICLR 2022 Workshop on Generalizable Policy Learning in Physical World<br/>
       Making neural network based visual servoing controller real time!<br/>
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
+      <a href="https://openreview.net/forum?id=rF-fT4pN1Wc">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info2')">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('bib2')">Bibtex</a>
+
+      <div id="info2" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib2" class="hidden-info">
+                Bibtex for the first paper
+            </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
-</table>
-
-
-<table style="border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;">
       <img src="images/rtvs.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
     </td>
     <td style="border: none; padding-left: 20px;">
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
-      <b>M Nomaan Qureshi</b>, Pushkal Katara, Abhinav Gupta, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
+      <b>M Nomaan Qureshi*</b>, Pushkal Katara*, Abhinav Gupta*, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
       IROS, 2021<br/>
       Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Why?</a> |
+      <a href="javascript:void(0);" onclick="toggleInfo('info1')">Why?</a> |
+            
+
+      <a href="javascript:void(0);" onclick="toggleInfo('bib1')">Bibtex</a>
+
+      <div id="info1" class="hidden-info">
+                This is the explanation for the first paper.
+            </div>
+            <div id="bib1" class="hidden-info">
+                Bibtex for the first paper
+            </div>
+
+            
       
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -207,3 +263,45 @@ Please feel free to contact or interact with me through the following links:
 * Google Scholar: [M. Nomaan Qureshi](https://scholar.google.com/citations?user=ZmVf8kUAAAAJ&hl=en)
 * Twitter: [@qunomaan](https://twitter.com/qunomaan)
 * GitHub: [qureshinomaan](github.com/qureshinomaan)
+
+
+    <style>
+        .hidden-info {
+    display: none;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    padding: 0;
+    margin-top: 5px;
+    border-radius: 5px;
+    transition: padding 0.5s, height 0.5s ease;
+}
+    </style>
+
+<script>
+    function toggleInfo(infoId) {
+        var info = document.getElementById(infoId);
+        
+        // Check if the div is currently visible
+        var isCurrentlyVisible = info.style.display === "block";
+
+        // If not explicitly set, assume it's not visible initially
+        if (info.style.display === "") {
+            info.style.display = "none";
+        }
+
+        // Toggle the visibility and apply transitions
+        if (!isCurrentlyVisible) {
+            info.style.display = "block";
+            setTimeout(function() {
+                info.style.padding = "10px";
+                info.style.height = "auto";
+            }, 10); // Timeout to allow display change to register
+        } else {
+            info.style.padding = "0";
+            info.style.height = "0";
+            setTimeout(function() {
+                info.style.display = "none";
+            }, 500); // Timeout for the transition to complete
+        }
+    }
+</script>
