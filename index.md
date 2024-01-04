@@ -102,6 +102,9 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+  </table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
 
   <tr>
     <td style="border: none;">
@@ -121,11 +124,25 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib6" class="hidden-info">
-                Bibtex for the first paper
+                @INPROCEEDINGS{10260462,
+  author={Mandadi, Vishal Reddy and Saha, Kallol and Guhathakurta, Dipanwita and Qureshi, M. Nomaan and Agarwal, Aditya and Sen, Bipasha and Das, Dipanjan and Bhowmick, Brojeshwar and Singh, Arun and Krishna, Madhava},
+  booktitle={2023 IEEE 19th International Conference on Automation Science and Engineering (CASE)}, 
+  title={Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-6},
+  doi={10.1109/CASE56687.2023.10260462}}
+
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+
+  </table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
+  
   
   <tr>
     <td style="border: none;">
@@ -145,12 +162,24 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib5" class="hidden-info">
-                Bibtex for the first paper
+               @INPROCEEDINGS{10191434,
+  author={Thakur, Prajwal and Qureshi, M. Nomaan and Singh, Arun Kumar and Harish, Y V S and Katara, Pushkal and Masnavi, Houman and Krishna, K. Madhava and Bhowmick, Brojeshwar},
+  booktitle={2023 International Joint Conference on Neural Networks (IJCNN)}, 
+  title={Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-10},
+  doi={10.1109/IJCNN54540.2023.10191434}}
+
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
 
+  </table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
   <tr>
     <td style="border: none;background-color: #ffffe0;">
       <img src="images/iros22.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
@@ -169,11 +198,21 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib4" class="hidden-info">
-                Bibtex for the first paper
+                @misc{petrik2022learning,
+      title={Learning Object Manipulation Skills from Video via Approximate Differentiable Physics}, 
+      author={Vladimir Petrik and Mohammad Nomaan Qureshi and Josef Sivic and Makarand Tapaswi},
+      year={2022},
+      eprint={2208.01960},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+  </table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
 
   <tr>
     <td style="border: none;background-color: #ffffe0;">
@@ -193,12 +232,23 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib3" class="hidden-info">
-                Bibtex for the first paper
+               @misc{sankhla2022flow,
+      title={Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises}, 
+      author={Harshit K. Sankhla and M. Nomaan Qureshi and Shankara Narayanan V. and Vedansh Mittal and Gunjan Gupta and Harit Pandya and K. Madhava Krishna},
+      year={2022},
+      eprint={2207.03557},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}
             </div>
 
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+
+  </table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
 
   <tr>
     <td style="border: none;background-color: #ffffe0;">
@@ -218,11 +268,23 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib2" class="hidden-info">
-                Bibtex for the first paper
+                @inproceedings{
+qureshi2022deep,
+title={Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning},
+author={Mohammad Nomaan Qureshi and Ben Eisner and David Held},
+booktitle={ICLR 2022 Workshop on Generalizable Policy Learning in Physical World},
+year={2022},
+url={https://openreview.net/forum?id=rF-fT4pN1Wc}
+}
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
   </tr>
+
+  </table>
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
+
   <tr>
     <td style="border: none;">
       <img src="images/rtvs.gif" alt="Publication Title" style="background-color: #ffffe0;width: 200px; max-width: 200px; height: auto; max-height: 120px; border-radius: 10px; margin-bottom: 10px"/>
