@@ -88,16 +88,21 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       Learning Meets Model-based Methods for Manipulation and Grasping Workshop @ IROS 2023
 <br/>
       Making neural network based visual servoing controller real time!<br/>
-      <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
-      <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
-      <a href="javascript:void(0);" onclick="toggleInfo('info7')">Why?</a> |
+      <a href="https://arxiv.org/abs/2401.01993">Paper</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('bib7')">Bibtex</a>
 
       <div id="info7" class="hidden-info">
                 This is the explanation for the first paper.
             </div>
             <div id="bib7" class="hidden-info">
-                Bibtex for the first paper
+                @misc{qureshi2024timeindexing,
+      title={On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks}, 
+      author={M. Nomaan Qureshi and Ben Eisner and David Held},
+      year={2024},
+      eprint={2401.01993},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
