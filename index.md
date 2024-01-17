@@ -87,7 +87,6 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <b>M. Nomaan Qureshi</b>,  Ben Eisner, David Held<br/>
       Learning Meets Model-based Methods for Manipulation and Grasping Workshop @ IROS 2023
 <br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://arxiv.org/abs/2401.01993">Paper</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('bib7')">Bibtex</a>
 
@@ -119,7 +118,6 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/10260462">Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation</a></strong><br/>
       Vishal Reddy Mandadi, Kallol Saha, Dipanwita Guhathakurta, <b>M Nomaan Qureshi</b>, Aditya Agarwal, Bipasha Sen, Dipanjan Das, Brojeshwar Bhowmick, Arun Singh, Madhava Krishna<br/>
       CASE, 2023<br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/10260462">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('info6')">Why?</a> |
@@ -157,7 +155,6 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/10191434">Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution</a></strong><br/>
       Prajwal Thakur*, <b>M Nomaan Qureshi*</b>, Arun Kumar Singh, YVS Harish, Pushkal Katara, Houman Masnavi, K Madhava Krishna, Brojeshwar Bhowmick<br/>
       IJCNN, 2023<br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/10191434">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('info5')">Why?</a> |
@@ -193,7 +190,6 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <strong><a href="https://arxiv.org/pdf/2208.01960">Learning Object Manipulation Skills from Video via Approximate Differentiable Physics</a></strong><br/>
       Vladimir Petrik, <b>M Nomaan Qureshi</b>, Josef Sivic, Makarand Tapaswi<br/>
       IROS, 2022<br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://arxiv.org/pdf/2208.01960">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('info4')">Why?</a> |
@@ -227,7 +223,6 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <strong><a href="https://arxiv.org/pdf/2207.03557">Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises</a></strong><br/>
       Harshit K Sankhla*, <b>M Nomaan Qureshi*</b>, Shankara Narayanan V*, Vedansh Mittal, Gunjan Gupta, Harit Pandya, K Madhava Krishna<br/>
       CASE, 2022<br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://arxiv.org/pdf/2207.03557">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('info3')">Why?</a> |
@@ -263,7 +258,6 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
       <strong><a href="https://openreview.net/forum?id=rF-fT4pN1Wc">Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning </a></strong><br/>
       <b>M Nomaan Qureshi</b>,Ben Eisner, David Held<br/>
       ICLR 2022 Workshop on Generalizable Policy Learning in Physical World<br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://openreview.net/forum?id=rF-fT4pN1Wc">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('info2')">Why?</a> |
@@ -298,7 +292,6 @@ url={https://openreview.net/forum?id=rF-fT4pN1Wc}
       <strong><a href="https://ieeexplore.ieee.org/abstract/document/9636290">RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing</a></strong><br/>
       <b>M Nomaan Qureshi*</b>, Pushkal Katara*, Abhinav Gupta*, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna<br/>
       IROS, 2021<br/>
-      Making neural network based visual servoing controller real time!<br/>
       <a href="https://ieeexplore.ieee.org/abstract/document/9636290">Paper</a> |
       <a href="https://www.youtube.com/watch?v=iQidWKBwkDw">Video</a> |
       <a href="javascript:void(0);" onclick="toggleInfo('info1')">Why?</a> |
