@@ -325,13 +325,13 @@ url={https://openreview.net/forum?id=rF-fT4pN1Wc}
 
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
-## Contact
+<!-- ## Contact
 Please feel free to contact or interact with me through the following links:
 
 * Email: nqafzal [at] gmail
 * Google Scholar: [M. Nomaan Qureshi](https://scholar.google.com/citations?user=ZmVf8kUAAAAJ&hl=en)
 * Twitter: [@qunomaan](https://twitter.com/qunomaan)
-* GitHub: [qureshinomaan](github.com/qureshinomaan)
+* GitHub: [qureshinomaan](github.com/qureshinomaan) -->
 
 
     <style>
