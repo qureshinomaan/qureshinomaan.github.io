@@ -46,7 +46,7 @@ layout: default
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
 ## research
-Write about your research here.
+I want to solve robot manipulation. While most animals can walk or run, very few can manipulate their environments like humans do. There is something so simple and yet so exciting about these problems that it keeps me up at night. 
 
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
