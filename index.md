@@ -2,7 +2,7 @@
 layout: default
 ---
 
-## About Me (!! Site under Construction !! )
+## About Me 
 
 
 <div style="display: flex; max-width: 800px; margin: auto; gap: 20px;">
