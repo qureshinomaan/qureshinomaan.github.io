@@ -53,6 +53,7 @@ I want to solve robot manipulation. While most animals can walk or run, very few
 ## news
 <div class="news-container">
   <ul>
+      <li>Jun 30, 2023: Paper accepted to IROS 2024!</li>
     <li>Sep 09, 2023: Teaching assistant for <a href="https://16-831.github.io/">Robot Learning Course</a>!</li>
 <li>Sep 09, 2023: Our paper on time-based inductive bias for RL policies got accepted to an IROS Workshop!</li>
 <li>Aug 14, 2023: Started MS Robotics at CMU!</li>
