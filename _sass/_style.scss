@@ -153,6 +153,60 @@ hr {
 }
 
 
+.publication {
+    display: flex;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .highlighted {
+    background-color: #ffffe0;
+  }
+  .pub-image {
+    flex: 0 0 200px;
+    margin-right: 20px;
+  }
+  .pub-image img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    max-height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .pub-content {
+    flex: 1;
+  }
+  .pub-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .authors, .venue {
+    margin: 5px 0;
+  }
+  .pub-links {
+    margin-top: 10px;
+  }
+  .hidden-info {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.hidden-info pre {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.hidden-info code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
 
 @import "typography";
 @import "tables";

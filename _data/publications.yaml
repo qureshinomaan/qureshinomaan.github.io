@@ -1,0 +1,176 @@
+- title: "SplatSim: Zero-Shot Sim2Real Transfer of RGB Manipulation Policies Using Gaussian Splatting"
+  authors: M Nomaan Qureshi , Sparsh Garg , Francisco Yandun , David Held , George Kantor , Abhisesh Silwal
+  venue: "Under Review"
+  year: 2024
+  paper_link: "https://arxiv.org/abs/2409.10161"
+  image: "images/icra2024.gif"
+  highlight: True
+  explanation: "Simulators are great for generating data, but rendering realistic images is still a challenge. We proposed a method to render realistic images using Gaussian Splatting for simulators."
+  contribution: "I came up with the idea of using Gaussian Splatting as a renderer over Simulators and did the most work. Sparsh was crucial in the early implementations of SplatSim. I wrote most of the paper while Sparsh made all the figures. Prof. David provided some very good advice on deploying policies in the real world. Francisco were very helpful in day to day discussions and setting up the experiments and formulating them. Prof. George and Prof. Abhi provided invaluable insights on making the SplatSim framework practical and applicable to real world robots."
+  bibtex: |
+    @misc{qureshi2024splatsimzeroshotsim2realtransfer,
+            title={SplatSim: Zero-Shot Sim2Real Transfer of RGB Manipulation Policies Using Gaussian Splatting}, 
+            author={Mohammad Nomaan Qureshi and Sparsh Garg and Francisco Yandun and David Held and George Kantor and Abhishesh Silwal},
+            year={2024},
+            eprint={2409.10161},
+            archivePrefix={arXiv},
+            primaryClass={cs.RO},
+            url={https://arxiv.org/abs/2409.10161}, 
+      }
+
+- title: "Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks"
+  authors: "Pranjali Pathre, Gunjan Gupta, M Nomaan Qureshi, Samartha Brahmbhatt, K Madhava Krishna"
+  venue: "2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
+  year: 2024
+  paper_link: "https://arxiv.org/abs/2401.01993"
+  image: "images/iros2024.gif"
+  highlight: True
+  explanation: "Diffusion models are very good at generating image goals, servoing is very good at reaching them. Combining the two is a natural fit. I wrote most of the paper apart form the experiments section."
+  contribution: "I came up with the formulation for this paper. Pranjali did most of the work and Gunjan did the real world robot experiments. "
+  bibtex: |
+    @misc{qureshi2024timeindexing,
+      title     = {On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks},
+      author    = {M. Nomaan Qureshi and Ben Eisner and David Held},
+      year      = {2024},
+      eprint    = {2401.01993},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.RO}
+    }
+
+- title: "On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks"
+  authors: "M Nomaan Qureshi, Ben Eisner, David Held"
+  venue: "Learning Meets Model-based Methods for Manipulation and Grasping Workshop @ IROS"
+  year: 2023
+  paper_link: "https://arxiv.org/abs/2401.01993"
+  image: "images/multihead.png"
+  highlight: False
+  explanation: "This is the explanation for the first paper."
+  contribution: "I contributed to the idea of using Time-indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks."
+  bibtex: |
+    @misc{qureshi2024timeindexing,
+      title     = {On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks},
+      author    = {M. Nomaan Qureshi and Ben Eisner and David Held},
+      year      = {2024},
+      eprint    = {2401.01993},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.RO}
+    }
+
+- title: "Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation"
+  authors: "Vishal Reddy Mandadi, Kallol Saha, Dipanwita Guhathakurta, M Nomaan Qureshi, Aditya Agarwal, Bipasha Sen, Dipanjan Das, Brojeshwar Bhowmick, Arun Singh, Madhava Krishna"
+  venue: "CASE"
+  year: 2023
+  paper_link: "https://ieeexplore.ieee.org/abstract/document/10260462"
+  video_link: "https://www.youtube.com/watch?v=iQidWKBwkDw"
+  image: "images/case2023.gif"
+  highlight: False
+  explanation: "Push + Grasp is an essential skill."
+  contribution: "I did not contribute much to this paper. I helped Vishal with the RL controller part, but Vishal and Kallol did most of the work."
+  bibtex: |
+    @inproceedings{mandadi2023disentangling,
+      author    = {Vishal Reddy Mandadi and Kallol Saha and Dipanwita Guhathakurta and M. Nomaan Qureshi and Aditya Agarwal and Bipasha Sen and Dipanjan Das and Brojeshwar Bhowmick and Arun Singh and Madhava Krishna},
+      title     = {Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation},
+      booktitle = {2023 IEEE 19th International Conference on Automation Science and Engineering (CASE)},
+      year      = {2023},
+      pages     = {1-6},
+      doi       = {10.1109/CASE56687.2023.10260462}
+    }
+
+- title: "Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution"
+  authors: "Prajwal Thakur*, M Nomaan Qureshi*, Arun Kumar Singh, YVS Harish, Pushkal Katara, Houman Masnavi, K Madhava Krishna, Brojeshwar Bhowmick"
+  venue: "IJCNN"
+  year: 2023
+  paper_link: "https://ieeexplore.ieee.org/abstract/document/10191434"
+  video_link: "https://www.youtube.com/watch?v=iQidWKBwkDw"
+  image: "images/ijcnn.gif"
+  highlight: False
+  explanation: "Shortest path in euclidean space is not the shortest path in joint space."
+  contribution: "Prof. Arun came up with the formulation. I along with Prajwal implemented it and wrote the paper. "
+  bibtex: |
+    @inproceedings{thakur2023learning,
+      author    = {Prajwal Thakur and M. Nomaan Qureshi and Arun Kumar Singh and Y V S Harish and Pushkal Katara and Houman Masnavi and K. Madhava Krishna and Brojeshwar Bhowmick},
+      title     = {Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution},
+      booktitle = {2023 International Joint Conference on Neural Networks (IJCNN)},
+      year      = {2023},
+      pages     = {1-10},
+      doi       = {10.1109/IJCNN54540.2023.10191434}
+    }
+
+- title: "Learning Object Manipulation Skills from Video via Approximate Differentiable Physics"
+  authors: "Vladimir Petrik, M Nomaan Qureshi, Josef Sivic, Makarand Tapaswi"
+  venue: "IROS"
+  year: 2022
+  paper_link: "https://arxiv.org/pdf/2208.01960"
+  video_link: "https://www.youtube.com/watch?v=iQidWKBwkDw"
+  image: "images/iros22.gif"
+  highlight: true
+  explanation: "Incorporating laws of motions like gravity into learning object manipulation skills from video, can help recover better trajectories."
+  contribution: "This was Vladimir's idea. I worked on improving the segmentation which helped the performance of his idea -- and some help in writing the paper (related work and figures)."
+  bibtex: |
+    @misc{petrik2022learning,
+      title     = {Learning Object Manipulation Skills from Video via Approximate Differentiable Physics},
+      author    = {Vladimir Petrik and Mohammad Nomaan Qureshi and Josef Sivic and Makarand Tapaswi},
+      year      = {2022},
+      eprint    = {2208.01960},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.RO}
+    }
+
+- title: "Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises"
+  authors: "Harshit K Sankhla*, M Nomaan Qureshi*, Shankara Narayanan V*, Vedansh Mittal, Gunjan Gupta, Harit Pandya, K Madhava Krishna"
+  venue: "CASE"
+  year: 2022
+  paper_link: "https://arxiv.org/pdf/2207.03557"
+  video_link: "https://www.youtube.com/watch?v=iQidWKBwkDw"
+  image: "images/case.png"
+  highlight: true
+  explanation: "Obstacle avoidance amidst high rises is a challenging problem. We proposed a simple application of visual servoing to solve this problem. "
+  contribution: "Harshit came up with the problem of obstacle avoidance amidst high-rises. I came up with the core idea and wrote the paper as well as servoing code along with Shankara. Prof. Madhava was the main advisor."
+  bibtex: |
+    @misc{sankhla2022flow,
+      title     = {Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises},
+      author    = {Harshit K. Sankhla and M. Nomaan Qureshi and Shankara Narayanan V. and Vedansh Mittal and Gunjan Gupta and Harit Pandya and K. Madhava Krishna},
+      year      = {2022},
+      eprint    = {2207.03557},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.RO}
+    }
+
+- title: "Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning"
+  authors: "M Nomaan Qureshi, Ben Eisner, David Held"
+  venue: "ICLR 2022 Workshop on Generalizable Policy Learning in Physical World"
+  year: 2022
+  paper_link: "https://openreview.net/forum?id=rF-fT4pN1Wc"
+  # video_link: "https://www.youtube.com/watch?v=iQidWKBwkDw"
+  image: "images/dlds.png"
+  highlight: true
+  explanation: "What inductive bias to use for policy learning in manipulation tasks? We found out that simple linear dynamical systems work surprisingly well when you make them differentiable.  "
+  contribution: "I came up with the idea of differentiable linear dynamical systems and how they can be integrated into policy learning. I did most for this paper. Ben introduced me to dynamical systems and manipulation policy learning and was a wonderful mentor. Prof. David was the main advisor and provided invaluable feedback."
+  bibtex: |
+    @inproceedings{qureshi2022deep,
+      title     = {Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning},
+      author    = {Mohammad Nomaan Qureshi and Ben Eisner and David Held},
+      booktitle = {ICLR 2022 Workshop on Generalizable Policy Learning in Physical World},
+      year      = {2022},
+      url       = {https://openreview.net/forum?id=rF-fT4pN1Wc}
+    }
+
+- title: "RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing"
+  authors: "M Nomaan Qureshi*, Pushkal Katara*, Abhinav Gupta*, Harit Pandya, YVS Harish, AadilMehdi Sanchawala, Gourav Kumar, Brojeshwar Bhowmick, K Madhava Krishna"
+  venue: "IROS"
+  year: 2021
+  paper_link: "https://ieeexplore.ieee.org/abstract/document/9636290"
+  video_link: "https://www.youtube.com/watch?v=iQidWKBwkDw"
+  image: "images/rtvs.gif"
+  highlight: False
+  explanation: "Simple extension of DeepMPCVS for real-time visual servoing. Although simple, we later built upon this to several cool works. In general, got me interested in visual servoing."
+  contribution: "First paper! I came up with the core idea of using a lightweight neural network, instead of heavy lstm pipeline. Pushkal and Abhinav helped me refine the idea and wrote the paper. Harit and Gaurav helped with the paper writing and initial problem formulation. Prof. Madhava was the main advisor."
+  bibtex: |
+    @inproceedings{qureshi2021rtvs,
+      author    = {M. Nomaan Qureshi and Pushkal Katara and Abhinav Gupta and Harit Pandya and Y V S Harish and AadilMehdi Sanchawala and Gourav Kumar and Brojeshwar Bhowmick and K. Madhava Krishna},
+      title     = {RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing},
+      booktitle = {2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+      year      = {2021},
+      pages     = {3798-3805},
+      doi       = {10.1109/IROS51168.2021.9636290}
+    }
