@@ -32,8 +32,8 @@ layout: default
     <div style="flex: 3; display: flex; flex-direction: column; ">
         <!-- Text filling up the space -->
         <div >
-            <p >Hi! I am a first-year MS Robotics student at Carnegie Mellon University advised by Prof. George Kantor. I am interested in machine learning for robot manipulation. Currently, I am trying to build robot farmers. </p>
-            <p> Before that, I completed my integrated BS/MS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. K. Madhava Krishna. I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborate with Prof. Makarand Tapaswi on a project that aims to learn manipulation policies directly from human demonstrations like these.</p>
+            <p >Hi! I am a second-year MS Robotics student at Carnegie Mellon University advised by <a href="https://www.ri.cmu.edu/ri-faculty/george-a-kantor/">Prof. George Kantor</a> and <a href="https://www.abhisilwal.com">Prof. Abhisesh Silwal</a>. I also collaborate with <a href="https://davheld.github.io">Prof. David Held</a> and <a href="https://www.ri.cmu.edu/ri-people/francisco-yandun/">Dr. Francisco Yandun</a>. I am interested in machine learning for robot manipulation. Currently, I am working on <a href="https://splatsim.github.io">SplatSim</a> and deploying robots using it to actual agricultural fields helping farmers. </p>
+            <p> Before that, I completed my integrated BS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. <a href="https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en">K. Madhava Krishna.</a> I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborate with Prof. Makarand Tapaswi on a project that aims to learn manipulation policies directly from human demonstrations like these.</p>
             <p>If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!</p>
             
             <!-- More text about you... -->
@@ -94,14 +94,14 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib7" class="hidden-info">
-                @misc{qureshi2024timeindexing,
-      title={On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks}, 
-      author={M. Nomaan Qureshi and Ben Eisner and David Held},
-      year={2024},
-      eprint={2401.01993},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
-}
+                <pre><code>@misc{qureshi2024timeindexing,
+  title     = {On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks},
+  author    = {M. Nomaan Qureshi and Ben Eisner and David Held},
+  year      = {2024},
+  eprint    = {2401.01993},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO}
+}</code></pre>
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -127,16 +127,14 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib6" class="hidden-info">
-                @INPROCEEDINGS{10260462,
-  author={Mandadi, Vishal Reddy and Saha, Kallol and Guhathakurta, Dipanwita and Qureshi, M. Nomaan and Agarwal, Aditya and Sen, Bipasha and Das, Dipanjan and Bhowmick, Brojeshwar and Singh, Arun and Krishna, Madhava},
-  booktitle={2023 IEEE 19th International Conference on Automation Science and Engineering (CASE)}, 
-  title={Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation}, 
-  year={2023},
-  volume={},
-  number={},
-  pages={1-6},
-  doi={10.1109/CASE56687.2023.10260462}}
-
+                <pre><code>@inproceedings{mandadi2023disentangling,
+  author    = {Vishal Reddy Mandadi and Kallol Saha and Dipanwita Guhathakurta and M. Nomaan Qureshi and Aditya Agarwal and Bipasha Sen and Dipanjan Das and Brojeshwar Bhowmick and Arun Singh and Madhava Krishna},
+  title     = {Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation},
+  booktitle = {2023 IEEE 19th International Conference on Automation Science and Engineering (CASE)},
+  year      = {2023},
+  pages     = {1-6},
+  doi       = {10.1109/CASE56687.2023.10260462}
+}</code></pre>
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -164,16 +162,14 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib5" class="hidden-info">
-               @INPROCEEDINGS{10191434,
-  author={Thakur, Prajwal and Qureshi, M. Nomaan and Singh, Arun Kumar and Harish, Y V S and Katara, Pushkal and Masnavi, Houman and Krishna, K. Madhava and Bhowmick, Brojeshwar},
-  booktitle={2023 International Joint Conference on Neural Networks (IJCNN)}, 
-  title={Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution}, 
-  year={2023},
-  volume={},
-  number={},
-  pages={1-10},
-  doi={10.1109/IJCNN54540.2023.10191434}}
-
+                <pre><code>@inproceedings{thakur2023learning,
+  author    = {Prajwal Thakur and M. Nomaan Qureshi and Arun Kumar Singh and Y V S Harish and Pushkal Katara and Houman Masnavi and K. Madhava Krishna and Brojeshwar Bhowmick},
+  title     = {Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution},
+  booktitle = {2023 International Joint Conference on Neural Networks (IJCNN)},
+  year      = {2023},
+  pages     = {1-10},
+  doi       = {10.1109/IJCNN54540.2023.10191434}
+}</code></pre>
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -199,14 +195,14 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib4" class="hidden-info">
-                @misc{petrik2022learning,
-      title={Learning Object Manipulation Skills from Video via Approximate Differentiable Physics}, 
-      author={Vladimir Petrik and Mohammad Nomaan Qureshi and Josef Sivic and Makarand Tapaswi},
-      year={2022},
-      eprint={2208.01960},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
-}
+                <pre><code>@misc{petrik2022learning,
+  title     = {Learning Object Manipulation Skills from Video via Approximate Differentiable Physics},
+  author    = {Vladimir Petrik and Mohammad Nomaan Qureshi and Josef Sivic and Makarand Tapaswi},
+  year      = {2022},
+  eprint    = {2208.01960},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO}
+}</code></pre>
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -232,14 +228,14 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib3" class="hidden-info">
-               @misc{sankhla2022flow,
-      title={Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises}, 
-      author={Harshit K. Sankhla and M. Nomaan Qureshi and Shankara Narayanan V. and Vedansh Mittal and Gunjan Gupta and Harit Pandya and K. Madhava Krishna},
-      year={2022},
-      eprint={2207.03557},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
-}
+                <pre><code>@misc{sankhla2022flow,
+  title     = {Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises},
+  author    = {Harshit K. Sankhla and M. Nomaan Qureshi and Shankara Narayanan V. and Vedansh Mittal and Gunjan Gupta and Harit Pandya and K. Madhava Krishna},
+  year      = {2022},
+  eprint    = {2207.03557},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO}
+}</code></pre>
             </div>
 
       <!-- <a href="link-to-code">Code</a> -->
@@ -267,14 +263,13 @@ Representative publications <span style="background-color: #ffffe0;">are higligh
                 This is the explanation for the first paper.
             </div>
             <div id="bib2" class="hidden-info">
-                @inproceedings{
-qureshi2022deep,
-title={Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning},
-author={Mohammad Nomaan Qureshi and Ben Eisner and David Held},
-booktitle={ICLR 2022 Workshop on Generalizable Policy Learning in Physical World},
-year={2022},
-url={https://openreview.net/forum?id=rF-fT4pN1Wc}
-}
+                <pre><code>@inproceedings{qureshi2022deep,
+  title     = {Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning},
+  author    = {Mohammad Nomaan Qureshi and Ben Eisner and David Held},
+  booktitle = {ICLR 2022 Workshop on Generalizable Policy Learning in Physical World},
+  year      = {2022},
+  url       = {https://openreview.net/forum?id=rF-fT4pN1Wc}
+}</code></pre>
             </div>
       <!-- <a href="link-to-code">Code</a> -->
     </td>
@@ -303,16 +298,14 @@ url={https://openreview.net/forum?id=rF-fT4pN1Wc}
                 This is the explanation for the first paper.
             </div>
             <div id="bib1" class="hidden-info">
-                @INPROCEEDINGS{9636290,
-                  author={Qureshi, M. Nomaan and Katara, Pushkal and Gupta, Abhinav and Pandya, Harit and Harish, Y V S and Sanchawala, AadilMehdi and Kumar, Gourav and Bhowmick, Brojeshwar and Krishna, K. Madhava},
-                  booktitle={2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
-                  title={RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing}, 
-                  year={2021},
-                  volume={},
-                  number={},
-                  pages={3798-3805},
-                  doi={10.1109/IROS51168.2021.9636290}}
-
+                <pre><code>@inproceedings{qureshi2021rtvs,
+  author    = {M. Nomaan Qureshi and Pushkal Katara and Abhinav Gupta and Harit Pandya and Y V S Harish and AadilMehdi Sanchawala and Gourav Kumar and Brojeshwar Bhowmick and K. Madhava Krishna},
+  title     = {RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing},
+  booktitle = {2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year      = {2021},
+  pages     = {3798-3805},
+  doi       = {10.1109/IROS51168.2021.9636290}
+}</code></pre>
             </div>
 
             
@@ -322,29 +315,29 @@ url={https://openreview.net/forum?id=rF-fT4pN1Wc}
   </tr>
 </table>
 
-
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
-<!-- ## Contact
+## Contact
 Please feel free to contact or interact with me through the following links:
 
 * Email: nqafzal [at] gmail
 * Google Scholar: [M. Nomaan Qureshi](https://scholar.google.com/citations?user=ZmVf8kUAAAAJ&hl=en)
 * Twitter: [@qunomaan](https://twitter.com/qunomaan)
-* GitHub: [qureshinomaan](github.com/qureshinomaan) -->
+* GitHub: [qureshinomaan](github.com/qureshinomaan)
 
 
-    <style>
-        .hidden-info {
-    display: none;
-    overflow: hidden;
-    background-color: #f0f0f0;
-    padding: 0;
-    margin-top: 5px;
-    border-radius: 5px;
-    transition: padding 0.5s, height 0.5s ease;
-}
-    </style>
+{% raw %}
+<style>
+    .hidden-info {
+        display: none;
+        overflow: hidden;
+        background-color: #f0f0f0;
+        padding: 0;
+        margin-top: 5px;
+        border-radius: 5px;
+        transition: padding 0.5s, height 0.5s ease;
+    }
+</style>
 
 <script>
     function toggleInfo(infoId) {
@@ -374,3 +367,30 @@ Please feel free to contact or interact with me through the following links:
         }
     }
 </script>
+{% endraw %}
+
+<!-- ... rest of your content ... -->
+
+<table style="background-color: #ffffe0;border: none; border-collapse: collapse; width: 100%;">
+
+  <tr>
+    <!-- ... other table cells ... -->
+    <td style="border: none; padding-left: 20px;">
+      <!-- ... other content ... -->
+      <div id="bib1" class="hidden-info">
+      {% raw %}
+      @INPROCEEDINGS{9636290,
+        author={Qureshi, M. Nomaan and Katara, Pushkal and Gupta, Abhinav and Pandya, Harit and Harish, Y V S and Sanchawala, AadilMehdi and Kumar, Gourav and Bhowmick, Brojeshwar and Krishna, K. Madhava},
+        booktitle={2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+        title={RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing}, 
+        year={2021},
+        volume={},
+        number={},
+        pages={3798-3805},
+        doi={10.1109/IROS51168.2021.9636290}
+      }
+      {% endraw %}
+      </div>
+    </td>
+  </tr>
+</table>
