@@ -5,8 +5,8 @@
   paper_link: "https://arxiv.org/abs/2409.10161"
   image: "images/icra2024.gif"
   highlight: True
-  explanation: "Simulators are great for generating data, but rendering realistic images is still a challenge. We proposed a method to render realistic images using Gaussian Splatting for simulators."
-  contribution: "I came up with the idea of using Gaussian Splatting as a renderer over Simulators and wrote most of the code. Sparsh's contribution was crucial in the early implementations of SplatSim, especially helping in coding the initial scripts for forward kinematics. However, he was away due to an internship for rest of the project. I wrote most of the paper while Sparsh made all the amazing figures for the paper. Francisco were very helpful in day to day discussions and solving system issues. Prof. David provided some very good advice on deploying policies in the real world.  Prof. George and Prof. Abhi provided invaluable insights on making the SplatSim framework practical and applicable to real world robots. Their focus, especially on the practicality of solution which can be deployed to real world fields was crucial."
+  explanation: "How do we scale up robot learning? Data is the magic which makes deep learning work, but for robots it is very expensive to collect data in the real world. We combine Gaussian Splatting with simulators to create a pipeline which can generate very realistic looking data for robots."
+  contribution: "I came up with the idea of using Gaussian Splatting as a renderer over Simulators and wrote most of the code. Sparsh's contribution was crucial in the early implementations of SplatSim, especially helping in coding the initial scripts for forward kinematics. However, he was away due to an internship for rest of the project. I wrote most of the paper while Sparsh made all the amazing figures for the paper. Francisco was very helpful in day to day discussions and solving system issues. Prof. David provided some very good advice on deploying policies in the real world.  Prof. George and Prof. Abhi provided invaluable insights on making the SplatSim framework practical and applicable to real world robots. Their focus, especially on the practicality of solution which can be deployed to real world fields was crucial."
   bibtex: |
     @misc{qureshi2024splatsimzeroshotsim2realtransfer,
             title={SplatSim: Zero-Shot Sim2Real Transfer of RGB Manipulation Policies Using Gaussian Splatting}, 
@@ -25,7 +25,7 @@
   paper_link: "https://arxiv.org/abs/2401.01993"
   image: "images/iros2024.gif"
   highlight: True
-  explanation: "Diffusion models are very good at generating image goals, servoing is very good at reaching them. Combining the two is a natural fit. I wrote most of the paper apart form the experiments section."
+  explanation: "How do we use foundational visiion models for robot tasks? Diffusion models are very good at generating image goals, servoing is very good at reaching them. Combining the two is a natural fit."
   contribution: "I came up with the formulation for this paper. Pranjali did most of the work and Gunjan did the real world robot experiments. "
   bibtex: |
     @misc{qureshi2024timeindexing,
