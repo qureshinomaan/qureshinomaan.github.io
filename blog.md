@@ -4,7 +4,7 @@ title: Blog
 ---
 
 <h1>Blog Posts</h1>
-Inspied by Paul. G's emphasis on writing, I have decided to write this blog more actively. These are 2-3 paragraphs notes about what I have been thinking. 
+Inspired by Paul. G's emphasis on writing, I have decided to write this blog more actively. These are quick 2-3 paragraphs notes about what I have been thinking. 
 
 
 

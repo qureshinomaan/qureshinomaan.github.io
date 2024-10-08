@@ -1,7 +1,7 @@
 title: Nomaan Qureshi
 author: Nomaan Qureshi
-url: ""
-baseurl: ""
+url: "" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog
 favicon: "https://www.cmu.edu/favicon.ico"
 
 markdown: kramdown
@@ -11,7 +11,7 @@ markdown: kramdown
 tracking_id: UA-172754754-1
 
 footer: yes
-footer_url: "qureshinomaan.github.io"
+footer_url: "http://qureshinomaan.github.io"
 footer_text: "Mohammad Nomaan Qureshi"
 
 sass:
