@@ -18,7 +18,7 @@
             url={https://arxiv.org/abs/2409.10161}, 
       }
 
-- title: "Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks"
+- title: "[ORAL] Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks"
   authors: "Pranjali Pathre, Gunjan Gupta, M Nomaan Qureshi, Samartha Brahmbhatt, K Madhava Krishna"
   venue: "2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
   year: 2024
