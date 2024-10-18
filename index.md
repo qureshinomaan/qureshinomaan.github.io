@@ -39,7 +39,18 @@ layout: default
             <!-- More text about you... -->
         </div>
     </div>
+
+
 </div>
+
+  <p style="background-color: #ffffe0; padding: 5px; text-align: center;"> 
+    I am applying for PhD in the upcoming cycle. Please feel free to reach out if you think I am a good fit for your group!
+    
+  </p>
+
+  <p style="background-color: #ffffe0; padding: 5px; text-align: center;"> 
+    I am also looking for Summer 2025 internships. If you are a recruiter, please feel free to reach out!
+  </p>
 
 
 
@@ -177,6 +188,3 @@ Please feel free to contact or interact with me through the following links:
 
 
 
-<p style="background-color: yellow; padding: 5px;">
-    I am applying for PhD positions. If you are hiring, please feel free to reach out.
-</p>
