@@ -43,14 +43,14 @@ layout: default
 
 </div>
 
-  <p style="background-color: #ffffe0; padding: 5px; text-align: center;"> 
+  <!-- <p style="background-color: #ffffe0; padding: 5px; text-align: center;"> 
     I am applying for PhD in the upcoming cycle. Please feel free to reach out if you think I am a good fit for your group!
     
   </p>
 
   <p style="background-color: #ffffe0; padding: 5px; text-align: center;"> 
     I am also looking for Summer 2025 internships. If you are a recruiter, please feel free to reach out!
-  </p>
+  </p> -->
 
 
 
