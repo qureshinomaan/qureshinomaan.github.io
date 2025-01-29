@@ -22,7 +22,7 @@
   authors: "Pranjali Pathre, Gunjan Gupta, M Nomaan Qureshi, Samartha Brahmbhatt, K Madhava Krishna"
   venue: "2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
   year: 2024
-  paper_link: "https://drive.google.com/file/d/1C-l799OXjdMV9GAliFOi1gRNEn0EmhU_/view?usp=share_link"
+  paper_link: "https://arxiv.org/abs/2410.12432"
   image: "images/iros2024.gif"
   highlight: True
   explanation: "How do we use foundational visiion models for robot tasks? Diffusion models are very good at generating image goals, servoing is very good at reaching them. Combining the two is a natural fit."
