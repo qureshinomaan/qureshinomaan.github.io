@@ -33,7 +33,7 @@ layout: default
         <!-- Text filling up the space -->
         <div >
             <p >Hi! I am a second-year MS Robotics student at Carnegie Mellon University advised by <a href="https://www.ri.cmu.edu/ri-faculty/george-a-kantor/">Prof. George Kantor</a> and <a href="https://www.abhisilwal.com">Prof. Abhisesh Silwal</a>. I also collaborate with <a href="https://davheld.github.io">Prof. David Held</a> and <a href="https://www.ri.cmu.edu/ri-people/francisco-yandun/">Dr. Francisco Yandun</a>. I am interested in machine learning for robot manipulation. Currently, I am working on <a href="https://splatsim.github.io">SplatSim</a> and deploying robots using it to actual agricultural fields helping farmers. </p>
-            <p> Before that, I completed my integrated BS degree from IIIT Hyderabad. I was an undergraduate researcher at Robotics Research Center, advised by Prof. <a href="https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en">K. Madhava Krishna.</a> I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborated with <a href="https://makarandtapaswi.github.io">Prof. Makarand Tapaswi</a> on a project that aims to learn manipulation policies directly from human demonstrations like <a href="https://paperswithcode.com/dataset/something-something-v2">these.</a></p>
+            <p> Before that, I completed my integrated BS degree from <a href="https://csrankings.org/#/index?ai&vision&mlmining&nlp&inforet&robotics&in">IIIT Hyderabad</a>. I was an undergraduate researcher at Robotics Research Center, advised by <a href="https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en">Prof. K. Madhava Krishna.</a> I spent my summers of 2021 and 2022 working with Prof. David Held at Carnegie Mellon University. I formulated a differentiable version of linear dynamic systems, which could be used as a building block to accelerate the learning and transfer of policies. I also collaborated with <a href="https://makarandtapaswi.github.io">Prof. Makarand Tapaswi</a> on a project that aims to learn manipulation policies directly from human demonstrations like <a href="https://paperswithcode.com/dataset/something-something-v2">these.</a></p>
             <p>If you're looking for collaborators for Robotics/ML projects, please feel free to get in touch!</p>
             
             <!-- More text about you... -->
@@ -49,8 +49,8 @@ layout: default
 
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
-## research
-I want to solve robot manipulation. While most animals can walk or run, very few can manipulate their environments like humans do. There is an inherent simplicity yet profound intrigue in manipulation problems that captivates me. 
+<!-- ## research
+I want to solve robot manipulation. While most animals can walk or run, very few can manipulate their environments like humans do. There is an inherent simplicity yet profound intrigue in manipulation problems that captivates me.  -->
 
 <hr style="height: 0.5px; border: none; background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
 
