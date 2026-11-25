@@ -2,6 +2,8 @@
 layout: default
 title: "Contact"
 is_contact: true
+noindex: true
+sitemap: false
 ---
 Please feel free to contact or interact with me through the following links:
 

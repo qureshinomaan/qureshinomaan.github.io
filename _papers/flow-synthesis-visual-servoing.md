@@ -31,7 +31,7 @@ paper_link: "https://arxiv.org/abs/2207.03557"
 pdf_link: "https://arxiv.org/pdf/2207.03557"
 arxiv: "2207.03557"
 project_link: "https://sites.google.com/view/monocular-obstacle/home"
-image: "/images/case.png"
+image: "/images/case.jpg"
 highlight: true
 tldr: "Obstacle avoidance amidst high rises is a challenging problem. We proposed a simple application of visual servoing to solve this problem. "
 contribution: "Harshit came up with the problem of obstacle avoidance amidst high-rises. I came up with the core idea and wrote the paper as well as servoing code along with Shankara. Prof. Madhava was the main advisor."
@@ -48,11 +48,20 @@ faq:
     a: "In simulated and photo-realistic real-world scenes, with comparisons against optical-flow and short-range depth-based obstacle avoidance methods."
 agent_note_title: "Why optical flow is useful for robot agents"
 agent_note: "Optical flow between the current camera image and a goal image tells a robot, for every tracked point, which way and how far the image still has to move. A visual-servoing controller turns that flow directly into a velocity command and stops when the flow vanishes. So an agent that can produce, retrieve or imagine a goal image can hand the low-level motion to visual servoing, without a 3D model of the scene or a hand-written motion plan, and it can read the remaining flow as a dense, interpretable measure of how far it is from done."
+venue_short: "CASE 2022"
+image_webp: "/images/case.webp"
+image_w: 1000
+image_h: 630
+doi: "10.1109/CASE49997.2022.9926593"
+pages: "1339-1345"
 bibtex: |
-  @misc{sankhla2022flow,
+  @inproceedings{sankhla2022flow,
     title         = {Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises},
     author        = {Harshit K. Sankhla and M. Nomaan Qureshi and Shankara Narayanan V. and Vedansh Mittal and Gunjan Gupta and Harit Pandya and K. Madhava Krishna},
+    booktitle     = {2022 IEEE International Conference on Automation Science and Engineering (CASE)},
     year          = {2022},
+    pages         = {1339-1345},
+    doi           = {10.1109/CASE49997.2022.9926593},
     eprint        = {2207.03557},
     archivePrefix = {arXiv},
     primaryClass  = {cs.RO}

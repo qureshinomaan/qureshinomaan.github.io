@@ -30,7 +30,7 @@ pub_date: "2024/10/16"
 paper_link: "https://arxiv.org/abs/2410.12432"
 pdf_link: "https://arxiv.org/pdf/2410.12432"
 arxiv: "2410.12432"
-image: "/images/iros2024.gif"
+image: "/images/iros2024.jpg"
 highlight: true
 tldr: "How do we use foundational vision models for robot tasks? Diffusion models are very good at generating image goals, servoing is very good at reaching them. Combining the two is a natural fit."
 contribution: "I came up with the formulation for this paper. Pranjali did most of the work and Gunjan did the real world robot experiments. "
@@ -48,12 +48,20 @@ faq:
 agent_note_title: "Why optical flow is useful for robot agents"
 agent_note: "Optical flow between the current camera image and a goal image tells a robot, for every tracked point, which way and how far the image still has to move. A visual-servoing controller turns that flow directly into a velocity command and stops when the flow vanishes. So an agent that can produce, retrieve or imagine a goal image can hand the low-level motion to visual servoing, without a 3D model of the scene or a hand-written motion plan, and it can read the remaining flow as a dense, interpretable measure of how far it is from done."
 demo_credit: "Scene: the UR5 workspace capture released with SplatSim, used here only as an environment; it is not from the Imagine2Servo paper."
+venue_short: "IROS 2024"
+video: "/images/iros2024.mp4"
+image_w: 640
+image_h: 480
+doi: "10.1109/IROS58592.2024.10802688"
+pages: "13466-13472"
 bibtex: |
   @inproceedings{pathre2024imagine2servo,
     title         = {Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks},
     author        = {Pranjali Pathre and Gunjan Gupta and M. Nomaan Qureshi and Mandyam Brunda and Samarth Brahmbhatt and K. Madhava Krishna},
     booktitle     = {2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
     year          = {2024},
+    pages         = {13466-13472},
+    doi           = {10.1109/IROS58592.2024.10802688},
     eprint        = {2410.12432},
     archivePrefix = {arXiv},
     primaryClass  = {cs.RO},

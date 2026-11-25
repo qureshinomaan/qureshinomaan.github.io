@@ -1,0 +1,35 @@
+---
+layout: null
+sitemap: false
+---
+{%- assign papers = site.papers | sort: "order" -%}
+{
+  "author": {{ site.person.name | jsonify }},
+  "author_name_variants": {{ site.person.alternate_names | jsonify }},
+  "homepage": "{{ '/' | absolute_url }}",
+  "papers": [
+    {%- for p in papers %}
+    {
+      "title": {{ p.title | jsonify }},
+      "short_name": {{ p.short | jsonify }},
+      "url": "{{ p.url | absolute_url }}",
+      "authors": [{% for a in p.authors %}{{ a | remove: "*" | strip | replace: "M Nomaan Qureshi", "M. Nomaan Qureshi" | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+      "venue": {{ p.venue | jsonify }},
+      "year": {{ p.year }},
+      "note": {{ p.note | jsonify }},
+      "pages": {{ p.pages | jsonify }},
+      "doi": {{ p.doi | jsonify }},
+      "arxiv": {{ p.arxiv | jsonify }},
+      "paper_url": {{ p.paper_link | jsonify }},
+      "pdf_url": {{ p.pdf_link | jsonify }},
+      "code_url": {{ p.code_link | jsonify }},
+      "project_url": {{ p.project_link | jsonify }},
+      "summary": {{ p.description | jsonify }},
+      "abstract": {{ p.abstract | jsonify }},
+      "keywords": {{ p.keywords | jsonify }},
+      "topics": {{ p.topics | jsonify }},
+      "bibtex": {{ p.bibtex | strip | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}

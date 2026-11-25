@@ -4,7 +4,7 @@ tagline: "Robotics and Robot Learning Researcher"
 description: "Nomaan Qureshi (M. Nomaan Qureshi) is a Research Engineer at Skild AI working on robot manipulation, robot learning and sim-to-real transfer. Creator of SplatSim; MS in Robotics from Carnegie Mellon University."
 url: "https://qureshinomaan.github.io" # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog
-og_image: "/images/nomaan.png"
+og_image: "/images/nomaan.jpg"
 twitter_username: qunomaan
 
 # Google Analytics. tracking_id is the original tag; set ga4_id (starts with "G-") to use the current GA4 tag instead.
@@ -75,5 +75,9 @@ exclude:
 defaults:
   - scope:
       path: "google471705b694ab16e0.html"
+    values:
+      sitemap: false
+  - scope:
+      path: "91cc60d8f7ae7a7246bafa68d9d960c5.txt"
     values:
       sitemap: false

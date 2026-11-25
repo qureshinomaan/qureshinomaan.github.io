@@ -1,0 +1,11 @@
+---
+layout: null
+sitemap: false
+---
+{%- assign papers = site.papers | sort: "order" -%}
+% BibTeX for the publications of Nomaan Qureshi (M. Nomaan Qureshi).
+% Source: {{ '/' | absolute_url }}
+{% for p in papers %}
+% {{ p.url | absolute_url }}
+{{ p.bibtex | strip }}
+{% endfor %}

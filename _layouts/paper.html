@@ -2,24 +2,41 @@
 layout: default
 ---
 {%- assign plain_authors = page.authors | join: ", " | remove: "*" | replace: "M Nomaan Qureshi", "M. Nomaan Qureshi" -%}
+{%- assign papers = site.papers | sort: "order" -%}
+{%- for p in papers -%}
+  {%- if p.url == page.url -%}
+    {%- unless forloop.first -%}{%- assign prev_i = forloop.index0 | minus: 1 -%}{%- assign prev_paper = papers[prev_i] -%}{%- endunless -%}
+    {%- unless forloop.last -%}{%- assign next_i = forloop.index0 | plus: 1 -%}{%- assign next_paper = papers[next_i] -%}{%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
 <article class="paper">
-  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">Nomaan Qureshi</a> / <a href="{{ '/research/' | relative_url }}">Research</a></p>
-  <h1>{{ page.title }}</h1>
-  <p class="authors">{{ page.authors | join: ", " | replace: 'M Nomaan Qureshi', '<strong class="me">M Nomaan Qureshi</strong>' }}</p>
-  <p class="venue">{{ page.venue }}, {{ page.year }}{% if page.note %} ({{ page.note }}){% endif %}</p>
-  <p class="pub-links">
-    <a href="{{ page.paper_link }}">Paper</a>
-    {% if page.pdf_link %}<a href="{{ page.pdf_link }}">PDF</a>{% endif %}
-    {% if page.project_link %}<a href="{{ page.project_link }}">Project page</a>{% endif %}
-    {% if page.code_link %}<a href="{{ page.code_link }}">Code</a>{% endif %}
-    {% if page.video_link %}<a href="{{ page.video_link }}">Video</a>{% endif %}
-  </p>
+  <header class="paper-head">
+    <p class="breadcrumb"><a href="{{ '/' | relative_url }}">Nomaan Qureshi</a> <span aria-hidden="true">/</span> <a href="{{ '/research/' | relative_url }}">Research</a></p>
+    <p class="pub-venue"><span class="badge">{{ page.venue_short | default: page.year }}</span>{% if page.note %}<span class="badge badge-accent">{{ page.note }}</span>{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="authors">{{ page.authors | join: ", " | replace: 'M Nomaan Qureshi', '<strong class="me">M Nomaan Qureshi</strong>' }}</p>
+    <p class="venue">{{ page.venue }}, {{ page.year }}{% if page.note %} ({{ page.note }}){% endif %}</p>
+    <p class="pub-links">
+      <a class="pill" href="{{ page.paper_link }}">Paper</a>
+      {% if page.demo %}<a class="pill pill-accent" href="#sim">Interactive visual</a>{% endif %}
+      {% if page.pdf_link %}<a class="tlink" href="{{ page.pdf_link }}">PDF</a>{% endif %}
+      {% if page.doi %}<a class="tlink" href="https://doi.org/{{ page.doi }}">DOI</a>{% endif %}
+      {% if page.project_link %}<a class="tlink" href="{{ page.project_link }}">Project page</a>{% endif %}
+      {% if page.code_link %}<a class="tlink" href="{{ page.code_link }}">Code</a>{% endif %}
+      {% if page.video_link %}<a class="tlink" href="{{ page.video_link }}">Video</a>{% endif %}
+      <a class="tlink" href="#cite">Cite</a>
+    </p>
+  </header>
+
+  <h2 id="in-short">In short</h2>
+  <p class="lede">{{ page.tldr }}</p>
+
   {% if page.demo %}
-  <h2>{{ page.demo_title | default: "Try it" }}</h2>
+  <h2 id="visual">{{ page.demo_title | default: "Try it" }}</h2>
   <p>{{ page.demo_text }}</p>
   <div class="sim-card">
-    <div class="sim-titlebar"><span class="dot live"></span><span class="dot"></span><span class="dot"></span><span class="name">{{ page.short | default: page.title }}</span><span class="tag">interactive 3D</span></div>
-    <div id="sim" data-label="{{ page.demo_title | escape }}"><noscript><p class="sim-fallback">This simulator needs JavaScript. The description above and the abstract below cover the same idea in text.</p></noscript></div>
+    <div class="sim-titlebar"><span class="dot live"></span><span class="dot"></span><span class="dot"></span><span class="name">{{ page.short | default: page.title }}</span><span class="tag">interactive</span></div>
+    <div id="sim" data-label="{{ page.demo_title | escape }}"><noscript><p class="sim-fallback">This interactive visual needs JavaScript. The description above and the abstract below cover the same idea in text.</p></noscript></div>
   </div>
   <p class="sim-caption">A simplified toy model written for this page to illustrate the idea. It is not the paper's code and produces no results from the paper.{% if page.demo_credit %} {{ page.demo_credit }}{% endif %}</p>
   <script type="importmap">
@@ -33,21 +50,30 @@ layout: default
   <script>
     window.addEventListener("error", function (e) {
       var box = document.getElementById("sim");
-      if (box && !box.querySelector("canvas")) box.innerHTML = '<p class="sim-fallback">The simulator could not load in this browser. The text on this page covers the same idea.</p>';
+      if (box && !box.querySelector("canvas")) box.innerHTML = '<p class="sim-fallback">The interactive visual could not load in this browser. The text on this page covers the same idea.</p>';
     }, true);
   </script>
   {% endif %}
 
-  <h2>In short</h2>
-  <p>{{ page.tldr }}</p>
-
-  {% if page.image %}
-  <p class="paper-figure"><img src="{{ page.image | relative_url }}" alt="Teaser figure for {{ page.title | escape }}" loading="lazy"></p>
+  {% if page.abstract %}
+  <h2 id="abstract">Abstract</h2>
+  <p>{{ page.abstract }}</p>
   {% endif %}
 
-  {% if page.abstract %}
-  <h2>Abstract</h2>
-  <p>{{ page.abstract }}</p>
+  {% if page.image %}
+  <figure class="paper-figure">
+    {%- if page.video %}
+    <video muted loop playsinline controls preload="none" data-autoplay poster="{{ page.image | relative_url }}" width="{{ page.image_w }}" height="{{ page.image_h }}" aria-label="Teaser clip from the paper: {{ page.short | default: page.title | escape }}">
+      <source src="{{ page.video | relative_url }}" type="video/mp4">
+    </video>
+    {%- else %}
+    <picture>
+      {%- if page.image_webp %}<source srcset="{{ page.image_webp | relative_url }}" type="image/webp">{% endif %}
+      <img src="{{ page.image | relative_url }}" alt="Teaser figure for {{ page.title | escape }}" loading="lazy" width="{{ page.image_w }}" height="{{ page.image_h }}">
+    </picture>
+    {%- endif %}
+    <figcaption>Teaser from the paper.</figcaption>
+  </figure>
   {% endif %}
 
   {% if page.agent_note %}
@@ -56,7 +82,7 @@ layout: default
   {% endif %}
 
   {% if page.faq %}
-  <h2>Questions and answers</h2>
+  <h2 id="questions">Questions and answers</h2>
   <dl class="faq">
     {% for item in page.faq %}
     <dt>{{ item.q }}</dt>
@@ -67,21 +93,44 @@ layout: default
 
   {{ content }}
 
+  <h2 id="details">Publication details</h2>
+  <dl class="facts">
+    <dt>Title</dt><dd>{{ page.title }}</dd>
+    <dt>Authors</dt><dd>{{ plain_authors }}</dd>
+    <dt>Venue</dt><dd>{{ page.venue }}{% if page.note %} ({{ page.note }}){% endif %}</dd>
+    <dt>Year</dt><dd>{{ page.year }}</dd>
+    {% if page.pages %}<dt>Pages</dt><dd>{{ page.pages | replace: "-", "&ndash;" }}</dd>{% endif %}
+    {% if page.doi %}<dt>DOI</dt><dd><a href="https://doi.org/{{ page.doi }}">{{ page.doi }}</a></dd>{% endif %}
+    {% if page.arxiv %}<dt>arXiv</dt><dd><a href="https://arxiv.org/abs/{{ page.arxiv }}">{{ page.arxiv }}</a></dd>{% endif %}
+    {% if page.code_link %}<dt>Code</dt><dd><a href="{{ page.code_link }}">{{ page.code_link | remove: "https://" }}</a></dd>{% endif %}
+    {% if page.project_link %}<dt>Project page</dt><dd><a href="{{ page.project_link }}">{{ page.project_link | remove: "https://" }}</a></dd>{% endif %}
+    {% if page.topics %}<dt>Topics</dt><dd class="topics-line">{% for t in site.data.topics %}{% if page.topics contains t.slug %}<a href="{{ '/research/' | relative_url }}#{{ t.slug }}">{{ t.name }}</a> {% endif %}{% endfor %}</dd>{% endif %}
+    {% if page.keywords %}<dt>Keywords</dt><dd>{{ page.keywords | join: ", " }}</dd>{% endif %}
+  </dl>
+
+  <h2 id="cite">How to cite</h2>
+  <p>{{ plain_authors }}. &ldquo;{{ page.title }}.&rdquo; <em>{{ page.venue }}</em>, {{ page.year }}{% if page.pages %}, pp. {{ page.pages | replace: "-", "&ndash;" }}{% endif %}.{% if page.doi %} doi:{{ page.doi }}.{% endif %}{% if page.arxiv %} arXiv:{{ page.arxiv }}.{% endif %}</p>
+  <div class="cite-box">
+    <button class="pill copy-btn" type="button" data-copy="bibtex">Copy</button>
+    <pre><code id="bibtex">{{ page.bibtex | escape }}</code></pre>
+  </div>
+  {% assign joined = page.authors | join: "" %}{% if joined contains "*" %}<p class="fine">* denotes equal contribution.</p>{% endif %}
+
   {% if page.topics %}
-  <h2>Topics and related papers</h2>
-  <p class="topics-line">{% for t in site.data.topics %}{% if page.topics contains t.slug %}<a href="{{ '/research/' | relative_url }}#{{ t.slug }}">{{ t.name }}</a> {% endif %}{% endfor %}</p>
-  {% if page.keywords %}<p><small>Keywords: {{ page.keywords | join: ", " }}.</small></p>{% endif %}
-  <ul>
-  {% assign others = site.papers | sort: "order" %}{% for p in others %}{% if p.url != page.url %}{% assign shared = false %}{% for t in p.topics %}{% if t != "robot-manipulation" and page.topics contains t %}{% assign shared = true %}{% endif %}{% endfor %}{% if shared %}
-    <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> ({{ p.venue }}, {{ p.year }})</li>
-  {% endif %}{% endif %}{% endfor %}
-  </ul>
+  {%- capture related -%}
+  {%- for p in papers -%}{%- if p.url != page.url -%}{%- assign shared = false -%}{%- for t in p.topics -%}{%- if t != "robot-manipulation" and page.topics contains t -%}{%- assign shared = true -%}{%- endif -%}{%- endfor -%}{%- if shared -%}
+    <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="fine">{{ p.venue_short | default: p.year }}</span></li>
+  {%- endif -%}{%- endif -%}{%- endfor -%}
+  {%- endcapture -%}
+  {% assign related_text = related | strip %}
+  {% if related_text != "" %}
+  <h2 id="related">Related papers</h2>
+  <ul class="related">{{ related }}</ul>
+  {% endif %}
   {% endif %}
 
-  <h2>How to cite</h2>
-  <p>{{ plain_authors }}. &ldquo;{{ page.title }}.&rdquo; <em>{{ page.venue }}</em>, {{ page.year }}.{% if page.arxiv %} arXiv:{{ page.arxiv }}.{% endif %}{% if page.doi %} doi:{{ page.doi }}.{% endif %}</p>
-  <div class="hidden-info">
-    <pre><code>{{ page.bibtex | escape }}</code></pre>
-  </div>
-  {% if page.asterisk_note != false %}{% assign joined = page.authors | join: "" %}{% if joined contains "*" %}<p><small>* denotes equal contribution.</small></p>{% endif %}{% endif %}
+  <nav class="paper-nav" aria-label="More papers">
+    {% if prev_paper %}<a class="prev" href="{{ prev_paper.url | relative_url }}"><span>Previous paper</span>{{ prev_paper.short | default: prev_paper.title }}</a>{% else %}<span></span>{% endif %}
+    {% if next_paper %}<a class="next" href="{{ next_paper.url | relative_url }}"><span>Next paper</span>{{ next_paper.short | default: next_paper.title }}</a>{% endif %}
+  </nav>
 </article>

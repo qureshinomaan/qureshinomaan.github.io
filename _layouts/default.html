@@ -22,6 +22,11 @@
     {%- endif -%}
     {%- assign desc = desc | strip_html | normalize_whitespace | truncate: 300 | escape -%}
     {%- assign url = page.url | replace: "index.html", "" | absolute_url -%}
+    {%- if page.canonical -%}
+        {%- assign canonical = page.canonical | absolute_url -%}
+    {%- else -%}
+        {%- assign canonical = url -%}
+    {%- endif -%}
     {%- if page.image -%}
         {%- assign share_image = page.image | absolute_url -%}
     {%- else -%}
@@ -39,8 +44,14 @@
     {%- if site.bing_site_verification and site.bing_site_verification != "" %}
     <meta name="msvalidate.01" content="{{ site.bing_site_verification }}">
     {%- endif %}
-    <link rel="canonical" href="{{ url }}">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="{{ canonical }}">
+    {%- if page.noindex %}
+    <meta name="robots" content="noindex, follow">
+    {%- else %}
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    {%- endif %}
+    <meta name="theme-color" content="#f8f5ee" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
     <script>
       // Apply the saved theme before first paint to avoid a flash.
       (function () {
@@ -52,21 +63,36 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Spectral&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+    <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="icon" href="{{ '/favicon-32.png' | relative_url }}" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }} blog feed" href="{{ '/feed.xml' | absolute_url }}">
-    <link rel="alternate" type="text/plain" title="LLM-friendly summary" href="{{ '/llms.txt' | absolute_url }}">
-    <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
-    <link rel="icon" type="image/jpeg" href="{{ '/images/cmu-logo.jpeg' | relative_url }}">
+    <link rel="alternate" type="text/plain" title="LLM-friendly summary of this site" href="{{ '/llms.txt' | absolute_url }}">
+    <link rel="alternate" type="text/plain" title="Full text of every paper page, for LLMs" href="{{ '/llms-full.txt' | absolute_url }}">
+    <link rel="alternate" type="application/x-bibtex" title="BibTeX for all papers" href="{{ '/papers.bib' | absolute_url }}">
+    <link rel="author" href="{{ '/' | absolute_url }}">
     <link rel="me" href="https://github.com/qureshinomaan">
     <link rel="me" href="https://twitter.com/{{ site.twitter_username }}">
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:locale" content="en_US">
     <meta property="og:title" content="{{ full_title | escape }}">
     <meta property="og:description" content="{{ desc }}">
-    <meta property="og:url" content="{{ url }}">
+    <meta property="og:url" content="{{ canonical }}">
     <meta property="og:image" content="{{ share_image }}">
+    {%- if page.image_w and page.image_h %}
+    <meta property="og:image:width" content="{{ page.image_w }}">
+    <meta property="og:image:height" content="{{ page.image_h }}">
+    {%- endif %}
+    <meta property="og:image:alt" content="{% if page.collection == 'papers' %}Teaser figure for {{ page.short | default: page.title | escape }}{% else %}Portrait of {{ site.title }}{% endif %}">
     <meta property="og:type" content="{% if page.url == '/' %}profile{% elsif page.collection %}article{% else %}website{% endif %}">
+    {%- if page.collection == "papers" and page.video %}
+    <meta property="og:video" content="{{ page.video | absolute_url }}">
+    <meta property="og:video:type" content="video/mp4">
+    {%- endif %}
     <!-- Twitter -->
     <meta name="twitter:card" content="{% if page.collection == 'papers' %}summary_large_image{% else %}summary{% endif %}">
     <meta name="twitter:site" content="@{{ site.twitter_username }}">
@@ -76,6 +102,7 @@
     <meta name="twitter:image" content="{{ share_image }}">
 
     {%- if page.collection == "papers" %}
+    {%- assign page_range = page.pages | split: "-" %}
     <!-- Scholarly metadata (Google Scholar / citation managers) -->
     <meta name="citation_title" content="{{ page.title | escape }}">
     {%- for a in page.authors %}
@@ -84,8 +111,13 @@
     <meta name="citation_publication_date" content="{{ page.pub_date }}">
     <meta name="citation_conference_title" content="{{ page.venue | escape }}">
     <meta name="citation_abstract_html_url" content="{{ url }}">
+    <meta name="citation_language" content="en">
     {%- if page.keywords %}
     <meta name="citation_keywords" content="{{ page.keywords | join: '; ' | escape }}">
+    {%- endif %}
+    {%- if page_range.size == 2 %}
+    <meta name="citation_firstpage" content="{{ page_range[0] }}">
+    <meta name="citation_lastpage" content="{{ page_range[1] }}">
     {%- endif %}
     {%- if page.pdf_link %}
     <meta name="citation_pdf_url" content="{{ page.pdf_link }}">
@@ -105,6 +137,7 @@
       "@id": "{{ '/' | absolute_url }}#person",
       "name": {{ site.person.name | jsonify }},
       "alternateName": {{ site.person.alternate_names | jsonify }},
+      "description": {{ site.description | jsonify }},
       "url": "{{ '/' | absolute_url }}",
       "image": "{{ site.og_image | absolute_url }}",
       "jobTitle": {{ site.person.job_title | jsonify }},
@@ -117,8 +150,8 @@
       "sameAs": {{ site.person.same_as | jsonify }}
     }
     {%- endcapture %}
-    {%- if page.url == "/" %}
     {%- assign papers = site.papers | sort: "order" %}
+    {%- if page.url == "/" %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -129,6 +162,7 @@
           "url": "{{ '/' | absolute_url }}",
           "name": {{ site.title | jsonify }},
           "description": {{ site.description | jsonify }},
+          "inLanguage": "en",
           "author": { "@id": "{{ '/' | absolute_url }}#person" }
         },
         {
@@ -136,12 +170,14 @@
           "@id": "{{ '/' | absolute_url }}#profile",
           "url": "{{ '/' | absolute_url }}",
           "name": {{ full_title | jsonify }},
+          "isPartOf": { "@id": "{{ '/' | absolute_url }}#website" },
           "mainEntity": { "@id": "{{ '/' | absolute_url }}#person" }
         },
         {{ person_ld }},
         {
           "@type": "ItemList",
           "name": "Publications by Nomaan Qureshi",
+          "numberOfItems": {{ papers.size }},
           "itemListElement": [
             {%- for p in papers %}
             { "@type": "ListItem", "position": {{ forloop.index }}, "url": "{{ p.url | absolute_url }}", "name": {{ p.title | jsonify }} }{% unless forloop.last %},{% endunless %}
@@ -174,7 +210,12 @@
         {%- endfor %}
       ],
       "datePublished": {{ page.pub_date | replace: "/", "-" | jsonify }},
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
       "isPartOf": { "@type": "PublicationEvent", "name": {{ page.venue | jsonify }} },
+      {%- if page.pages %}
+      "pagination": {{ page.pages | jsonify }},
+      {%- endif %}
       {%- if page.abstract %}
       "abstract": {{ page.abstract | jsonify }},
       {%- endif %}
@@ -182,13 +223,25 @@
       {%- if page.keywords %}
       "keywords": {{ page.keywords | join: ", " | jsonify }},
       {%- endif %}
-      "image": "{{ page.image | absolute_url }}",
-      {%- if page.doi %}
-      "identifier": { "@type": "PropertyValue", "propertyID": "DOI", "value": {{ page.doi | jsonify }} },
-      {%- elsif page.arxiv %}
-      "identifier": { "@type": "PropertyValue", "propertyID": "arXiv", "value": {{ page.arxiv | jsonify }} },
+      {%- if page.topics %}
+      "about": [
+        {%- assign first_topic = true %}
+        {%- for t in site.data.topics %}{% if page.topics contains t.slug %}
+        {% unless first_topic %},{% endunless %}{ "@type": "DefinedTerm", "name": {{ t.name | jsonify }}, "url": "{{ '/research/' | absolute_url }}#{{ t.slug }}" }
+        {%- assign first_topic = false %}
+        {%- endif %}{% endfor %}
+      ],
       {%- endif %}
-      "sameAs": [{{ page.paper_link | jsonify }}{% if page.project_link %}, {{ page.project_link | jsonify }}{% endif %}],
+      "image": "{{ page.image | absolute_url }}",
+      "identifier": [
+        {%- if page.doi %}
+        { "@type": "PropertyValue", "propertyID": "DOI", "value": {{ page.doi | jsonify }} }{% if page.arxiv %},{% endif %}
+        {%- endif %}
+        {%- if page.arxiv %}
+        { "@type": "PropertyValue", "propertyID": "arXiv", "value": {{ page.arxiv | jsonify }} }
+        {%- endif %}
+      ],
+      "sameAs": [{{ page.paper_link | jsonify }}{% if page.doi %}, "https://doi.org/{{ page.doi }}"{% endif %}{% if page.project_link %}, {{ page.project_link | jsonify }}{% endif %}],
       "url": "{{ url }}"
     }
     </script>
@@ -217,7 +270,7 @@
     { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": {{ site.title | jsonify }}, "item": "{{ '/' | absolute_url }}" },
       { "@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ '/blog/' | absolute_url }}" },
-      { "@type": "ListItem", "position": 3, "name": {{ page.short | default: page.title | strip | jsonify }}, "item": "{{ url }}" }
+      { "@type": "ListItem", "position": 3, "name": {{ page.title | strip | jsonify }}, "item": "{{ url }}" }
     ] }
     </script>
     <script type="application/ld+json">
@@ -228,53 +281,128 @@
       "headline": {{ page.title | strip | jsonify }},
       "description": {{ desc | jsonify }},
       "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "inLanguage": "en",
       "author": { "@type": "Person", "@id": "{{ '/' | absolute_url }}#person", "name": {{ site.person.name | jsonify }}, "url": "{{ '/' | absolute_url }}" },
       "url": "{{ url }}"
     }
     </script>
+    {%- elsif page.url == "/research/" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "{{ url }}",
+      "url": "{{ url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "en",
+      "author": { "@type": "Person", "@id": "{{ '/' | absolute_url }}#person", "name": {{ site.person.name | jsonify }}, "url": "{{ '/' | absolute_url }}" },
+      "about": [
+        {%- for t in site.data.topics %}
+        { "@type": "DefinedTerm", "name": {{ t.name | jsonify }}, "description": {{ t.blurb | jsonify }}, "url": "{{ url }}#{{ t.slug }}" }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "hasPart": [
+        {%- for p in papers %}
+        { "@type": "ScholarlyArticle", "@id": "{{ p.url | absolute_url }}#article", "name": {{ p.title | jsonify }}, "url": "{{ p.url | absolute_url }}" }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    }
+    </script>
+    {%- elsif page.url == "/blog/" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": "{{ url }}",
+      "url": "{{ url }}",
+      "name": "Blog of {{ site.title }}",
+      "description": {{ page.description | jsonify }},
+      "author": { "@type": "Person", "@id": "{{ '/' | absolute_url }}#person", "name": {{ site.person.name | jsonify }}, "url": "{{ '/' | absolute_url }}" },
+      "blogPost": [
+        {%- for post in site.posts %}
+        { "@type": "BlogPosting", "headline": {{ post.title | strip | jsonify }}, "url": "{{ post.url | absolute_url }}" }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    }
+    </script>
     {%- endif %}
 </head>
-<body>
-    <div class="wrapper">
-        <header class="navbar container">
-            <a id="author-name" class="alignable pull-left" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-            <ul id="navlist" class="alignable pull-right navbar-ul">
-                {% for x in site.nav %}
-                    <li class="alignable pull-left nav-list"><a href="{{ x.link | relative_url }}">{{ x.name }}</a> /</li>
-                {% endfor %}
-                <li class="alignable pull-left nav-list">
-                    <button id="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Switch between light and dark mode">
-                        <span class="theme-icon-dark" aria-hidden="true">&#9790; dark</span>
-                        <span class="theme-icon-light" aria-hidden="true">&#9728; light</span>
-                    </button>
-                </li>
-            </ul>
-        </header>
-        <div style="clear:both"></div>
-        <hr>
-        <main class="container content{% if page.is_contact == true %} contact{% endif %}">
-            {{ content }}
-            {% if site.footer == true %}
-                <hr />
-                <p class="site-footer">
-                <a href="{{ site.footer_url }}"><small>{{ site.footer_text }}</small></a>
-                </p>
-            {% endif %}
-        </main>
-    </div>
+<body class="{% if page.url == '/' %}is-home{% endif %}">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="aurora" aria-hidden="true"></div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}, home">
+                <span class="brand-mark" aria-hidden="true">NQ</span>
+                <span class="brand-name">{{ site.title }}</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                {%- for x in site.nav %}
+                {%- assign current = false %}
+                {%- if page.url == x.link %}{% assign current = true %}{% endif %}
+                {%- if x.link == "/blog/" and page.collection == "posts" %}{% assign current = true %}{% endif %}
+                <a href="{{ x.link | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ x.name }}</a>
+                {%- endfor %}
+                <button id="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Switch between light and dark mode">
+                    <svg class="theme-icon-dark" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M20.4 14.3A8.5 8.5 0 0 1 9.7 3.6a.6.6 0 0 0-.8-.7 9.7 9.7 0 1 0 12.2 12.2.6.6 0 0 0-.7-.8z"/></svg>
+                    <svg class="theme-icon-light" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3 7 7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></g></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <main id="main" class="container content{% if page.url != '/' %} narrow{% endif %}{% if page.is_contact == true %} contact{% endif %}">
+        {{ content }}
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.footer_url }}">{{ site.footer_text }}</a> <span class="sep">&middot;</span> Last updated {{ site.time | date: "%B %Y" }}</p>
+            <p class="footer-links">
+                <a href="https://scholar.google.com/citations?user=ZmVf8kUAAAAJ&hl=en">Scholar</a>
+                <a href="https://github.com/qureshinomaan">GitHub</a>
+                <a href="https://twitter.com/{{ site.twitter_username }}">Twitter</a>
+                <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+                <a href="{{ '/papers.bib' | relative_url }}">BibTeX</a>
+                <a href="{{ '/llms.txt' | relative_url }}">llms.txt</a>
+            </p>
+        </div>
+    </footer>
     <script>
       (function () {
+        var root = document.documentElement;
         var btn = document.getElementById("theme-toggle");
-        if (!btn) return;
-        btn.addEventListener("click", function () {
-          var root = document.documentElement;
+        if (btn) btn.addEventListener("click", function () {
           var current = root.getAttribute("data-theme");
-          if (!current) {
-            current = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-          }
+          if (!current) current = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
           var next = current === "dark" ? "light" : "dark";
           root.setAttribute("data-theme", next);
           try { localStorage.setItem("theme", next); } catch (e) {}
+        });
+
+        // Teaser clips: play only while on screen, and not at all if the visitor prefers reduced motion.
+        var clips = [].slice.call(document.querySelectorAll("video[data-autoplay]"));
+        var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (clips.length && !calm && "IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              var v = e.target;
+              if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+            });
+          }, { rootMargin: "120px 0px", threshold: 0.15 });
+          clips.forEach(function (v) { v.muted = true; io.observe(v); });
+        } else if (calm) {
+          clips.forEach(function (v) { v.controls = true; });
+        }
+
+        // "Copy" buttons next to BibTeX blocks.
+        [].slice.call(document.querySelectorAll("[data-copy]")).forEach(function (b) {
+          b.addEventListener("click", function () {
+            var el = document.getElementById(b.getAttribute("data-copy"));
+            if (!el || !navigator.clipboard) return;
+            navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+              var old = b.textContent; b.textContent = "Copied"; setTimeout(function () { b.textContent = old; }, 1400);
+            });
+          });
         });
       })();
     </script>

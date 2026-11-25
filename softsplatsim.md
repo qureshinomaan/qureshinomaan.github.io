@@ -1,6 +1,8 @@
 ---
 layout: default
 title: softsplatsim
+noindex: true
+sitemap: false
 ---
 
 <h1>Softsplatsim</h1>   

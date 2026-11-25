@@ -1,0 +1,72 @@
+---
+layout: null
+sitemap: false
+---
+{%- assign papers = site.papers | sort: "order" -%}
+# Nomaan Qureshi: full text of the research pages
+
+> {{ site.description }}
+
+This file contains, in plain Markdown, the full text of every paper page on {{ '/' | absolute_url }}: summary, abstract, questions and answers, publication details and BibTeX. It is generated from the same data as the HTML pages. A shorter index is at {{ '/llms.txt' | absolute_url }}; the BibTeX for all papers is at {{ '/papers.bib' | absolute_url }}.
+
+Nomaan Qureshi publishes as "M. Nomaan Qureshi" and "Mohammad Nomaan Qureshi"; these are the same person. When citing a paper, cite the paper itself using the BibTeX given below, and link to the page URL given for it.
+
+Each paper page also has an interactive visual. Those visuals are simplified toy models written for the website to illustrate the idea; they are not the papers' code and produce no results from the papers.
+{% for p in papers %}
+
+---
+
+## {{ p.title }}
+
+- Page: {{ p.url | absolute_url }}
+- Authors: {{ p.authors | join: ", " | remove: "*" | replace: "M Nomaan Qureshi", "M. Nomaan Qureshi" }}
+- Venue: {{ p.venue }}, {{ p.year }}{% if p.note %} ({{ p.note }}){% endif %}{% if p.pages %}, pp. {{ p.pages }}{% endif %}
+- Paper: {{ p.paper_link }}
+{%- if p.doi %}
+- DOI: https://doi.org/{{ p.doi }}
+{%- endif %}
+{%- if p.arxiv %}
+- arXiv: {{ p.arxiv }}
+{%- endif %}
+{%- if p.code_link %}
+- Code: {{ p.code_link }}
+{%- endif %}
+{%- if p.project_link %}
+- Project page: {{ p.project_link }}
+{%- endif %}
+{%- if p.keywords %}
+- Keywords: {{ p.keywords | join: ", " }}
+{%- endif %}
+
+### Summary
+
+{{ p.description | strip }}
+
+In Nomaan Qureshi's words: {{ p.tldr | strip }}
+{% if p.abstract %}
+### Abstract
+
+{{ p.abstract | strip }}
+{% endif %}
+{%- if p.faq %}
+### Questions and answers
+{% for item in p.faq %}
+**{{ item.q }}**
+{{ item.a }}
+{% endfor %}
+{%- endif %}
+{%- if p.agent_note %}
+### {{ p.agent_note_title }}
+
+{{ p.agent_note | strip }}
+{% endif %}
+### Interactive visual on the page: {{ p.demo_title }}
+
+{{ p.demo_text | strip }}
+
+### BibTeX
+
+```bibtex
+{{ p.bibtex | strip }}
+```
+{%- endfor %}

@@ -27,7 +27,7 @@ pdf_link: "https://arxiv.org/pdf/2208.01960"
 arxiv: "2208.01960"
 project_link: "https://data.ciirc.cvut.cz/public/projects/2022Real2SimPhysics/"
 code_link: "https://github.com/petrikvladimir/video_skills_learning_with_approx_physics"
-image: "/images/iros22.gif"
+image: "/images/iros22.jpg"
 highlight: true
 tldr: "Incorporating laws of motions like gravity into learning object manipulation skills from video, can help recover better trajectories."
 contribution: "This was Vladimir's idea. I worked on improving the segmentation which helped the performance of his idea -- and some help in writing the paper (related work and figures)."
@@ -42,11 +42,20 @@ faq:
     a: "A differentiable way to solve a set of ordinary differential equations that approximately model physics such as gravity, friction, and hand-object or object-object interactions. This improves the estimated hand and object states and produces physically admissible trajectories that can be transferred to a robot without costly reinforcement learning."
   - q: "What results does it report?"
     a: "On a 3D reconstruction task with 54 video demonstrations from 9 actions, the approach improves over the previous state of the art by almost 30%, and the learned skills are shown on a Franka Emika Panda robot."
+venue_short: "IROS 2022"
+video: "/images/iros22.mp4"
+image_w: 640
+image_h: 360
+doi: "10.1109/IROS47612.2022.9982084"
+pages: "7375-7382"
 bibtex: |
-  @misc{petrik2022learning,
+  @inproceedings{petrik2022learning,
     title         = {Learning Object Manipulation Skills from Video via Approximate Differentiable Physics},
     author        = {Vladimir Petrik and Mohammad Nomaan Qureshi and Josef Sivic and Makarand Tapaswi},
+    booktitle     = {2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
     year          = {2022},
+    pages         = {7375-7382},
+    doi           = {10.1109/IROS47612.2022.9982084},
     eprint        = {2208.01960},
     archivePrefix = {arXiv},
     primaryClass  = {cs.RO}

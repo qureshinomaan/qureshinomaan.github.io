@@ -2,6 +2,8 @@
 layout: default
 title: "Mowgli and how do we use observations to learn complex skills?"
 is_contact: true
+canonical: /2023/04/15/mowgli.html
+sitemap: false
 ---
 <span style="color:red;font-family:verdana;font-size:20px"> Mowgli and how do we use observations to learn complex skills?</span>
 

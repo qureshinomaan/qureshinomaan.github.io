@@ -24,7 +24,7 @@ pub_date: "2024/01/03"
 paper_link: "https://arxiv.org/abs/2401.01993"
 pdf_link: "https://arxiv.org/pdf/2401.01993"
 arxiv: "2401.01993"
-image: "/images/multihead.png"
+image: "/images/multihead.jpg"
 highlight: false
 tldr: "Manipulation tasks are a sequence of distinct skills like reaching and grasping. A policy that executes a different action head for each fixed time window is a very simple inductive bias, and it outperforms standard single-head policies on Metaworld tasks."
 contribution: "I contributed to the idea of using Time-indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks."
@@ -39,6 +39,11 @@ faq:
     a: "Manipulation tasks need a set of diverse skills whose action and state distributions are quite different. A single-head network has to learn to switch between these modes internally, which can lead to lower sample efficiency and poor performance."
   - q: "How was it evaluated?"
     a: "On Metaworld tasks, where this simple structure outperformed standard policy learning methods."
+venue_short: "IROS 2023 Workshop"
+image_webp: "/images/multihead.webp"
+image_w: 800
+image_h: 800
+thumb_fit: "contain"
 bibtex: |
   @misc{qureshi2024timeindexing,
     title         = {On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks},
