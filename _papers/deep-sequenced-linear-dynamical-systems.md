@@ -2,6 +2,16 @@
 layout: paper
 title: "Deep Sequenced Linear Dynamical Systems for Manipulation Policy Learning"
 short: "Deep Sequenced Linear Dynamical Systems"
+description: "Differentiable, sequenced linear dynamical systems used as an inductive bias for learning robot manipulation policies. ICLR 2022 Workshop on Generalizable Policy Learning in the Physical World."
+keywords:
+  - "linear dynamical systems"
+  - "sequenced LDS"
+  - "differentiable dynamical systems"
+  - "inductive bias"
+  - "manipulation policy learning"
+  - "reinforcement learning"
+  - "policy structure"
+topics: [reinforcement-learning, robot-manipulation]
 order: 8
 authors:
   - "M Nomaan Qureshi"

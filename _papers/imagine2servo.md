@@ -2,6 +2,19 @@
 layout: paper
 title: "Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks"
 short: "Imagine2Servo"
+description: "Imagine2Servo uses diffusion-based image editing to generate intermediate goal images for visual servoing, enabling long-range navigation and manipulation without a predefined goal image. IROS 2024 (Oral)."
+keywords:
+  - "Imagine2Servo"
+  - "visual servoing"
+  - "diffusion models"
+  - "goal image generation"
+  - "sub-goal generation"
+  - "image editing"
+  - "optical flow"
+  - "image-based visual servoing"
+  - "robot manipulation"
+  - "long-range navigation"
+topics: [visual-servoing, robot-manipulation]
 order: 2
 authors:
   - "Pranjali Pathre"

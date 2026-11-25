@@ -3,7 +3,7 @@ layout: default
 title: Nomaan Qureshi
 ---
 
-## About Me
+<h1 class="home-title">Nomaan Qureshi <span>Robotics and robot learning researcher</span></h1>
 
 <div class="about">
     <div class="about-side">
@@ -60,7 +60,7 @@ I want to solve robot manipulation. While most animals can walk or run, very few
 ## Publications
 
 Representative publications <span class="highlight-note">are highlighted.</span><br>
-( "\*" denotes equal contribution. )
+( "\*" denotes equal contribution. ) Browse the same papers <a href="/research/">by topic</a>.
 
 {% assign papers = site.papers | sort: "order" %}
 {% for pub in papers %}

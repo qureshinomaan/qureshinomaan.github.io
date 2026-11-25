@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: post
 title: "Why Simulators for Large-scale Robot Learning?"
 date: 2024-04-15
 ---
-
-<span style="color:red;font-family:verdana;font-size:20px"> Why Simulators for Large-scale Robot Learning?</span>
 
 How do we build ChatGPT-scale models for robots? This is perhaps the wrong question to ask. Instead, we should ask how do we get internet scale data for robots? What are the challenges?
 

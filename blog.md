@@ -1,9 +1,11 @@
 ---
 layout: default
 title: Blog
+description: "Short notes by Nomaan Qureshi on robot learning, simulators for robotics, imitation and agricultural robotics."
+permalink: /blog/
 ---
 
-<h1>Blog Posts</h1>
+<h1>Blog</h1>
 Inspired by Paul. G's emphasis on writing, I have decided to write this blog more actively. These are quick 2-3 paragraphs notes about what I have been thinking. 
 
 

@@ -2,6 +2,17 @@
 layout: paper
 title: "RTVS: A Lightweight Differentiable MPC Framework for Real-Time Visual Servoing"
 short: "RTVS"
+description: "RTVS is a lightweight differentiable model predictive control (MPC) framework for real-time, optical-flow-based visual servoing. IROS 2021."
+keywords:
+  - "RTVS"
+  - "real-time visual servoing"
+  - "visual servoing"
+  - "differentiable MPC"
+  - "model predictive control"
+  - "optical flow"
+  - "DeepMPCVS"
+  - "image-based visual servoing"
+topics: [visual-servoing]
 order: 9
 authors:
   - "M Nomaan Qureshi*"

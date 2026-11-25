@@ -7,6 +7,10 @@ baseurl: "" # the subpath of your site, e.g. /blog
 og_image: "/images/nomaan.png"
 twitter_username: qunomaan
 
+# Paste the codes from Google Search Console and Bing Webmaster Tools here to verify the site.
+google_site_verification: ""
+bing_site_verification: ""
+
 # Used for the structured data (JSON-LD) that search engines and AI agents read.
 person:
   name: "Nomaan Qureshi"
@@ -51,10 +55,12 @@ sass:
     sass_dir: _sass
 
 nav:
- - name: "research"
+ - name: "papers"
    link: "/#publications"
+ - name: "topics"
+   link: "/research/"
  - name: "blog"
-   link: "/blog"
+   link: "/blog/"
 
 exclude:
   - Gemfile

@@ -2,6 +2,19 @@
 layout: paper
 title: "Flow Synthesis Based Visual Servoing Frameworks for Monocular Obstacle Avoidance Amidst High-Rises"
 short: "Flow Synthesis Based Visual Servoing"
+description: "A visual servoing framework that synthesises optical flow to steer micro air vehicles around high-rise obstacles using a single monocular camera. IEEE CASE 2022."
+keywords:
+  - "visual servoing"
+  - "optical flow"
+  - "flow synthesis"
+  - "obstacle avoidance"
+  - "monocular camera"
+  - "micro air vehicle"
+  - "MAV"
+  - "drone navigation"
+  - "saliency"
+  - "cross-entropy method"
+topics: [visual-servoing]
 order: 7
 authors:
   - "Harshit K Sankhla*"

@@ -2,6 +2,17 @@
 layout: paper
 title: "Learning Arc-Length Value Function for Fast Time-Optimal Pick and Place Sequence Planning and Execution"
 short: "Arc-Length Value Function"
+description: "Learns an arc-length value function in a robot arm's joint space to plan and execute time-optimal pick-and-place sequences quickly. IJCNN 2023."
+keywords:
+  - "arc-length value function"
+  - "pick and place"
+  - "sequence planning"
+  - "time-optimal planning"
+  - "joint space"
+  - "task sequencing"
+  - "robot arm"
+  - "value function learning"
+topics: [planning, robot-manipulation]
 order: 5
 authors:
   - "Prajwal Thakur*"

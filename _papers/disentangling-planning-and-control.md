@@ -2,6 +2,15 @@
 layout: paper
 title: "Disentangling Planning and Control for Non-Prehensile Tabletop Manipulation"
 short: "Disentangling Planning and Control"
+description: "A framework that disentangles planning from control for non-prehensile tabletop manipulation, such as pushing objects. IEEE CASE 2023."
+keywords:
+  - "non-prehensile manipulation"
+  - "pushing"
+  - "push and grasp"
+  - "tabletop manipulation"
+  - "planning and control"
+  - "robot manipulation"
+topics: [robot-manipulation, planning]
 order: 4
 authors:
   - "Vishal Reddy Mandadi"

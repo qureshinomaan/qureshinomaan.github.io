@@ -1,11 +1,8 @@
 ---
-layout: default
+layout: post
 title: "Agriculture as a testbed for robot learning. "
 date: 2023-04-15
 ---
-
-
-<span style="color:red;font-family:verdana;font-size:20px">Agriculture as a testbed for robot learning.</span>
 
 Agriculture is a great testbed to apply robot learning on. Following are the three reasons agriculutre is a great testbed for Robot Learning. 
 

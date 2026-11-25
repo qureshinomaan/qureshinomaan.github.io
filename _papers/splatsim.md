@@ -2,6 +2,19 @@
 layout: paper
 title: "SplatSim: Zero-Shot Sim2Real Transfer of RGB Manipulation Policies Using Gaussian Splatting"
 short: "SplatSim"
+description: "SplatSim renders robot simulators with Gaussian Splatting so that RGB manipulation policies trained purely in simulation transfer zero-shot to real robots. ICRA 2025."
+keywords:
+  - "SplatSim"
+  - "Gaussian Splatting"
+  - "3D Gaussian Splatting robotics"
+  - "Sim2Real"
+  - "sim-to-real transfer"
+  - "zero-shot transfer"
+  - "RGB manipulation policies"
+  - "robot simulation"
+  - "photorealistic rendering"
+  - "imitation learning"
+topics: [sim-to-real, gaussian-splatting, robot-manipulation]
 order: 1
 authors:
   - "M Nomaan Qureshi"

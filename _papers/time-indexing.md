@@ -2,6 +2,17 @@
 layout: paper
 title: "On Time-Indexing as Inductive Bias in Deep RL for Sequential Manipulation Tasks"
 short: "Time-Indexing as Inductive Bias"
+description: "A policy architecture that executes a different action head for each fixed time window: a simple inductive bias for deep reinforcement learning on sequential manipulation tasks, evaluated on Metaworld."
+keywords:
+  - "time-indexing"
+  - "inductive bias"
+  - "deep reinforcement learning"
+  - "multi-head policy"
+  - "sequential manipulation"
+  - "skill learning"
+  - "Metaworld"
+  - "sample efficiency"
+topics: [reinforcement-learning, robot-manipulation]
 order: 3
 authors:
   - "M Nomaan Qureshi"

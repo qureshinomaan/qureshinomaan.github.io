@@ -1,0 +1,21 @@
+- slug: sim-to-real
+  name: "Sim-to-real transfer"
+  blurb: "Training robot policies in simulation and deploying them on real robots without real-world fine-tuning."
+- slug: gaussian-splatting
+  name: "Gaussian Splatting for robotics"
+  blurb: "Using 3D Gaussian Splatting captures of real scenes as the rendering layer of a robot simulator."
+- slug: visual-servoing
+  name: "Visual servoing and optical flow"
+  blurb: "Controlling a robot or camera from images: moving until the current view matches a goal view, often by driving the optical flow between them to zero."
+- slug: robot-manipulation
+  name: "Robot manipulation"
+  blurb: "Learning and planning for robot arms that pick, place, push and otherwise interact with objects."
+- slug: reinforcement-learning
+  name: "Reinforcement learning and policy structure"
+  blurb: "Inductive biases and policy architectures that make deep reinforcement learning work better on manipulation tasks."
+- slug: planning
+  name: "Planning for manipulation"
+  blurb: "Sequence, motion and task planning for robot arms."
+- slug: learning-from-video
+  name: "Learning from video"
+  blurb: "Recovering manipulation skills from videos of people performing them."

@@ -3,7 +3,7 @@ layout: default
 ---
 {%- assign plain_authors = page.authors | join: ", " | remove: "*" | replace: "M Nomaan Qureshi", "M. Nomaan Qureshi" -%}
 <article class="paper">
-  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">Nomaan Qureshi</a> / <a href="{{ '/#publications' | relative_url }}">Publications</a></p>
+  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">Nomaan Qureshi</a> / <a href="{{ '/research/' | relative_url }}">Research</a></p>
   <h1>{{ page.title }}</h1>
   <p class="authors">{{ page.authors | join: ", " | replace: 'M Nomaan Qureshi', '<strong class="me">M Nomaan Qureshi</strong>' }}</p>
   <p class="venue">{{ page.venue }}, {{ page.year }}{% if page.note %} ({{ page.note }}){% endif %}</p>
@@ -66,6 +66,17 @@ layout: default
   {% endif %}
 
   {{ content }}
+
+  {% if page.topics %}
+  <h2>Topics and related papers</h2>
+  <p class="topics-line">{% for t in site.data.topics %}{% if page.topics contains t.slug %}<a href="{{ '/research/' | relative_url }}#{{ t.slug }}">{{ t.name }}</a> {% endif %}{% endfor %}</p>
+  {% if page.keywords %}<p><small>Keywords: {{ page.keywords | join: ", " }}.</small></p>{% endif %}
+  <ul>
+  {% assign others = site.papers | sort: "order" %}{% for p in others %}{% if p.url != page.url %}{% assign shared = false %}{% for t in p.topics %}{% if t != "robot-manipulation" and page.topics contains t %}{% assign shared = true %}{% endif %}{% endfor %}{% if shared %}
+    <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> ({{ p.venue }}, {{ p.year }})</li>
+  {% endif %}{% endif %}{% endfor %}
+  </ul>
+  {% endif %}
 
   <h2>How to cite</h2>
   <p>{{ plain_authors }}. &ldquo;{{ page.title }}.&rdquo; <em>{{ page.venue }}</em>, {{ page.year }}.{% if page.arxiv %} arXiv:{{ page.arxiv }}.{% endif %}{% if page.doi %} doi:{{ page.doi }}.{% endif %}</p>

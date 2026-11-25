@@ -27,5 +27,6 @@ Each page below has a short summary, the abstract where available, questions and
 
 ## Optional
 
-- [Blog index]({{ '/blog' | absolute_url }})
+- [Blog index]({{ '/blog/' | absolute_url }})
+- [Research by topic]({{ '/research/' | absolute_url }})
 - [Sitemap]({{ '/sitemap.xml' | absolute_url }})

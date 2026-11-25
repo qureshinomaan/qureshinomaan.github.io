@@ -2,6 +2,17 @@
 layout: paper
 title: "Learning Object Manipulation Skills from Video via Approximate Differentiable Physics"
 short: "Manipulation Skills from Video via Differentiable Physics"
+description: "Learns object manipulation skills from a single video demonstration by optimising a 3D scene with a differentiable renderer and approximate differentiable physics. IROS 2022."
+keywords:
+  - "learning from video"
+  - "differentiable physics"
+  - "differentiable rendering"
+  - "video demonstration"
+  - "object manipulation"
+  - "hand-object interaction"
+  - "imitation from observation"
+  - "Something-Something"
+topics: [learning-from-video, robot-manipulation]
 order: 6
 authors:
   - "Vladimir Petrik"
