@@ -1,84 +1,86 @@
-/* Time-indexing as inductive bias: instead of one output head that must
- * represent every skill, the policy has K action heads and simply runs head k
- * during the k-th slice of the episode. */
-import { mount, THREE, C, clamp, ease } from "./kit.js";
+/* Time-indexing as inductive bias: one body, many clocks. The policy has K
+ * action heads and simply runs head k during the k-th slice of the episode.
+ * A puck draws a looping manoeuvre that passes through the same point twice;
+ * what it does there depends only on which head the clock says is active. */
+import { mount, THREE, C, clamp } from "./kit.js";
+import { painterly, sky, paintMat, motes } from "./paint.js";
 
 mount((s) => {
-  s.table(1.5, 1.05);
-  const arm = s.arm({ base: [0, 0, -0.3] });
-  const cube = s.box(0.06, 0xff6b5e, [-0.3, 0.03, 0.2]);
-  const pad = s.box([0.15, 0.008, 0.15], 0x7be495, [0.32, 0.004, 0.18], { emissive: 0x7be495, emissiveIntensity: 0.25 });
-  const HEADS = [C.cyan, C.yellow, C.violet, C.green], HEX = [0x5ad1e6, 0xffd166, 0xb79cff, 0x7be495];
-  const SKILLS = ["reach", "grasp", "move", "place"];
-  const T = 6.4;
-  let K = 4, time = 0, held = false, drag = null, grip = 1;
-  const trails = HEX.map((c) => s.trail(c, 400, 1));
-  const acts = [[], [], [], []];
-  const home = new THREE.Vector3(0, 0.36, 0.1), cur = home.clone(), prev = home.clone();
-  const pickAt = new THREE.Vector3(), placeAt = new THREE.Vector3();
-  function freeze() { pickAt.copy(cube.position); pickAt.y = 0.03; placeAt.set(pad.position.x, 0.038, pad.position.z); }
-  freeze();
-  const up = (v, h) => new THREE.Vector3(v.x, h, v.z);
-  function restart() { time = 0; held = false; cube.position.copy(pickAt); cube.rotation.y = 0; trails.forEach((tr) => tr.reset()); acts.forEach((a) => { a.length = 0; }); cur.copy(home); prev.copy(home); }
-  function update(t, dt) {
-    if (drag) { arm.solve(home); return; }
-    time += dt; if (time > T + 0.8) { freeze(); restart(); }
-    const u = clamp(time / T, 0, 0.9999) * 4, ph = Math.floor(u), f = ease(u - ph);
-    const above = up(pickAt, 0.2), aboveB = up(placeAt, 0.22);
-    let gTarget = 1;
-    if (ph === 0) cur.lerpVectors(home, above, f);                                  // reach
-    else if (ph === 1) { cur.lerpVectors(above, pickAt, Math.min(1, f * 1.6)); gTarget = f > 0.62 ? 0 : 1; if (f > 0.9) held = true; } // grasp
-    else if (ph === 2) { gTarget = 0; cur.lerpVectors(pickAt, above, Math.min(1, f * 3)); if (f > 0.33) cur.lerpVectors(above, aboveB, (f - 0.33) / 0.67); } // move
-    else { cur.lerpVectors(aboveB, placeAt, Math.min(1, f * 1.7)); gTarget = f > 0.6 ? 1 : 0; if (f > 0.62) held = false; if (f > 0.75) cur.lerpVectors(placeAt, aboveB, (f - 0.75) * 4); } // place
-    grip += (gTarget - grip) * Math.min(1, dt * 14);
-    arm.solve(cur); arm.grip(grip);
-    if (held) { arm.tipWorld(cube.position); cube.rotation.y = arm.q[0]; } else if (ph === 3) cube.position.y = Math.max(0.038, cube.position.y - dt);
-    const head = Math.min(K - 1, Math.floor(clamp(time / T, 0, 0.9999) * K));
-    if (time < T) {
-      trails[head].push(arm.tipWorld());
-      const a = cur.clone().sub(prev).divideScalar(Math.max(dt, 1e-3));
-      if (a.length() > 0.02 && acts[head].length < 500) acts[head].push([a.x, a.y, a.z]);
+  const dome = sky(s, { top: 0x070a14, horizon: 0x2a2b55, cloud: 0x34336b, clouds: 0.5, stars: 1, moon: [0.5, 0.35, -1] });
+  const paint = painterly(s, { radius: 3, vignette: 0.8 });
+  s.lights.sun.position.set(-3, 4, 2.5); s.lights.sun.intensity = 2.0; s.lights.sun.color.set(0xd8c9a4);
+  s.lights.hemi.intensity = 1.1; s.lights.rim.color.set(0x72759b); s.lights.rim.intensity = 14; s.lights.rim.position.set(3, 1.5, -3);
+  const R = 1.25;
+  const disk = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.55, R + 0.7, 0.08, 96), paintMat(0x343866, { freq: 2.2, amount: 0.5 }));
+  disk.position.y = -0.06; disk.receiveShadow = true; s.scene.add(disk);
+  const dust = motes(s, { count: 30, box: [4, 2, 4], center: [0, 0.9, 0], color: 0xefb765, size: 10 });
+  /* ring sectors, rebuilt when K changes */
+  let K = 4, sectors = [];
+  const ringG = new THREE.Group(); s.scene.add(ringG);
+  function buildRing() {
+    while (ringG.children.length) ringG.remove(ringG.children[0]);
+    sectors = [];
+    for (let i = 0; i < K; i++) {
+      const gap = 0.045, a0 = i / K * 6.2832 + gap, a1 = (i + 1) / K * 6.2832 - gap;
+      const g = new THREE.TorusGeometry(R, 0.05, 12, 64, a1 - a0);
+      const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x72759b, emissive: 0xff6b5e, emissiveIntensity: 0, roughness: 0.6 }));
+      m.rotation.x = -Math.PI / 2; m.rotation.z = -a1 + Math.PI / 2; m.position.y = 0.03; m.castShadow = true; ringG.add(m); sectors.push(m);
     }
-    prev.copy(cur);
-    update.head = head; update.ph = ph;
   }
+  buildRing();
+  const hand = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.02, R), new THREE.MeshStandardMaterial({ color: 0xd8c9a4, emissive: 0xd8c9a4, emissiveIntensity: 0.6 }));
+  hand.geometry.translate(0, 0, -R / 2); hand.position.y = 0.06; s.scene.add(hand);
+  const puck = new THREE.Mesh(new THREE.SphereGeometry(0.055, 24, 16), new THREE.MeshStandardMaterial({ color: 0xffe2b0, emissive: 0xefb765, emissiveIntensity: 1.4 }));
+  puck.castShadow = true; s.scene.add(puck);
+  const glow = new THREE.PointLight(0xefb765, 2.2, 2.2); puck.add(glow);
 
-  s.on("down", () => { const h = s.hit([cube, pad]); if (h) { drag = h.object; return true; } });
-  s.on("move", (p) => {
-    if (!drag) { s.canvas.style.cursor = s.hit([cube, pad]) ? "move" : ""; return; }
-    const q = s.rayY(0.03, p); if (!q) return;
-    drag.position.x = clamp(q.x, -0.55, 0.55); drag.position.z = clamp(q.z, 0.02, 0.4);
-  });
-  s.on("up", () => { if (drag) { drag = null; freeze(); restart(); } });
+  /* the manoeuvre: a figure-eight in 3D that crosses itself, so one place is visited in two different slices */
+  const NP = 420, path = [];
+  for (let i = 0; i <= NP; i++) { const u = i / NP * 6.2832; path.push(new THREE.Vector3(0.9 * Math.sin(u), 0.34 + 0.2 * Math.sin(2 * u + 0.6), 0.62 * Math.sin(2 * u))); }
+  const T = 9; let time = 0, playing = true, drag = false;
+  const headOf = (f) => Math.min(K - 1, Math.floor(clamp(f, 0, 0.9999) * K));
+  function update(t, dt) {
+    if (playing && !drag) time = (time + dt) % T;
+    const f = time / T, i = Math.min(NP - 1, Math.floor(f * NP)), u = f * NP - i;
+    puck.position.lerpVectors(path[i], path[i + 1], u);
+    hand.rotation.y = -f * 6.2832;
+    const h = headOf(f);
+    sectors.forEach((m, k) => { m.material.emissiveIntensity += ((k === h ? 1.3 : 0) - m.material.emissiveIntensity) * Math.min(1, dt * 10); m.material.color.set(k === h ? 0xff6b5e : 0x72759b); });
+    dome.tick(t, s.camera); dust.tick(t);
+  }
+  // scrub by dragging around the ring
+  function scrub(p) { const w = s.rayY(0.03, p); if (!w) return false; const r = Math.hypot(w.x, w.z); if (!drag && (r < R - 0.3 || r > R + 0.45)) return false; let a = Math.atan2(w.x, -w.z); if (a < 0) a += 6.2832; time = a / 6.2832 * T; return true; }
+  s.on("down", (p) => { if (scrub(p)) { drag = true; return true; } });
+  s.on("move", (p) => { if (drag) scrub(p); });
+  s.on("up", () => { drag = false; });
 
   function render() {
-    const o = s.o;
-    s.renderer.setScissorTest(false); s.renderer.setViewport(0, 0, s.w, s.h); s.renderer.render(s.scene, s.camera);
-    const head = update.head || 0, frac = clamp(time / T, 0, 1);
-    // timeline: K equal slices, one head each
-    const bx = 14, bw = s.w - 28, by = s.h - 30, bh = 16;
-    for (let i = 0; i < K; i++) {
-      o.globalAlpha = i === head && time < T ? 1 : 0.45; o.fillStyle = HEADS[i];
-      o.fillRect(bx + bw * i / K + 1, by, bw / K - 2, bh); o.globalAlpha = 1;
-      s.text("head " + (i + 1), bx + bw * (i + 0.5) / K, by + bh / 2 + 0.5, "#14100f", 10.5, "center", "700");
+    paint.render(s.scene, s.camera);
+    const o = s.o, f = time / T, h = headOf(f), upto = Math.floor(f * NP);
+    // the ribbon the puck has laid so far: the slice being drawn is coral, finished slices alternate parchment and haze
+    o.save(); o.lineCap = "round"; o.lineJoin = "round";
+    for (let k = 0; k < K; k++) {
+      const a = Math.floor(k / K * NP), b = Math.min(upto, Math.floor((k + 1) / K * NP)); if (b <= a) continue;
+      o.beginPath();
+      for (let i = a; i <= b; i++) { const q = s.project(path[i]); if (i === a) o.moveTo(q.x, q.y); else o.lineTo(q.x, q.y); }
+      o.strokeStyle = k === h ? "rgba(255,107,94,0.95)" : k % 2 ? "rgba(114,117,155,0.85)" : "rgba(216,201,164,0.8)"; o.lineWidth = k === h ? 6 : 4; o.stroke();
     }
-    for (let i = 0; i < 4; i++) s.text(SKILLS[i], bx + bw * (i + 0.5) / 4, by - 10, i === (update.ph || 0) && time < T ? C.ink : C.dim, 10.5, "center");
-    o.fillStyle = "#fff"; o.fillRect(bx + bw * frac - 1, by - 4, 2, bh + 8);
-    // what each head has been asked to output so far (end-effector velocity, side view)
-    const pw = Math.min(92, (s.w * 0.5) / K), px0 = s.w - 12 - K * (pw + 6);
-    for (let i = 0; i < K; i++) {
-      const r = { x: px0 + i * (pw + 6), y: 34, w: pw, h: pw };
-      o.fillStyle = "rgba(13,16,21,0.82)"; o.fillRect(r.x, r.y, r.w, r.h);
-      o.strokeStyle = i === head && time < T ? HEADS[i] : "rgba(255,255,255,0.22)"; o.lineWidth = 1.5; o.strokeRect(r.x + 0.5, r.y + 0.5, r.w - 1, r.h - 1);
-      s.line(r.x + r.w / 2, r.y + 4, r.x + r.w / 2, r.y + r.h - 4, "rgba(255,255,255,0.12)", 1); s.line(r.x + 4, r.y + r.h / 2, r.x + r.w - 4, r.y + r.h / 2, "rgba(255,255,255,0.12)", 1);
-      o.fillStyle = HEADS[i];
-      for (const a of acts[i]) o.fillRect(r.x + r.w / 2 + clamp(a[0], -0.9, 0.9) / 0.9 * (r.w / 2 - 5) - 1, r.y + r.h / 2 - clamp(a[1], -0.9, 0.9) / 0.9 * (r.h / 2 - 5) - 1, 2.2, 2.2);
+    o.restore();
+    // the heads: a trunk that branches into K outputs, only the active one lit
+    const bx = s.w - 150, by = 54;
+    s.text("policy", bx - 46, by + (K - 1) * 11, C.parch, 11, "right"); s.dot(bx - 36, by + (K - 1) * 11, 4, C.parch);
+    for (let k = 0; k < K; k++) {
+      const y = by + k * 22, on = k === h;
+      s.line(bx - 36, by + (K - 1) * 11, bx + 20, y, on ? C.coral : "rgba(114,117,155,0.7)", on ? 2 : 1);
+      s.dot(bx + 20, y, on ? 5 : 3.5, on ? C.coral : "rgba(114,117,155,0.9)");
+      s.text("head " + (k + 1), bx + 32, y, on ? C.parch : "rgba(216,201,164,0.5)", 11);
     }
-    s.text("actions each head has to model", s.w - 12, 22, C.dim, 10.5, "right");
-    s.hud("<b>K = " + K + "</b> action head" + (K > 1 ? "s" : "") + " · head <b>" + (head + 1) + "</b> is active" +
-      (K === 1 ? "<br><i>one head must represent every skill</i>" : "") + "<br>drag the cube or the green pad");
+    const cross = s.project(new THREE.Vector3(0, 0.34 + 0.2 * Math.sin(0.6), 0));
+    s.dot(cross.x, cross.y, 8, null, "rgba(216,201,164,0.9)"); s.text("same place, twice", cross.x + 14, cross.y - 12, C.parch, 11);
+    s.hud("<b>K = " + K + "</b> action head" + (K > 1 ? "s" : "") + " · the clock says head <b>" + (h + 1) + "</b> acts now · t = " + (f * 100).toFixed(0) + "% of the episode" +
+      (K === 1 ? "<br><i>with one head, a single output must represent every part of the manoeuvre</i>" : "<br>drag around the ring to scrub time"));
   }
-  s.slider("heads K", 1, 4, K, 1, (v) => { K = v; freeze(); restart(); });
-  s.button("Restart", () => { freeze(); restart(); });
+  s.slider("heads K", 1, 6, K, 1, (v) => { K = v; buildRing(); });
+  s.toggle("Pause", false, (v) => { playing = !v; });
   return { update, render };
-}, { cam: [1.3, 1.05, 1.85], target: [0, 0.14, 0] });
+}, { floor: false, fogNear: 4, fogFar: 14, bg: "#070a14", cam: [0.0, 2.05, 3.0], target: [0, 0.3, 0], minDist: 2, maxDist: 6.5 });

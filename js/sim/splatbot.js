@@ -55,6 +55,21 @@ export async function loadWorkspace(s, opts = {}) {
     const g = new THREE.Group(); world.add(g); splat(o.file, g);
     g.userData = o; objects[o.name] = g;
   }
+  /* the simulator's rigid bodies, hidden until the visitor "peels" the splats away */
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x5ad1e6, emissive: 0x1b6f80, emissiveIntensity: 0.9, roughness: 0.35, metalness: 0.1, transparent: true, opacity: 0 });
+  const wireMat = new THREE.MeshBasicMaterial({ color: 0xbff3ff, wireframe: true, transparent: true, opacity: 0 });
+  const bodies = [];
+  const addBody = (geo, parent) => { const m = new THREE.Mesh(geo, bodyMat), w = new THREE.Mesh(geo, wireMat); m.add(w); m.visible = false; parent.add(m); bodies.push(m); return m; };
+  (rig.capsules || []).forEach((caps, i) => caps.forEach((c) => {
+    const a = new THREE.Vector3().fromArray(c.a), b = new THREE.Vector3().fromArray(c.b), d = b.clone().sub(a), L = d.length();
+    const m = addBody(new THREE.CapsuleGeometry(c.r * 0.82, L, 4, 14), frames[i]);
+    m.position.copy(a).addScaledVector(d, 0.5);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize());
+  }));
+  for (const name in objects) {
+    const o = objects[name].userData, g = name === "plate" ? new THREE.CylinderGeometry(o.size[0] / 2, o.size[0] / 2, o.height, 28) : name === "apple" ? new THREE.SphereGeometry(o.size[0] / 2, 18, 12) : new THREE.BoxGeometry(o.size[0], o.height, o.size[1]);
+    const m = addBody(g, objects[name]); m.rotation.x = Math.PI / 2; m.position.z = o.height / 2;
+  }
   const tipLocal = new THREE.Vector3().fromArray(rig.tip);
   const tip = new THREE.Object3D(); tip.position.copy(tipLocal); frames[6].add(tip);
 
@@ -86,6 +101,13 @@ export async function loadWorkspace(s, opts = {}) {
     tableZ: rig.table_z,
     /** Trackable surface points of the scene, in three.js world coordinates. */
     features: (rig.features || []).map((p) => new THREE.Vector3(p[0], p[2], -p[1])),
+    /** 0 = photoreal splats only, 1 = splats faded to a ghost and the simulator bodies revealed. */
+    peel(v) {
+      for (const m of linkSplats) m.opacity = 1 - 0.88 * v;
+      for (const n in objects) objects[n].children[0].opacity = 1 - 0.88 * v;
+      bodyMat.opacity = 0.9 * v; wireMat.opacity = 0.5 * v;
+      for (const m of bodies) m.visible = v > 0.01;
+    },
     setQ(v) { for (let i = 0; i < 6; i++) { q[i] = v[i]; motions[i].quaternion.setFromAxisAngle(axes[i], v[i]); } },
     /** Tool-tip position in the simulator frame for joint angles `qq` (default: current). */
     tipSim(out = new THREE.Vector3(), qq = q) { return fk(qq, out); },

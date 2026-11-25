@@ -61,6 +61,7 @@ mount((s) => {
     s.hud("<b>" + (bot.splats + bot.sceneSplats + bot.objectSplats).toLocaleString() + "</b> Gaussians from real captures · <b>" + (bot.splats + bot.objectSplats).toLocaleString() +
       "</b> ride on simulator bodies (7 robot links, 3 objects): <i>μ′ = T<sub>body</sub>·μ</i><br>joints q = [" + bot.q.map((v) => (v * 180 / Math.PI).toFixed(0) + "°").join(", ") + "]" + (held ? " · <u>apple attached to the gripper</u>" : ""));
   }
+  s.slider("peel back the splats", 0, 1, 0, 0.01, (v) => { if (bot) bot.peel(v); }, (v) => Math.round(v * 100) + "%");
   s.toggle("Simulator skeleton", true, (v) => { showSim = v; });
   s.toggle("Pause", false, (v) => { paused = v; });
   s.note("drag to orbit · scroll to zoom");

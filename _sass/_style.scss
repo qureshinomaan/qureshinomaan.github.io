@@ -537,3 +537,5 @@ strong.me {
     dt { font-weight: 700; font-size: 15px; margin-top: 14px; color: var(--heading); }
     dd { margin: 4px 0 0 0; font-size: 15px; line-height: 1.6; }
 }
+
+.sim-hud:empty { display: none; }

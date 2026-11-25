@@ -22,8 +22,8 @@ highlight: false
 tldr: "Shortest path in euclidean space is not the shortest path in joint space."
 contribution: "Prof. Arun came up with the formulation. I along with Prajwal implemented it and wrote the paper. "
 demo: arc-length
-demo_title: "Simulator: the shortest path for the gripper is not the fastest for the joints"
-demo_text: "Five cubes must each go to their own slot on the tray, and the order is up to the robot. Ordering the picks to minimise how far the gripper travels in Cartesian space is the obvious choice, but the joints are what actually have to move, and their speed limits decide how long each transfer takes. This toy finds both orders by trying every sequence; the paper learns an arc-length value function so that this ranking is fast enough to do online. Drag or shuffle the cubes and compare."
+demo_title: "The expensive shortcut: shortest for the gripper is not shortest for the joints"
+demo_text: "Four cubes must each go to the pad of their own colour, and the order of the jobs is up to the robot. Ordering them to minimise how far the gripper travels in Cartesian space is the obvious choice, but the joints are what actually have to move. The motion score on the right unrolls what each joint does, with the horizontal axis measured in joint-space arc length, so a longer score means more work for the arm. The faint lines are the other order. This toy finds both orders by trying every sequence; the paper learns an arc-length value function so that the ranking is fast enough to use online. Drag or shuffle the cubes and compare."
 bibtex: |
   @inproceedings{thakur2023learning,
     author    = {Prajwal Thakur and M. Nomaan Qureshi and Arun Kumar Singh and Y V S Harish and Pushkal Katara and Houman Masnavi and K. Madhava Krishna and Brojeshwar Bhowmick},

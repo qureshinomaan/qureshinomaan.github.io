@@ -122,6 +122,7 @@ export function servoStep(cam, goal, feats, st, dt, opt = {}) {
   }
   for (const [L, e] of rows) for (let i = 0; i < 6; i++) { g[i] += L[i] * e; for (let j = 0; j < 6; j++) A[i][j] += L[i] * L[j]; }
   const lam = opt.gain || 1.6;
+  st.A = A; st.g = g; st.lam = lam; // kept so callers can score candidate velocities
   if (opt.iters) {
     // the MPC inner loop: a few conjugate-gradient steps on the predicted image error,
     // warm-started from the velocity of the previous tick

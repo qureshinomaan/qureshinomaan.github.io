@@ -13,7 +13,9 @@ export { THREE };
 
 export const C = {
   bg: "#0d1015", ink: "#ece9e2", dim: "#8a93a3", accent: "#ff6b5e", cyan: "#5ad1e6",
-  green: "#7be495", yellow: "#ffd166", violet: "#b79cff", blue: "#6ea8ff", steel: "#cfd6de"
+  green: "#7be495", yellow: "#ffd166", violet: "#b79cff", blue: "#6ea8ff", steel: "#cfd6de",
+  // art-direction palette
+  ink: "#0B101B", foliage: "#163B36", arch: "#34336B", haze: "#72759B", parch: "#D8C9A4", coral: "#FF6B5E", amber: "#EFB765", mint: "#91C6BA"
 };
 const MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
@@ -78,11 +80,11 @@ export function mount(init, opts = {}) {
   let floor = null;
   if (opts.floor !== false) {
     const fy = opts.floorY == null ? -0.72 : opts.floorY;
-    floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: 0x12161c, roughness: 0.95 }));
+    floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: opts.floorColor || 0x12161c, roughness: 0.95 }));
     floor.rotation.x = -Math.PI / 2; floor.position.y = fy; floor.receiveShadow = true;
     const grid = new THREE.GridHelper(60, 120, 0x2a323d, 0x1b2129);
     grid.position.y = fy + 0.002;
-    scene.add(floor, grid);
+    scene.add(floor); if (opts.grid !== false) scene.add(grid);
   }
 
   /* ---------- pointer (registered before OrbitControls so drags can claim the gesture) ---------- */
@@ -368,6 +370,8 @@ export function mount(init, opts = {}) {
     } catch (err) { dead = true; fail(err); return; }
     raf = requestAnimationFrame(frame);
   }
+  // test hook: advance the simulation n ticks synchronously
+  window.__simStep = (n) => { for (let i = 0; i < n; i++) { s.t += 1 / 60; if (sim.update) sim.update(s.t, 1 / 60); } return hud.innerText; };
   raf = requestAnimationFrame(frame);
   return s;
 }

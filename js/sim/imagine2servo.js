@@ -37,6 +37,7 @@ mount((s) => {
         state = res.n < 4 ? "stuck" : res.err < 0.005 ? "done" : "servo";
         continue;
       }
+      if (state === "done" || state === "stuck") continue;
       const hold = state === "imagining" && s.t - born < 0.9;
       if (state === "imagining" && !hold) state = "servo";
       res = servoStep(s.camera, subs[k], st.feats, v, 1 / 60, { hold: hold || state === "done", gain: 1.3 });
@@ -53,14 +54,24 @@ mount((s) => {
     st.afterRender();
     if (!imgs) { s.hud("pre-rendering the sub-goal images…"); return; }
     if (showFlow) st.drawFlow(res.pairs);
-    const r = st.inset(), o = s.o;
-    st.drawImage(imgs[mode === 0 ? K - 1 : k], r, mode === 0 ? "FINAL GOAL IMAGE" : "IMAGINED SUB-GOAL " + (k + 1) + " / " + K, mode === 0 ? C.green : C.yellow);
+    // the filmstrip: imagined frames that bridge the start view and the task goal
+    const o = s.o, n = K, gap = 6, W = Math.min(s.w - 20, 860), tw = (W - gap * (n - 1)) / n, th = tw * 9 / 16, x0 = (s.w - W) / 2, y0 = s.h - th - 12;
+    o.fillStyle = "rgba(13,16,21,0.72)"; o.fillRect(x0 - 8, y0 - 22, W + 16, th + 30);
+    s.text(mode === 1 ? "IMAGINED SUB-GOALS \u2192 TASK GOAL" : "TASK GOAL ONLY", x0, y0 - 11, C.dim, 10);
     const age = s.t - born;
-    if (mode === 1 && age < 0.9) { // "denoising" reveal of the imagined image
-      const a = 1 - age / 0.9, cw = r.w / 25, ch = (r.h - 17) / 14;
-      for (let i = 0; i < 25; i++) for (let j = 0; j < 14; j++) if (noise() < a) {
-        o.fillStyle = "hsl(" + Math.floor(noise() * 360) + " 55% " + (30 + noise() * 40) + "%)"; o.fillRect(r.x + i * cw, r.y + 17 + j * ch, cw + 0.5, ch + 0.5);
+    for (let i = 0; i < n; i++) {
+      const x = x0 + i * (tw + gap), last = i === n - 1;
+      const shown = mode === 0 ? last : (i < k || (i === k) || state === "done");
+      if (shown) o.drawImage(imgs[i], x, y0, tw, th); else { o.fillStyle = "#12161c"; o.fillRect(x, y0, tw, th); s.text("?", x + tw / 2, y0 + th / 2, "#3a4350", 18, "center", "700"); }
+      if (mode === 1 && i === k && age < 0.9 && state !== "done") { // "denoising" reveal
+        const a = 1 - age / 0.9, cw = tw / 14, ch = th / 8;
+        for (let c = 0; c < 14; c++) for (let rr = 0; rr < 8; rr++) if (noise() < a) { o.fillStyle = "hsl(" + Math.floor(noise() * 360) + " 55% " + (30 + noise() * 40) + "%)"; o.fillRect(x + c * cw, y0 + rr * ch, cw + 0.5, ch + 0.5); }
       }
+      const active = (mode === 1 ? i === k : last) && state !== "done", reached = mode === 1 && (i < k || state === "done");
+      o.lineWidth = active ? 2.5 : 1; o.strokeStyle = active ? C.yellow : reached ? C.green : last ? "rgba(123,228,149,0.6)" : "rgba(255,255,255,0.25)";
+      o.strokeRect(x + 0.5, y0 + 0.5, tw - 1, th - 1);
+      if (reached) { s.dot(x + tw - 9, y0 + 9, 5.5, C.green); s.text("\u2713", x + tw - 9, y0 + 9.5, "#0d1015", 9, "center", "700"); }
+      if (last) s.text("goal", x + 5, y0 + th - 8, C.green, 9.5);
     }
     const msg = state === "stuck" ? "<i>stuck: the goal image shares no features with the current view, so there is no flow to follow</i>"
       : state === "done" ? "<u>reached the task goal" + (mode === 1 ? " through " + K + " imagined sub-goals" : "") + "</u>"

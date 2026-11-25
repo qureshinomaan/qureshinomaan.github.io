@@ -1,105 +1,118 @@
-/* Arc-length value function for pick-and-place sequencing. The order that is
- * shortest for the gripper in Cartesian space is not the order that is
- * fastest for the joints. Both orders are found by brute force here; the
- * paper learns a value function so that this ranking is fast. */
-import { mount, THREE, C, clamp, ease } from "./kit.js";
+/* Arc-length value function: the expensive shortcut. Four pick-and-place jobs
+ * can be done in any order. The order with the shortest gripper path is not
+ * the order with the shortest path for the joints. The "motion score" on the
+ * right unrolls what each joint has to do, measured in joint-space arc length.
+ * Both orders are found by brute force here; the paper learns a value function
+ * of arc length so this ranking is fast enough to do online. */
+import { mount, THREE, C, clamp } from "./kit.js";
+import { painterly, sky, paintMat, motes } from "./paint.js";
 
 mount((s) => {
-  s.table(1.6, 1.1);
-  const arm = s.arm({ base: [0, 0, -0.34] });
-  const cols = [0xff6b5e, 0x5ad1e6, 0xffd166, 0xb79cff, 0x7be495];
-  const starts = [[-0.52, 0.22], [0.5, 0.02], [-0.12, 0.4], [0.3, 0.34], [-0.42, -0.12]];
-  const cubes = starts.map((p, i) => s.box(0.055, cols[i], [p[0], 0.0275, p[1]]));
-  const slots = cubes.map((c, i) => {
-    const x = (i - 2) * 0.1, z = 0.12;
-    s.box([0.08, 0.006, 0.08], cols[i], [x, 0.003, z], { emissive: cols[i], emissiveIntensity: 0.25 });
-    return new THREE.Vector3(x, 0.034, z);
-  });
-  const VMAX = [1.6, 1.3, 1.9], HOVER = 0.17, home = new THREE.Vector3(0, 0.32, 0.12);
-  const trail = s.trail(0xffffff, 1500, 0.55);
-  const hov = (v) => new THREE.Vector3(v.x, HOVER, v.z);
-  const jt = (a, b) => Math.max(Math.abs(a[0] - b[0]) / VMAX[0], Math.abs(a[1] - b[1]) / VMAX[1], Math.abs(a[2] - b[2]) / VMAX[2]);
+  const dome = sky(s, { top: 0x18203a, horizon: 0xb8744a, cloud: 0xefb765, clouds: 0.6, stars: 0.3, moon: [0, -1, 0] });
+  const paint = painterly(s, { radius: 3, vignette: 0.75, saturation: 1.12 });
+  s.lights.sun.position.set(-2.6, 3.2, 2.2); s.lights.sun.color.set(0xffe2b0); s.lights.sun.intensity = 2.6;
+  s.lights.hemi.intensity = 1.5; s.lights.hemi.color.set(0xb7d6cf); s.lights.hemi.groundColor.set(0x6a4a30); s.lights.rim.color.set(0xefb765); s.lights.rim.intensity = 10; s.lights.rim.position.set(2.5, 1.2, -2.2);
+  const table = s.table(1.7, 1.15, 0x7a6243); table.userData.top.material = paintMat(0x8a6f4a, { freq: 5, amount: 0.3, shade: 0x163b36 });
+  // shadowed shelving in the background
+  const shelfM = paintMat(0x16302c, { freq: 1.5, amount: 0.5 });
+  for (let i = 0; i < 7; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.5 + (i % 3) * 0.2, 0.5 + ((i * 7) % 5) * 0.28, 0.4), shelfM); m.position.set(-2.2 + i * 0.75, 0.1 + m.geometry.parameters.height / 2 - 0.7, -1.9 - (i % 2) * 0.3); s.scene.add(m); }
+  const dust = motes(s, { count: 26, box: [3, 1.6, 2.4], center: [0, 0.7, 0], color: 0xefb765, size: 9 });
+  const arm = s.arm({ base: [0, 0, -0.34], color: 0xe9dfc4, joint: 0x2f6f66 });
+  const cols = [0xff6b5e, 0x91c6ba, 0xefb765, 0x72759b], NJ = 4;
+  const cubes = [[-0.5, 0.22], [0.5, 0.0], [-0.1, 0.42], [0.36, 0.34]].map((p, i) => { const c = s.box(0.055, cols[i], [p[0], 0.0275, p[1]]); c.userData.x0 = p[0]; c.userData.z0 = p[1]; return c; });
+  // every cube has its own pad somewhere else on the table, so the order of the jobs matters
+  const PADS = [[0.5, 0.36], [-0.56, -0.08], [0.2, 0.06], [-0.3, 0.44]];
+  const slots = cubes.map((c, i) => { const [x, z] = PADS[i]; s.box([0.09, 0.006, 0.09], cols[i], [x, 0.003, z], { emissive: cols[i], emissiveIntensity: 0.15 }); return new THREE.Vector3(x, 0.034, z); });
+  const clearOfPads = (x, z) => PADS.every((p) => Math.hypot(x - p[0], z - p[1]) > 0.12);
+  const HOVER = 0.17, home = new THREE.Vector3(0, 0.32, 0.12), hov = (v) => new THREE.Vector3(v.x, HOVER, v.z);
+  const trail = s.trail(0xefb765, 1500, 0.8);
+  const dq = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);   // joint-space arc length of a straight joint move
+  const perms = (n) => { const out = []; const rec = (a, rest) => { if (!rest.length) out.push(a); rest.forEach((x, i) => rec(a.concat(x), rest.slice(0, i).concat(rest.slice(i + 1)))); }; rec([], [...Array(n).keys()]); return out; };
+  const ALL = perms(NJ);
   let picks = [], plans = [], which = 1, run = null, drag = null;
-  function perms(n) { const out = []; const rec = (a, rest) => { if (!rest.length) out.push(a); rest.forEach((x, i) => rec(a.concat(x), rest.slice(0, i).concat(rest.slice(i + 1)))); }; rec([], [...Array(n).keys()]); return out; }
-  const ALL = perms(5);
+  function build(order) {
+    const segs = []; let q = arm.ik(home), x = home.clone(), cart = 0, len = 0;
+    const move = (to) => { const qt = arm.ik(to), L = dq(q, qt); segs.push({ q0: q, q1: qt, L, s0: len }); len += L; cart += x.distanceTo(to); q = qt; x = to.clone(); };
+    for (const i of order) { move(hov(picks[i])); move(picks[i]); segs.push({ grab: i }); move(hov(picks[i])); move(hov(slots[i])); move(slots[i]); segs.push({ drop: i }); move(hov(slots[i])); }
+    return { order, segs, len, cart };
+  }
   function solve() {
-    picks = cubes.map((c, i) => new THREE.Vector3(c.userData.x0 ?? c.position.x, 0.0275, c.userData.z0 ?? c.position.z));
-    const qP = picks.map((p) => arm.ik(hov(p))), qS = slots.map((p) => arm.ik(hov(p))), qH = arm.ik(home);
-    const cost = (order, joint) => {
-      let total = 0, q = qH, x = home;
-      for (const i of order) {
-        total += joint ? jt(q, qP[i]) + jt(qP[i], qS[i]) : x.distanceTo(hov(picks[i])) + hov(picks[i]).distanceTo(hov(slots[i]));
-        q = qS[i]; x = hov(slots[i]);
-      }
-      return total;
-    };
-    let bestE = null, bestJ = null;
-    for (const o of ALL) { const e = cost(o, false), j = cost(o, true); if (!bestE || e < bestE.c) bestE = { o, c: e }; if (!bestJ || j < bestJ.c) bestJ = { o, c: j }; }
-    plans = [{ name: "shortest Cartesian path", order: bestE.o, time: cost(bestE.o, true), len: bestE.c },
-             { name: "shortest joint-space path", order: bestJ.o, time: bestJ.c, len: cost(bestJ.o, false) }];
+    picks = cubes.map((c) => new THREE.Vector3(c.userData.x0, 0.0275, c.userData.z0));
+    let bc = null, bj = null;
+    for (const o of ALL) { const p = build(o); if (!bc || p.cart < bc.cart) bc = p; if (!bj || p.len < bj.len) bj = p; }
+    plans = [Object.assign(bc, { name: "shortest gripper path" }), Object.assign(bj, { name: "shortest joint path" })];
   }
   function start() {
-    cubes.forEach((c, i) => { c.position.copy(picks[i]); c.rotation.y = 0; });
-    trail.reset();
-    const order = plans[which].order, segs = [];
-    let q = arm.ik(home);
-    const move = (to, joint) => { const qt = arm.ik(to); segs.push({ q0: q, q1: qt, dur: joint ? Math.max(0.12, jt(q, qt)) : 0.32, }); q = qt; };
-    for (const i of order) {
-      move(hov(picks[i]), true); move(picks[i]); segs.push({ grab: i }); move(hov(picks[i]));
-      move(hov(slots[i]), true); move(slots[i]); segs.push({ drop: i }); move(hov(slots[i]));
-    }
-    run = { segs, k: 0, u: 0, held: -1, clock: 0, done: false };
-    arm.setQ(...arm.ik(home));
+    cubes.forEach((c, i) => { c.position.copy(picks[i]); c.rotation.y = 0; }); trail.reset();
+    run = { k: 0, u: 0, held: -1, s: 0, done: false, wait: 0 }; arm.setQ(...arm.ik(home));
   }
-  cubes.forEach((c) => { c.userData.x0 = c.position.x; c.userData.z0 = c.position.z; });
+  /* Start from a layout where the two criteria clearly disagree (found by trying seeded random layouts). */
+  function layout(r) {
+    cubes.forEach((c) => { let x, z; do { x = (r() - 0.5) * 1.2; z = -0.18 + r() * 0.6; } while (!clearOfPads(x, z) || Math.hypot(x, z + 0.34) < 0.3 || Math.hypot(x, z + 0.34) > 0.78); c.userData.x0 = x; c.userData.z0 = z; });
+    solve(); return plans[0].len - plans[1].len;
+  }
+  { const r = s.rng(77); let best = -1, keep = null;
+    for (let i = 0; i < 400; i++) { const d = layout(r); if (d > best) { best = d; keep = cubes.map((c) => [c.userData.x0, c.userData.z0]); } if (d > 2.5) break; }
+    cubes.forEach((c, i) => { c.userData.x0 = keep[i][0]; c.userData.z0 = keep[i][1]; }); }
   solve(); start();
-
+  const SPEED = 2.4; // constant speed along the joint-space path, rad/s
   function update(t, dt) {
+    dome.tick(t, s.camera); dust.tick(t);
+    s.camera.setViewOffset(s.w, s.h, Math.round(s.w * 0.2), 0, s.w, s.h);
     if (!run || drag) return;
+    const P = plans[which];
     if (run.done) { run.wait -= dt; if (run.wait < 0) start(); return; }
-    let sg = run.segs[run.k];
-    while (sg && (sg.grab != null || sg.drop != null)) { if (sg.grab != null) run.held = sg.grab; else { cubes[sg.drop].position.copy(slots[sg.drop]); cubes[sg.drop].position.y = 0.0335; run.held = -1; } sg = run.segs[++run.k]; }
-    if (!sg) { run.done = true; run.wait = 2.2; return; }
-    run.u += dt / sg.dur; if (sg.dur > 0.33 || true) run.clock += dt;
-    const u = Math.min(1, run.u), e = u; // constant joint velocity, i.e. a straight line in joint space
-    arm.setQ(sg.q0[0] + (sg.q1[0] - sg.q0[0]) * e, sg.q0[1] + (sg.q1[1] - sg.q0[1]) * e, sg.q0[2] + (sg.q1[2] - sg.q0[2]) * e);
+    let sg = P.segs[run.k];
+    while (sg && (sg.grab != null || sg.drop != null)) { if (sg.grab != null) run.held = sg.grab; else { cubes[sg.drop].position.copy(slots[sg.drop]); cubes[sg.drop].position.y = 0.0335; run.held = -1; } sg = P.segs[++run.k]; }
+    if (!sg) { run.done = true; run.wait = 2.5; return; }
+    run.u += dt * SPEED / Math.max(sg.L, 0.05); const u = Math.min(1, run.u);
+    run.s = sg.s0 + sg.L * u;
+    arm.setQ(sg.q0[0] + (sg.q1[0] - sg.q0[0]) * u, sg.q0[1] + (sg.q1[1] - sg.q0[1]) * u, sg.q0[2] + (sg.q1[2] - sg.q0[2]) * u);
     arm.grip(run.held >= 0 ? 0 : 1);
     const tip = arm.tipWorld(); trail.push(tip);
     if (run.held >= 0) { cubes[run.held].position.copy(tip); cubes[run.held].rotation.y = arm.q[0]; }
     if (run.u >= 1) { run.k++; run.u = 0; }
   }
-
   s.on("down", () => { const h = s.hit(cubes); if (h) { drag = h.object; return true; } });
   s.on("move", (p) => {
     if (!drag) { s.canvas.style.cursor = s.hit(cubes) ? "move" : ""; return; }
-    const q = s.rayY(0.03, p); if (!q) return;
-    const x = clamp(q.x, -0.62, 0.62), z = clamp(q.z, -0.2, 0.42);
-    if (Math.abs(z - 0.12) < 0.08 && Math.abs(x) < 0.3) return; // keep cubes off the tray
+    const q = s.rayY(0.03, p); if (!q) return; const x = clamp(q.x, -0.62, 0.62), z = clamp(q.z, -0.2, 0.44);
+    if (!clearOfPads(x, z)) return;
     drag.position.set(x, 0.0275, z); drag.userData.x0 = x; drag.userData.z0 = z;
   });
-  s.on("up", () => { if (drag) { cubes.forEach((c, i) => { c.position.set(c.userData.x0, 0.0275, c.userData.z0); }); drag = null; solve(); start(); } });
+  s.on("up", () => { if (drag) { drag = null; solve(); start(); } });
 
   function render() {
-    s.renderer.setScissorTest(false); s.renderer.setViewport(0, 0, s.w, s.h); s.renderer.render(s.scene, s.camera);
-    const order = plans[which].order;
-    order.forEach((ci, n) => { s.label(String(n + 1), picks[ci].clone().setY(0.09), "#fff", -6); });
-    const bx = 14, by = s.h - 62, bw = Math.min(330, s.w - 28), m = Math.max(plans[0].time, plans[1].time);
-    plans.forEach((p, i) => {
-      const y = by + i * 26, on = i === which;
-      s.text("order by " + p.name, bx, y, on ? C.ink : C.dim, 10.5);
-      s.o.globalAlpha = on ? 1 : 0.4; s.o.fillStyle = i ? C.green : C.accent; s.o.fillRect(bx, y + 8, (bw - 70) * p.time / m, 6); s.o.globalAlpha = 1;
-      s.text(p.time.toFixed(2) + " s", bx + (bw - 70) * p.time / m + 6, y + 11, on ? C.ink : C.dim, 10.5);
+    paint.render(s.scene, s.camera);
+    const o = s.o, P = plans[which], Q = plans[1 - which];
+    P.order.forEach((ci, n) => s.label(String(n + 1), picks[ci].clone().setY(0.1), C.parch, -4));
+    // the motion score: one lane per joint, x = accumulated joint-space arc length
+    const px = Math.round(s.w * 0.57), pw = s.w - px - 16, py = 58, ph = s.h - py - 70, maxL = Math.max(P.len, Q.len), lane = ph / 3, names = ["base", "shoulder", "elbow"];
+    o.fillStyle = "rgba(11,16,27,0.78)"; o.fillRect(px - 12, py - 30, pw + 24, ph + 82);
+    s.text("MOTION SCORE", px, py - 16, C.parch, 10.5, "left", "700"); s.text("joint angle against joint-space arc length", px + 96, py - 16, "rgba(216,201,164,0.6)", 10);
+    const draw = (plan, color, lw) => {
+      for (let j = 0; j < 3; j++) {
+        o.beginPath(); let first = true;
+        for (const sg of plan.segs) { if (sg.L == null) continue; for (const [ss, q] of [[sg.s0, sg.q0[j]], [sg.s0 + sg.L, sg.q1[j]]]) { const x = px + ss / maxL * pw, y = py + j * lane + lane / 2 - clamp(q, -1.9, 1.9) / 1.9 * (lane / 2 - 7); if (first) { o.moveTo(x, y); first = false; } else o.lineTo(x, y); } }
+        o.strokeStyle = color; o.lineWidth = lw; o.lineJoin = "round"; o.stroke();
+      }
+    };
+    for (let j = 0; j < 3; j++) { const y = py + j * lane; s.line(px, y + lane / 2, px + pw, y + lane / 2, "rgba(216,201,164,0.14)", 1); s.text(names[j], px, y + 9, "rgba(216,201,164,0.7)", 10); }
+    draw(Q, "rgba(114,117,155,0.55)", 1.2); draw(P, C.mint, 1.8);
+    const hx = px + (run ? run.s : 0) / maxL * pw; s.line(hx, py, hx, py + ph, C.amber, 2); s.dot(hx, py, 4, C.amber);
+    s.line(px + P.len / maxL * pw, py, px + P.len / maxL * pw, py + ph, "rgba(145,198,186,0.6)", 1, [3, 3]);
+    // the two measures of distance
+    const by = py + ph + 14;
+    plans.forEach((pl, i) => {
+      const on = i === which, y = by + i * 18;
+      s.dot(px + 4, y, 3.5, on ? C.mint : "rgba(114,117,155,0.9)");
+      s.text("order by " + pl.name, px + 14, y, on ? C.parch : "rgba(216,201,164,0.55)", 10.5);
+      s.text(pl.cart.toFixed(2) + " m · " + pl.len.toFixed(1) + " rad", px + pw, y, on ? C.parch : "rgba(216,201,164,0.55)", 10.5, "right");
     });
-    s.text("time spent on transfer moves (joint speed limits)", bx, by - 16, C.dim, 10.5);
-    const same = plans[0].order.join() === plans[1].order.join();
-    s.hud("picking order: <b>" + order.map((i) => i + 1).join(" → ") + "</b> · gripper travel " + plans[which].len.toFixed(2) + " m" +
-      (same ? "<br>both criteria agree for this layout; drag a cube to change it" : "<br>the two criteria pick <i>different</i> orders · drag the cubes"));
+    const same = plans[0].order.join() === plans[1].order.join(), d = plans[0].len - plans[1].len;
+    s.hud("picking order <b>" + P.order.map((i) => i + 1).join(" → ") + "</b>" + (same || d < 0.05 ? " · both criteria cost the joints the same for this layout" : " · the shortest gripper path costs the joints <i>" + d.toFixed(1) + " rad more</i>") + "<br>drag the cubes to change the problem");
   }
-  s.choice(["Cartesian-shortest order", "Joint-space-shortest order"], 1, (i) => { which = i; start(); });
-  s.button("Shuffle cubes", () => {
-    const r = Math.random;
-    cubes.forEach((c) => { let x, z; do { x = (r() - 0.5) * 1.2; z = -0.18 + r() * 0.6; } while ((Math.abs(z - 0.12) < 0.1 && Math.abs(x) < 0.32) || Math.hypot(x, z + 0.34) < 0.3 || Math.hypot(x, z + 0.34) > 0.78); c.userData.x0 = x; c.userData.z0 = z; });
-    solve(); start();
-  });
+  s.choice(["Shortest gripper path", "Shortest joint path"], 1, (i) => { which = i; start(); });
+  s.button("Shuffle", () => { layout(Math.random); start(); });
   return { update, render };
-}, { cam: [1.3, 1.25, 1.75], target: [0, 0.1, 0.02] });
+}, { floorY: -0.72, grid: false, floorColor: 0x2a2a3c, bg: "#18203a", fogNear: 5, fogFar: 14, cam: [1.25, 0.95, 1.9], target: [0, 0.12, 0.02], minDist: 1.6, maxDist: 4.5 });

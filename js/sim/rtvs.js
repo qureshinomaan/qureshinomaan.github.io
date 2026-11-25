@@ -8,7 +8,7 @@ import { servoStep } from "./servo.js";
 import { stage, poseW, ghost } from "./servo-real.js";
 
 mount((s) => {
-  let st = null, goalImg = null, v = {}, errs = [], iters = 2, running = true, done = false, ticks = 0, showFlow = true, res = { n: 0, err: NaN, pairs: [] }, acc = 0;
+  let st = null, goalImg = null, v = {}, errs = [], iters = 2, running = true, done = false, ticks = 0, showFlow = true, showFan = true, res = { n: 0, err: NaN, pairs: [] }, acc = 0;
   const goal = ghost(), start = ghost(), rnd = s.rng(4);
   const GOAL = [[1.75, 0.95, 1.2], [0, 0.3, 0]];
   poseW(goal, GOAL[0], GOAL[1]);
@@ -38,15 +38,39 @@ mount((s) => {
     st.afterRender();
     if (!goalImg) { s.hud("rendering the goal image…"); return; }
     if (showFlow) st.drawFlow(res.pairs);
+    if (showFan && v.A && !done) drawFan();
     const r = st.inset(); st.drawImage(goalImg, r, "GOAL IMAGE", C.green);
-    const pr = { x: 10, y: s.h - 84, w: Math.min(230, s.w * 0.3), h: 74 };
+    const pr = { x: 10, y: s.h - 78, w: Math.min(190, s.w * 0.24), h: 68 };
     s.plot(pr, [{ data: errs, color: C.yellow, span: 120 }], "image error vs. time");
     s.hud("robot camera view · <b>" + res.n + "</b> flow vectors to the goal image · image error <i>" + (isNaN(res.err) ? "—" : res.err.toFixed(3)) + "</i>" +
       (done ? " · <u>converged in " + (ticks / 60).toFixed(1) + " s</u>" : ""));
   }
+  /* The MPC's view of the next half second: candidate camera motions scored by the image error each one
+     is predicted to leave. Lateral bend = sideways/yaw motion, length = forward motion. */
+  const CAND = [[0, 0], [-1, 0], [1, 0], [-0.5, 0.6], [0.5, 0.6], [-0.5, -0.6], [0.5, -0.6], [-1.6, 0.2], [1.6, 0.2]];
+  function drawFan() {
+    const o = s.o, T = 1 / v.lam, base = v.v, sp = Math.hypot(base[0], base[2]) + 0.12;
+    const cost = (c) => { let q = 0, lin = 0; for (let i = 0; i < 6; i++) { let a = 0; for (let j = 0; j < 6; j++) a += v.A[i][j] * c[j]; q += a * c[i]; lin += v.g[i] * c[i]; } return q * T * T + 2 * T * lin; };
+    const list = CAND.map((d) => { const c = base.slice(); c[0] += d[0] * sp * 0.6; c[2] += d[1] * sp * 0.6; return { c, J: cost(c) }; });
+    let lo = Infinity, hi = -Infinity; for (const k of list) { lo = Math.min(lo, k.J); hi = Math.max(hi, k.J); }
+    const x0 = s.w / 2, y0 = s.h - 14;
+    list.sort((a, b) => b.J - a.J);
+    o.save(); o.lineCap = "round";
+    for (const k of list) {
+      const u = (k.J - lo) / Math.max(1e-9, hi - lo), best = k.J === lo;
+      const fx = Math.max(-1, Math.min(1, k.c[0] / (sp * 1.6))), fz = Math.max(0.25, Math.min(1, 0.55 + k.c[2] / (sp * 1.8)));
+      const ex = x0 + fx * s.w * 0.2, ey = y0 - fz * s.h * 0.3;
+      o.strokeStyle = best ? "rgba(123,228,149,0.98)" : "rgba(255,255,255," + (0.5 - 0.35 * u) + ")"; o.lineWidth = best ? 3.2 : 1.4;
+      o.beginPath(); o.moveTo(x0, y0); o.quadraticCurveTo(x0, y0 - fz * s.h * 0.17, ex, ey); o.stroke();
+      if (best) { o.fillStyle = "rgba(123,228,149,1)"; o.beginPath(); o.arc(ex, ey, 4, 0, 6.2832); o.fill(); }
+    }
+    o.restore();
+    s.text("candidate motions, scored by predicted flow error", x0, s.h - 4, "rgba(255,255,255,0.75)", 10, "center");
+  }
   s.button("New start pose", () => { if (st && goalImg) restart(); });
   s.toggle("Pause", false, (x) => { running = !x; });
   s.toggle("Flow", true, (x) => { showFlow = x; });
+  s.toggle("Candidates", true, (x) => { showFan = x; });
   s.slider("MPC steps / tick", 1, 6, iters, 1, (x) => { iters = x; });
   return { update, render };
 }, { floor: false, fog: false, orbit: false, cam: [1.75, 0.95, 1.2], target: [0, 0.3, 0] });

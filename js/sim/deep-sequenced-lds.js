@@ -1,70 +1,93 @@
-/* Deep sequenced linear dynamical systems: the policy is a short sequence of
- * linear dynamical systems, each one pulling the end-effector to its own
- * attractor: x' = A (g - x). Stable by construction, so pushes are absorbed. */
-import { mount, THREE, C, clamp } from "./kit.js";
+/* Deep sequenced linear dynamical systems, as a form taking shape.
+ * Eight thousand particles each obey x' = A_k (g_k - x): a linear dynamical
+ * system pulling them to their attractor. The policy is a short sequence of
+ * such systems; when one has done its job the next takes over, and a new form
+ * assembles. Every system is stable, so a shove is simply absorbed. */
+import { mount, THREE, C } from "./kit.js";
+import { sky } from "./paint.js";
 
 mount((s) => {
-  s.table(1.5, 1.05);
-  const arm = s.arm({ base: [0, 0, -0.3] });
-  const cols = [0x5ad1e6, 0xffd166, 0xb79cff], names = [C.cyan, C.yellow, C.violet];
-  const goals = [[-0.34, 0.1, 0.18], [0.02, 0.36, 0.3], [0.36, 0.1, 0.12]].map((p, i) => {
-    const m = new THREE.Mesh(new THREE.SphereGeometry(0.03, 24, 16), new THREE.MeshStandardMaterial({ color: cols[i], emissive: cols[i], emissiveIntensity: 0.7 }));
-    m.position.fromArray(p); m.castShadow = true; s.scene.add(m);
-    const stem = s.trail(cols[i], 2, 0.5); stem.set([m.position, new THREE.Vector3(p[0], 0, p[2])]); m.userData.stem = stem;
-    return m;
-  });
-  const x = new THREE.Vector3(0, 0.4, 0.15), kick = new THREE.Vector3();
-  let k = 0, gain = 2.2, swirl = 0.0, dwell = 0;
-  const trails = cols.map((c) => s.trail(c, 500, 0.95));
-
-  /* flow-field particles advected by the active system */
-  const N = 420, rnd = s.rng(9), pos = new Float32Array(N * 3), life = new Float32Array(N);
-  const spawn = (i) => { pos[i * 3] = (rnd() - 0.5) * 1.3; pos[i * 3 + 1] = 0.02 + rnd() * 0.6; pos[i * 3 + 2] = -0.1 + rnd() * 0.6; life[i] = 0.6 + rnd() * 1.6; };
-  for (let i = 0; i < N; i++) spawn(i);
-  const pg = new THREE.BufferGeometry(); pg.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-  const pm = new THREE.PointsMaterial({ color: cols[0], size: 0.012, transparent: true, opacity: 0.75, depthWrite: false, blending: THREE.AdditiveBlending });
-  const field = new THREE.Points(pg, pm); field.frustumCulled = false; s.scene.add(field);
-
-  const v = new THREE.Vector3(), e = new THREE.Vector3();
-  function vel(p, out) { // x' = A (g - x), A = gain * (I + swirl * skew(up))
-    e.copy(goals[k].position).sub(p);
-    return out.set(e.x + swirl * e.z, e.y, e.z - swirl * e.x).multiplyScalar(gain);
+  const N = 8000, rnd = s.rng(12);
+  const dome = sky(s, { top: 0x05070d, horizon: 0x1a1c3c, cloud: 0x34336b, clouds: 0.35, stars: 0.5, moon: [0, -1, 0] });
+  /* three attractor sets = three forms */
+  const forms = [], AX = [new THREE.Vector3(0, 1, 0), new THREE.Vector3(1, 0.3, 0).normalize(), new THREE.Vector3(0, 0.4, 1).normalize()];
+  const f0 = new Float32Array(N * 3), f1 = new Float32Array(N * 3), f2 = new Float32Array(N * 3);
+  for (let i = 0; i < N; i++) {
+    // 1: a wide halo ring
+    let a = rnd() * 6.2832, r = 1.05 + (rnd() - 0.5) * 0.1, t = rnd() * 6.2832, rr = 0.07 * Math.sqrt(rnd());
+    f0.set([(r + rr * Math.cos(t)) * Math.cos(a), rr * Math.sin(t) * 1.6, (r + rr * Math.cos(t)) * Math.sin(a)], i * 3);
+    // 2: a trefoil knot
+    a = rnd() * 6.2832; const kx = Math.sin(a) + 2 * Math.sin(2 * a), ky = Math.cos(a) - 2 * Math.cos(2 * a), kz = -Math.sin(3 * a);
+    f1.set([kx * 0.36 + (rnd() - 0.5) * 0.09, ky * 0.36 + (rnd() - 0.5) * 0.09, kz * 0.36 + (rnd() - 0.5) * 0.09], i * 3);
+    // 3: a faceted shell (points on the faces of an icosahedron)
+    const u = rnd() * 2 - 1, ph = rnd() * 6.2832, sx = Math.sqrt(1 - u * u) * Math.cos(ph), sy = u, sz = Math.sqrt(1 - u * u) * Math.sin(ph);
+    const q = 3.2, fx = Math.round(sx * q) / q, fy = Math.round(sy * q) / q, fz = Math.round(sz * q) / q, fl = Math.hypot(fx, fy, fz) || 1;
+    f2.set([fx / fl * 0.95, fy / fl * 0.95, fz / fl * 0.95], i * 3);
   }
+  forms.push(f0, f1, f2);
+  const pos = new Float32Array(N * 3), kick = new Float32Array(N * 3), bright = new Float32Array(N), wave = new Float32Array(N);
+  for (let i = 0; i < N; i++) { pos.set([(rnd() - 0.5) * 5, (rnd() - 0.5) * 3, (rnd() - 0.5) * 5], i * 3); bright[i] = rnd() < 0.2 ? 0.75 + rnd() * 0.25 : 0.1 + rnd() * 0.16; }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("bright", new THREE.BufferAttribute(bright, 1));
+  geo.setAttribute("wave", new THREE.BufferAttribute(wave, 1));
+  const uni = { uScale: { value: 400 }, uMint: { value: new THREE.Color(C.mint) }, uAmber: { value: new THREE.Color(C.amber) } };
+  const pts = new THREE.Points(geo, new THREE.ShaderMaterial({
+    uniforms: uni, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `attribute float bright, wave; uniform float uScale; varying float vB, vW;
+      void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); vB = bright; vW = wave;
+        gl_PointSize = (0.02 + 0.03 * bright + 0.04 * wave) * uScale / -mv.z; gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform vec3 uMint, uAmber; varying float vB, vW;
+      void main(){ vec2 d = gl_PointCoord - 0.5; float a = smoothstep(0.5, 0.0, length(d)); a *= a;
+        vec3 c = mix(uMint * (0.5 + vB), uAmber * 2.2, clamp(vW, 0.0, 1.0)); gl_FragColor = vec4(c * a * (0.7 + 0.7 * vB + vW), 1.0); }`
+  }));
+  pts.frustumCulled = false; s.scene.add(pts);
+  /* dim attractor fields in the background: where each system wants things to be */
+  const ghosts = forms.map((f, k) => {
+    const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.BufferAttribute(f.subarray(0, 2400), 3));
+    const m = new THREE.Points(g, new THREE.PointsMaterial({ color: 0x34336b, size: 0.012, transparent: true, opacity: 0.0, depthWrite: false, blending: THREE.AdditiveBlending }));
+    s.scene.add(m); return m;
+  });
+
+  let k = 0, gain = 2.4, swirl = 0.9, stageT = 0, handoff = -9, auto = true, meanD = 1;
+  function next() { k = (k + 1) % 3; stageT = 0; handoff = s.t; }
   function update(t, dt) {
-    vel(x, v); x.addScaledVector(v, dt).addScaledVector(kick, dt); kick.multiplyScalar(Math.max(0, 1 - dt * 5));
-    x.y = Math.max(0.02, x.y);
-    arm.solve(x); arm.grip(0.4);
-    trails[k].push(arm.tipWorld());
-    if (x.distanceTo(goals[k].position) < 0.02) { dwell += dt; if (dwell > 0.35) { k = (k + 1) % 3; dwell = 0; if (k === 0) trails.forEach((tr) => tr.reset()); pm.color.setHex(cols[k]); } }
+    dome.tick(t, s.camera);
+    const g = forms[k], ax = AX[k]; let sum = 0; stageT += dt;
+    const wt = (t - handoff) * 1.6; // radius of the travelling handoff wave
     for (let i = 0; i < N; i++) {
-      v.set(pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]); vel(v, kickTmp);
-      pos[i * 3] += kickTmp.x * dt * 0.6; pos[i * 3 + 1] += kickTmp.y * dt * 0.6; pos[i * 3 + 2] += kickTmp.z * dt * 0.6;
-      life[i] -= dt; if (life[i] < 0 || v.distanceTo(goals[k].position) < 0.03) spawn(i);
+      const j = i * 3, ex = g[j] - pos[j], ey = g[j + 1] - pos[j + 1], ez = g[j + 2] - pos[j + 2];
+      // x' = A (g - x),  A = gain * (I + swirl * [axis]x)
+      const cx = ax.y * ez - ax.z * ey, cy = ax.z * ex - ax.x * ez, cz = ax.x * ey - ax.y * ex;
+      pos[j] += ((ex + swirl * cx) * gain + kick[j]) * dt; pos[j + 1] += ((ey + swirl * cy) * gain + kick[j + 1]) * dt; pos[j + 2] += ((ez + swirl * cz) * gain + kick[j + 2]) * dt;
+      const damp = Math.max(0, 1 - dt * 3.5); kick[j] *= damp; kick[j + 1] *= damp; kick[j + 2] *= damp;
+      sum += Math.abs(ex) + Math.abs(ey) + Math.abs(ez);
+      const rad = Math.hypot(pos[j], pos[j + 1], pos[j + 2]);
+      wave[i] = Math.max(0, 1 - Math.abs(rad - wt) * 5) * Math.max(0, 1 - (t - handoff) * 0.55);
     }
-    pg.attributes.position.needsUpdate = true;
-    goals.forEach((g, i) => { g.scale.setScalar(i === k ? 1.25 + 0.12 * Math.sin(t * 6) : 1); });
+    meanD = sum / N / 3;
+    geo.attributes.position.needsUpdate = true; geo.attributes.wave.needsUpdate = true;
+    if (auto && ((meanD < 0.012 && stageT > 1.6) || stageT > 9)) next();
+    ghosts.forEach((m, i) => { m.material.opacity += ((i === k ? 0.55 : 0.0) - m.material.opacity) * Math.min(1, dt * 2); });
+    uni.uScale.value = s.h * s.renderer.getPixelRatio() / (2 * Math.tan(THREE.MathUtils.degToRad(s.camera.fov) / 2));
+    s.orbit.autoRotate = true; s.orbit.autoRotateSpeed = 0.35;
   }
-  const kickTmp = new THREE.Vector3();
-
-  /* drag attractors on the horizontal plane through them */
-  let drag = null;
-  s.on("down", () => { const h = s.hit(goals); if (h) { drag = h.object; return true; } });
-  s.on("move", (p) => {
-    if (!drag) { s.canvas.style.cursor = s.hit(goals) ? "move" : ""; return; }
-    const q = s.rayY(drag.position.y, p); if (!q) return;
-    drag.position.x = clamp(q.x, -0.6, 0.6); drag.position.z = clamp(q.z, -0.05, 0.42);
-    drag.userData.stem.set([drag.position, new THREE.Vector3(drag.position.x, 0, drag.position.z)]);
-  });
-  s.on("up", () => { drag = null; });
-
   function render() {
     s.renderer.setScissorTest(false); s.renderer.setViewport(0, 0, s.w, s.h); s.renderer.render(s.scene, s.camera);
-    goals.forEach((g, i) => s.label("g" + (i + 1), g.position, names[i]));
-    s.hud("active system <b>" + (k + 1) + " of 3</b> · <i>x′ = A<sub>" + (k + 1) + "</sub>(g<sub>" + (k + 1) + "</sub> − x)</i> · distance to attractor " +
-      (x.distanceTo(goals[k].position) * 100).toFixed(1) + " cm<br>drag the glowing attractors");
+    // the sequence, as three small stations
+    const x0 = 16, y0 = s.h - 26;
+    for (let i = 0; i < 3; i++) {
+      const x = x0 + i * 92, on = i === k;
+      s.line(x + 12, y0, x + 80, y0, i < 2 ? "rgba(216,201,164,0.3)" : "rgba(0,0,0,0)", 1);
+      s.dot(x, y0, on ? 5 : 3.5, on ? C.coral : "rgba(216,201,164,0.55)");
+      s.text("A" + "₁₂₃"[i] + ", g" + "₁₂₃"[i], x + 10, y0 - 12, on ? C.parch : "rgba(216,201,164,0.5)", 11);
+    }
+    s.hud("<b>system " + (k + 1) + " of 3</b> is active · <i>x′ = A<sub>" + (k + 1) + "</sub>(g<sub>" + (k + 1) + "</sub> − x)</i> for each of " + N.toLocaleString() + " particles · mean distance to attractor " + (meanD * 100).toFixed(1) + " cm");
   }
-  s.button("Push the arm", () => { kick.set((rnd() - 0.5) * 3, rnd() * 1.6, (rnd() - 0.5) * 3); });
-  s.slider("stiffness", 0.8, 5, gain, 0.1, (val) => { gain = val; }, (val) => val.toFixed(1));
-  s.slider("swirl", 0, 1.5, swirl, 0.05, (val) => { swirl = val; }, (val) => val.toFixed(2));
+  s.button("Shove", () => { for (let i = 0; i < N * 3; i++) kick[i] = (rnd() - 0.5) * 9; });
+  s.button("Next system", () => next());
+  s.toggle("Auto sequence", true, (v) => { auto = v; });
+  s.slider("stiffness", 0.6, 6, gain, 0.1, (v) => { gain = v; }, (v) => v.toFixed(1));
+  s.slider("swirl", 0, 2.5, swirl, 0.05, (v) => { swirl = v; }, (v) => v.toFixed(2));
   return { update, render };
-}, { cam: [1.35, 1.0, 1.75], target: [0, 0.2, 0] });
+}, { floor: false, fog: false, bg: "#05070d", cam: [0.0, 0.85, 3.2], target: [0, 0, 0], minDist: 1.5, maxDist: 7, maxPolar: Math.PI });
