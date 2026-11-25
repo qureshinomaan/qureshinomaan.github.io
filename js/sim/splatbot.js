@@ -26,6 +26,7 @@ function solve(A, b) { // Gaussian elimination, n x n
 export async function loadWorkspace(s, opts = {}) {
   const rig = await (await fetch(new URL("rig.json", BASE))).json();
   s.renderer.toneMapping = THREE.NoToneMapping; // show the capture's own colours
+  s.scene.background = new THREE.Color(opts.backdrop || 0xc4c0b8); // cropped-away room reads as soft wall, not a black hole
   const spark = new SparkRenderer({ renderer: s.renderer });
   s.scene.add(spark);
   const world = new THREE.Group();
