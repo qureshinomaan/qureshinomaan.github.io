@@ -4,6 +4,7 @@
 import { THREE, C } from "./kit.js";
 import { loadWorkspace, toWorld } from "./splatbot.js";
 import { setView, syncable, toRect } from "./servo.js";
+import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
 
 export const FOV = 46;
 /** Pose a camera at a simulator-frame position looking at a simulator-frame point. */
@@ -14,10 +15,27 @@ export function pose(cam, from, at, roll) {
 }
 export function ghost() { return syncable(new THREE.PerspectiveCamera(FOV, 16 / 9, 0.03, 30)); }
 
-export async function stage(s) {
-  await s.gate("Load the real scene", "a Gaussian splat of a real robot workspace · about 7 MB");
-  s.busy("loading the captured scene…");
-  const bot = await loadWorkspace(s); await bot.ready;
+/** Pose a camera with three.js world coordinates. */
+export function poseW(cam, from, at, roll) {
+  cam.position.fromArray(from); cam.up.set(0, 1, 0); cam.lookAt(at[0], at[1], at[2]); if (roll) cam.rotateZ(roll);
+  cam.sync(); return cam;
+}
+
+/** Load a standalone captured scene (assets/splats/<name>/scene.json + scene.spz). */
+async function loadScene(s, name) {
+  const base = new URL("../../assets/splats/" + name + "/", import.meta.url);
+  const meta = await (await fetch(new URL("scene.json", base))).json();
+  s.renderer.toneMapping = THREE.NoToneMapping;
+  s.scene.add(new SparkRenderer({ renderer: s.renderer }));
+  const mesh = new SplatMesh({ url: new URL(meta.file, base).href });
+  s.scene.add(mesh);
+  return { ready: mesh.initialized, features: meta.features.map((p) => new THREE.Vector3(p[0], p[1], p[2])), credit: meta.credit, count: meta.count };
+}
+
+export async function stage(s, cfg = {}) {
+  await s.gate("Load the real scene", cfg.blurb || "a Gaussian splat of a real robot workspace \u00b7 about 7 MB");
+  s.busy("loading the captured scene\u2026");
+  const bot = cfg.scene ? await loadScene(s, cfg.scene) : await loadWorkspace(s); await bot.ready;
   s.camera.fov = FOV; s.camera.near = 0.03; s.camera.updateProjectionMatrix();
   syncable(s.camera);
   /** Render the scene from each pose for a few frames (so the splats sort for that view) and keep the image. */

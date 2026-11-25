@@ -49,6 +49,12 @@ export async function loadWorkspace(s, opts = {}) {
     motions.push(motion); frames.push(motion); parent = motion;
   }
   const linkSplats = rig.links.map((l, i) => splat(l.file, frames[i]));
+  /* real object splats, each in its own group (simulator frame, resting on z = 0 of the group) */
+  const objects = {};
+  if (opts.objects !== false) for (const o of rig.objects || []) {
+    const g = new THREE.Group(); world.add(g); splat(o.file, g);
+    g.userData = o; objects[o.name] = g;
+  }
   const tipLocal = new THREE.Vector3().fromArray(rig.tip);
   const tip = new THREE.Object3D(); tip.position.copy(tipLocal); frames[6].add(tip);
 
@@ -73,9 +79,10 @@ export async function loadWorkspace(s, opts = {}) {
     return out;
   }
   const bot = {
-    rig, world, scene, linkSplats, frames, tip, q, spark,
+    rig, world, scene, linkSplats, frames, tip, q, spark, objects,
     ready: Promise.all(meshes.map((m) => m.initialized)),
     splats: rig.links.reduce((a, l) => a + l.count, 0), sceneSplats: rig.scene.count,
+    objectSplats: (rig.objects || []).reduce((a, o) => a + o.count, 0),
     tableZ: rig.table_z,
     /** Trackable surface points of the scene, in three.js world coordinates. */
     features: (rig.features || []).map((p) => new THREE.Vector3(p[0], p[2], -p[1])),

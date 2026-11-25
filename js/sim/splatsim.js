@@ -1,47 +1,54 @@
 /* SplatSim, in the browser, on the real capture. The scene is a Gaussian
- * splat of the actual UR5 workspace. Every robot splat is attached to one
- * link of the simulator's kinematic chain, so when the simulator changes the
- * joint angles the photoreal robot moves. */
+ * splat of the actual UR5 workspace, and the apple, banana and plate are
+ * separate real captures. Every splat is attached to one simulator body (a
+ * robot link or an object), so when the simulator moves a body the photoreal
+ * splats move with it. */
 import { mount, THREE, C, ease } from "./kit.js";
-import { loadWorkspace, toWorld } from "./splatbot.js";
+import { loadWorkspace } from "./splatbot.js";
 
 mount((s) => {
-  let bot = null, showSim = true, paused = false;
+  let bot = null, showSim = true, paused = false, held = false, grip = 0;
   const P = (x, y, z) => new THREE.Vector3(x, y, z);
-  // a pick-and-place style tour of the table, in simulator coordinates (z up)
-  const A = P(0.5, -0.24, 0.05), B = P(0.5, 0.26, 0.05), up = (v) => P(v.x, v.y, 0.3), home = P(0.42, 0.0, 0.42);
-  const steps = [[up(A), 1.3], [A, 0.8], [A, 0.4], [up(A), 0.8], [up(B), 1.4], [B, 0.8], [B, 0.4], [up(B), 0.8], [home, 1.2]];
-  let k = 0, u = 0; const from = home.clone(), cur = home.clone();
-  const user = { on: false, target: home.clone() };
+  const spots = [P(0.52, -0.25, 0), P(0.5, 0.25, 0)];   // apple start, plate (simulator frame, z up)
+  let appleAt = 0, steps = [], k = 0, u = 0;
+  const home = P(0.4, 0.0, 0.4), from = home.clone(), cur = home.clone();
   const skel = s.trail(0x5ad1e6, 10, 1); skel.material.depthTest = false; skel.renderOrder = 10;
-  const path = s.trail(0xff6b5e, 700, 0.9); path.material.depthTest = false; path.renderOrder = 9;
+  const path = s.trail(0xff6b5e, 700, 0.85); path.material.depthTest = false; path.renderOrder = 9;
+  let tz = 0, GRASP = 0.05;
+  function plan() {
+    const a = spots[appleAt].clone(), b = spots[1 - appleAt].clone();
+    a.z = tz + GRASP + (appleAt === 1 ? 0.012 : 0); b.z = tz + GRASP + (appleAt === 0 ? 0.012 : 0);
+    const up = (v) => P(v.x, v.y, tz + 0.28);
+    steps = [[up(a), 1.3], [a, 0.8, "grab"], [up(a), 0.8], [up(b), 1.5], [b, 0.8, "drop"], [up(b), 0.8], [home, 1.1]];
+  }
 
-  s.gate("Load the real scene", "a Gaussian splat of the actual robot workspace · about 7 MB").then(async () => {
+  s.gate("Load the real scene", "Gaussian splats of the actual robot workspace and objects · about 7 MB").then(async () => {
     s.busy("loading the captured scene…");
     try {
       const b = await loadWorkspace(s); await b.ready;
-      b.setQ(b.ik(home, b.q, 60)); bot = b; s.busy(null);
+      tz = b.tableZ;
+      b.objects.plate.position.set(spots[1].x, spots[1].y, tz);
+      b.objects.apple.position.set(spots[0].x, spots[0].y, tz);
+      b.objects.banana.position.set(0.7, 0.02, tz + 0.02); b.objects.banana.rotation.z = 0.6;
+      b.setQ(b.ik(home, b.q, 60)); plan(); bot = b; s.busy(null);
     } catch (err) { s.busy(null); s.hud("<b>Could not load the scene.</b> " + String(err.message || err)); }
   });
 
-  // drag on the table to send the gripper there
-  let dragging = false;
-  const tableY = () => bot.tableZ + 0.06;
-  function aim(p) { const w = s.rayY(tableY(), p); if (!w) return; user.target.set(Math.min(0.75, Math.max(0.25, w.x)), Math.min(0.45, Math.max(-0.45, -w.z)), 0.06); user.on = true; }
-  s.on("down", (p) => { if (bot && p.shift) { dragging = true; aim(p); return true; } });
-  s.on("move", (p) => { if (dragging) aim(p); });
-  s.on("up", () => { dragging = false; });
-
+  const tipS = new THREE.Vector3();
   function update(t, dt) {
     if (!bot) return;
     if (!paused) {
-      if (user.on) { cur.lerp(user.target, Math.min(1, dt * 3)); }
-      else {
-        u += dt / steps[k][1];
-        cur.lerpVectors(from, steps[k][0], ease(u));
-        if (u >= 1) { from.copy(steps[k][0]); u = 0; k = (k + 1) % steps.length; if (k === 0) path.reset(); }
+      const st = steps[k];
+      u += dt / st[1];
+      cur.lerpVectors(from, st[0], ease(u));
+      if (u >= 1) {
+        if (st[2] === "grab") held = true;
+        if (st[2] === "drop") { held = false; appleAt = 1 - appleAt; bot.objects.apple.position.set(spots[appleAt].x, spots[appleAt].y, tz + (appleAt === 1 ? 0.012 : 0)); }
+        from.copy(st[0]); u = 0; k++;
+        if (k >= steps.length) { k = 0; plan(); path.reset(); }
       }
       bot.reach(cur);
+      if (held) { bot.tipSim(tipS); bot.objects.apple.position.set(tipS.x, tipS.y, tipS.z - GRASP); }
       path.push(bot.tipWorld());
     }
     skel.visible = showSim;
@@ -51,12 +58,11 @@ mount((s) => {
     s.renderer.setScissorTest(false); s.renderer.setViewport(0, 0, s.w, s.h); s.renderer.render(s.scene, s.camera);
     if (!bot) return;
     if (showSim) for (const p of bot.skeleton()) { const q = s.project(p); if (!q.behind) s.dot(q.x, q.y, 3.2, C.cyan, "#0d1015"); }
-    s.hud("<b>" + (bot.splats + bot.sceneSplats).toLocaleString() + "</b> Gaussians from a real capture · <b>" + bot.splats.toLocaleString() +
-      "</b> ride on the robot's links: <i>μ′ = T<sub>link</sub>(q)·μ</i><br>joints q = [" + bot.q.map((v) => (v * 180 / Math.PI).toFixed(0) + "°").join(", ") + "]");
+    s.hud("<b>" + (bot.splats + bot.sceneSplats + bot.objectSplats).toLocaleString() + "</b> Gaussians from real captures · <b>" + (bot.splats + bot.objectSplats).toLocaleString() +
+      "</b> ride on simulator bodies (7 robot links, 3 objects): <i>μ′ = T<sub>body</sub>·μ</i><br>joints q = [" + bot.q.map((v) => (v * 180 / Math.PI).toFixed(0) + "°").join(", ") + "]" + (held ? " · <u>apple attached to the gripper</u>" : ""));
   }
   s.toggle("Simulator skeleton", true, (v) => { showSim = v; });
   s.toggle("Pause", false, (v) => { paused = v; });
-  s.button("Tour", () => { user.on = false; });
-  s.note("shift-drag on the table to send the gripper there");
+  s.note("drag to orbit · scroll to zoom");
   return { update, render };
-}, { cam: [1.5, 0.8, 0.45], target: [0.25, 0.3, 0.0], floor: false, fog: false, minDist: 0.5, maxDist: 2.2 });
+}, { cam: [1.5, 0.8, 0.45], target: [0.3, 0.25, 0.0], floor: false, fog: false, minDist: 0.5, maxDist: 2.2 });
