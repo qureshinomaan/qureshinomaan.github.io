@@ -1,6 +1,58 @@
 @import "vars";
 
 /*
+ * Theme colours. Light is the default; dark applies when the system asks
+ * for it or when the visitor picks it with the toggle (data-theme on <html>).
+ */
+
+@mixin light-theme {
+    --bg: #ffffff;
+    --text: #1c1c1c;
+    --muted: #5c5c5c;
+    --heading: #272727;
+    --accent: #{$accent};
+    --me: #ff6347;
+    --rule: rgba(0, 0, 0, 0.12);
+    --rule-strong: rgba(0, 0, 0, 0.75);
+    --highlight: #ffffe0;
+    --code-bg: #f4f4f4;
+    --border: #dddddd;
+    --card: #fafafa;
+    --row: #ffffff;
+    --row-alt: #f8f8f8;
+    color-scheme: light;
+}
+@mixin dark-theme {
+    --bg: #15171a;
+    --text: #e4e2dd;
+    --muted: #a5a39d;
+    --heading: #f2f0eb;
+    --accent: #ff6b5e;
+    --me: #ff8a73;
+    --rule: rgba(255, 255, 255, 0.14);
+    --rule-strong: rgba(255, 255, 255, 0.6);
+    --highlight: #2b2816;
+    --code-bg: #1f2226;
+    --border: #363a40;
+    --card: #1b1e22;
+    --row: #181a1e;
+    --row-alt: #1f2226;
+    color-scheme: dark;
+}
+
+:root {
+    @include light-theme;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        @include dark-theme;
+    }
+}
+:root[data-theme="dark"] {
+    @include dark-theme;
+}
+
+/*
  * Basic
  */
 
@@ -19,14 +71,19 @@ table{
 
 body {
     margin: 0;
-    font-family: "Spectral";
+    font-family: "Spectral", Georgia, serif;
     height: 100%;
     font-size: small;
-
+    background: var(--bg);
+    color: var(--text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+h1, h2, h3, h4 {
+    color: var(--heading);
 }
 a {
     text-decoration: none;
-    color: $accent;
+    color: var(--accent);
 }
 a:hover {
     text-decoration: underline;
@@ -34,8 +91,23 @@ a:hover {
 hr {
     border: 0;
     height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid var(--rule);
+}
+hr.fade {
+    height: 0.5px;
+    border: none;
+    background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+}
+.highlight-note {
+    background-color: var(--highlight);
+}
+strong.me {
+    color: var(--me);
+}
+.site-footer {
+    text-align: center;
+    margin-bottom: 10px;
+    a { color: var(--text); }
 }
 
 /*
@@ -44,7 +116,7 @@ hr {
 
 #author-name {
     font-size: 30px;
-    color: #272727;
+    color: var(--heading);
     display: inline-block;
 }
 .navbar {
@@ -72,6 +144,26 @@ hr {
     float: right;
 }
 
+#theme-toggle {
+    font: inherit;
+    color: var(--accent);
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+#theme-toggle:hover {
+    text-decoration: underline;
+}
+/* Show the label for the theme you would switch TO. */
+.theme-icon-light { display: none; }
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-icon-dark { display: none; }
+    :root:not([data-theme="light"]) .theme-icon-light { display: inline; }
+}
+:root[data-theme="dark"] .theme-icon-dark { display: none; }
+:root[data-theme="dark"] .theme-icon-light { display: inline; }
+
 /* Divs */
 
 .container {
@@ -82,13 +174,30 @@ hr {
     min-height: 100%;
 }
 
-/* Institute Image */
+/* About block on the home page */
 
-#ins-logo {
-	margin: auto;
-	display: block;
-	max-height: 100px;
-	text-align: center;
+.about {
+    display: flex;
+    max-width: 800px;
+    margin: auto;
+    gap: 20px;
+}
+.about-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.content .about-side img.portrait {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.about-text {
+    flex: 3;
 }
 
 /* Mobile */
@@ -106,6 +215,16 @@ hr {
     }
     .navbar-ul {
         margin-top: 5px;
+    }
+    .about {
+        flex-direction: column;
+    }
+    .publication {
+        flex-direction: column;
+    }
+    .pub-image {
+        flex: 0 0 auto;
+        margin: 0 0 10px 0;
     }
 }
 
@@ -138,18 +257,18 @@ hr {
 }
 
 .news-container {
-    width: 100%; /* Adjust the width as needed */
-    height: 120px; /* Adjust the height to how much you want to show at once */
-    overflow-y: auto; /* This will add a scrollbar if the content exceeds the container's height */
-    margin-top: 0.5rem; /* Reduced margin-top for closer proximity to the news heading */
-    margin-bottom: 1rem; /* Adjust as needed */
-    padding: 0 1rem; /* Provides padding inside the container */
+    width: 100%;
+    height: 120px;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .news-container ul {
-    padding-left: 0; /* Removes the default padding from the ul */
-    // list-style-type: none; /* Removes the default list item bullets */
-    margin: 0; /* Removes default margin */
+    padding-left: 0;
+    margin: 0;
 }
 
 
@@ -158,43 +277,57 @@ hr {
     margin-bottom: 30px;
     padding: 15px;
     border-radius: 10px;
-  }
-  .highlighted {
-    background-color: #ffffe0;
-  }
-  .pub-image {
+}
+.highlighted {
+    background-color: var(--highlight);
+}
+.pub-image {
     flex: 0 0 200px;
     margin-right: 20px;
-  }
-  .pub-image img {
+}
+.pub-image img {
     width: 100%;
     max-width: 200px;
     height: auto;
     max-height: 120px;
     border-radius: 10px;
     object-fit: cover;
-  }
-  .pub-content {
+}
+.pub-content {
     flex: 1;
-  }
-  .pub-content h3 {
+    min-width: 0;
+}
+.pub-content h3 {
     margin-top: 0;
     margin-bottom: 10px;
-  }
-  .authors, .venue {
+}
+.authors, .venue {
     margin: 5px 0;
-  }
-  .pub-links {
+}
+.pub-links {
     margin-top: 10px;
-  }
-  .hidden-info {
+}
+.pub-links button {
+    font: inherit;
+    color: var(--accent);
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+.pub-links button:hover {
+    text-decoration: underline;
+}
+.hidden-info {
     overflow: hidden;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+.hidden-info[hidden] {
+    display: none;
 }
 
 .hidden-info pre {
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
     border-radius: 4px;
     padding: 10px;
     overflow-x: auto;
@@ -204,7 +337,53 @@ hr {
 
 .hidden-info code {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
+    font-size: 13px;
+}
+
+/* Paper pages */
+
+.paper {
+    .breadcrumb {
+        color: var(--muted);
+        margin-bottom: 0;
+    }
+    h1 {
+        font-size: 26px;
+        line-height: 1.25;
+        margin: 10px 0 12px 0;
+    }
+    h2 {
+        font-size: 18px;
+        margin-top: 28px;
+    }
+    p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    .venue {
+        color: var(--muted);
+        font-style: italic;
+    }
+    .pub-links a {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 3px 14px;
+        margin: 0 4px 6px 0;
+        background: var(--card);
+    }
+    .pub-links a:hover {
+        text-decoration: none;
+        border-color: var(--accent);
+    }
+    .pub-links .sep { display: none; }
+    .paper-figure img {
+        max-width: 420px;
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto;
+    }
 }
 
 

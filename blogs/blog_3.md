@@ -1,5 +1,6 @@
 ---
 layout: default
+title: "Favorite history channels on YouTube"
 is_contact: true
 ---
 

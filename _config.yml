@@ -1,17 +1,49 @@
 title: Nomaan Qureshi
 author: Nomaan Qureshi
-url: "" # the base hostname & protocol for your site
+tagline: "Robotics and Robot Learning Researcher"
+description: "Nomaan Qureshi (M. Nomaan Qureshi) is a Research Engineer at Skild AI working on robot manipulation, robot learning and sim-to-real transfer. Creator of SplatSim; MS in Robotics from Carnegie Mellon University."
+url: "https://qureshinomaan.github.io" # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog
-favicon: "https://www.cmu.edu/favicon.ico"
+og_image: "/images/nomaan.png"
+twitter_username: qunomaan
+
+# Used for the structured data (JSON-LD) that search engines and AI agents read.
+person:
+  name: "Nomaan Qureshi"
+  alternate_names:
+    - "M. Nomaan Qureshi"
+    - "Mohammad Nomaan Qureshi"
+    - "M Nomaan Qureshi"
+  job_title: "Research Engineer"
+  works_for: "Skild AI"
+  works_for_url: "https://skild.ai"
+  same_as:
+    - "https://scholar.google.com/citations?user=ZmVf8kUAAAAJ"
+    - "https://github.com/qureshinomaan"
+    - "https://www.linkedin.com/in/qureshinomaan/"
+    - "https://twitter.com/qunomaan"
+  knows_about:
+    - "Robotics"
+    - "Robot manipulation"
+    - "Robot learning"
+    - "Sim-to-real transfer"
+    - "Gaussian Splatting"
+    - "Visual servoing"
+    - "Reinforcement learning"
 
 markdown: kramdown
-# ins_logo: "./hi.gif"
-# ins_logo2: "../hi.gif"
 
-tracking_id: UA-172754754-1
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+collections:
+  papers:
+    output: true
+    permalink: /papers/:name/
 
 footer: yes
-footer_url: "http://qureshinomaan.github.io"
+footer_url: "https://qureshinomaan.github.io"
 footer_text: "Mohammad Nomaan Qureshi"
 
 sass:
@@ -20,13 +52,12 @@ sass:
 
 nav:
  - name: "research"
-   link: "research"
+   link: "/#publications"
  - name: "blog"
-   link: "blog"
+   link: "/blog"
 
-
-nav_blog:
- - name: "research"
-   link: "research"
- - name: "blog"
-   link: "blog"
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md

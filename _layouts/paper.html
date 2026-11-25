@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{%- assign plain_authors = page.authors | join: ", " | remove: "*" | replace: "M Nomaan Qureshi", "M. Nomaan Qureshi" -%}
+<article class="paper">
+  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">Nomaan Qureshi</a> / <a href="{{ '/#publications' | relative_url }}">Publications</a></p>
+  <h1>{{ page.title }}</h1>
+  <p class="authors">{{ page.authors | join: ", " | replace: 'M Nomaan Qureshi', '<strong class="me">M Nomaan Qureshi</strong>' }}</p>
+  <p class="venue">{{ page.venue }}, {{ page.year }}{% if page.note %} ({{ page.note }}){% endif %}</p>
+  <p class="pub-links">
+    <a href="{{ page.paper_link }}">Paper</a>
+    {% if page.pdf_link %}<a href="{{ page.pdf_link }}">PDF</a>{% endif %}
+    {% if page.project_link %}<a href="{{ page.project_link }}">Project page</a>{% endif %}
+    {% if page.code_link %}<a href="{{ page.code_link }}">Code</a>{% endif %}
+    {% if page.video_link %}<a href="{{ page.video_link }}">Video</a>{% endif %}
+  </p>
+  {% if page.image %}
+  <p class="paper-figure"><img src="{{ page.image | relative_url }}" alt="Teaser figure for {{ page.title | escape }}" loading="lazy"></p>
+  {% endif %}
+
+  <h2>In short</h2>
+  <p>{{ page.tldr }}</p>
+
+  {% if page.abstract %}
+  <h2>Abstract</h2>
+  <p>{{ page.abstract }}</p>
+  {% endif %}
+
+  {{ content }}
+
+  <h2>How to cite</h2>
+  <p>{{ plain_authors }}. &ldquo;{{ page.title }}.&rdquo; <em>{{ page.venue }}</em>, {{ page.year }}.{% if page.arxiv %} arXiv:{{ page.arxiv }}.{% endif %}{% if page.doi %} doi:{{ page.doi }}.{% endif %}</p>
+  <div class="hidden-info">
+    <pre><code>{{ page.bibtex | escape }}</code></pre>
+  </div>
+  {% if page.asterisk_note != false %}{% assign joined = page.authors | join: "" %}{% if joined contains "*" %}<p><small>* denotes equal contribution.</small></p>{% endif %}{% endif %}
+</article>

@@ -1,5 +1,6 @@
 ---
 layout: default
+title: "Cross Entropy Method"
 is_contact: true
 ---
 ##  <span style="color:red"> Cross Entropy Method </span>

@@ -1,5 +1,6 @@
 ---
 layout: default
+title: "Why I will write more this year"
 is_contact: true
 ---
  <span style="color:#B22222;font-family:verdana;font-size:20px"> Why I will write more this year. </span>

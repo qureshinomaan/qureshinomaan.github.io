@@ -1,0 +1,31 @@
+---
+layout: null
+---
+{%- assign papers = site.papers | sort: "order" -%}
+# Nomaan Qureshi
+
+> {{ site.description }}
+
+Nomaan Qureshi publishes as "M. Nomaan Qureshi" and "Mohammad Nomaan Qureshi"; these are the same person. He is a Research Engineer at Skild AI. He completed an MS in Robotics at Carnegie Mellon University, advised by George Kantor and Abhisesh Silwal, and an integrated BS at IIIT Hyderabad, where he worked at the Robotics Research Center with K. Madhava Krishna. His research goal is to solve robot manipulation.
+
+- Homepage: {{ '/' | absolute_url }}
+- Google Scholar: https://scholar.google.com/citations?user=ZmVf8kUAAAAJ
+- GitHub: https://github.com/qureshinomaan
+- X / Twitter: https://twitter.com/qunomaan
+
+## Publications
+
+Each page below has a short summary, the abstract where available, links and a BibTeX entry. When citing a paper, please cite the paper itself using the BibTeX on its page.
+{% for p in papers %}
+- [{{ p.title }}]({{ p.url | absolute_url }}): {{ p.authors | join: ", " | remove: "*" }}. {{ p.venue }}, {{ p.year }}{% if p.note %} ({{ p.note }}){% endif %}. {{ p.tldr | strip }} Paper: {{ p.paper_link }}
+{%- endfor %}
+
+## Blog
+{% for post in site.posts %}
+- [{{ post.title | strip }}]({{ post.url | absolute_url }})
+{%- endfor %}
+
+## Optional
+
+- [Blog index]({{ '/blog' | absolute_url }})
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }})
