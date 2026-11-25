@@ -67,3 +67,9 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - README.md
+
+defaults:
+  - scope:
+      path: "google471705b694ab16e0.html"
+    values:
+      sitemap: false
