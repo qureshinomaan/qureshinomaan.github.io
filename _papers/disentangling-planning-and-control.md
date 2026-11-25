@@ -23,6 +23,9 @@ image: "/images/case2023.gif"
 highlight: false
 tldr: "Push + Grasp is an essential skill."
 contribution: "I did not contribute much to this paper. I helped Vishal with the RL controller part, but Vishal and Kallol did most of the work."
+demo: disentangling
+demo_title: "Simulator: plan where to push, then control how to push"
+demo_text: "The red object cannot be picked up where it is useful until it has been pushed to the goal ring, and a wall is in the way. The problem is split in two: a planner decides where the object should go next (blue waypoints around the wall), and a separate low-level controller works out how to push it there. With the planner switched off the controller pushes straight at the goal and jams the object against the wall. Drag the object, the wall or the goal."
 bibtex: |
   @inproceedings{mandadi2023disentangling,
     author    = {Vishal Reddy Mandadi and Kallol Saha and Dipanwita Guhathakurta and M. Nomaan Qureshi and Aditya Agarwal and Bipasha Sen and Dipanjan Das and Brojeshwar Bhowmick and Arun Singh and Madhava Krishna},

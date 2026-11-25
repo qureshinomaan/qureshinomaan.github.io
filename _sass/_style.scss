@@ -389,3 +389,151 @@ strong.me {
 
 @import "typography";
 @import "tables";
+
+/* Interactive simulators on paper pages. The viewport is always dark, in
+   both themes, so it reads as a simulator window. */
+
+.sim-card {
+    margin: 22px 0 8px 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #0d1015;
+    box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.55);
+}
+.sim-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    background: #141920;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    color: #8a93a3;
+    font: 500 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: 0.02em;
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #2a313b; }
+    .dot.live { background: #ff6b5e; box-shadow: 0 0 10px #ff6b5e; }
+    .name { margin-left: 6px; color: #ece9e2; }
+    .tag { margin-left: auto; }
+}
+.sim-stage {
+    position: relative;
+    line-height: 0;
+}
+.content .sim-stage canvas.sim-gl {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    touch-action: none;
+    cursor: grab;
+}
+.content .sim-stage canvas.sim-gl:active { cursor: grabbing; }
+.content .sim-stage canvas.sim-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.sim-fallback {
+    color: #ece9e2;
+    padding: 18px;
+    margin: 0;
+    line-height: 1.5;
+}
+.sim-note {
+    color: #8a93a3;
+    font: 500 11.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.sim-hud {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    padding: 10px 14px 26px 14px;
+    background: linear-gradient(rgba(13, 16, 21, 0.78), rgba(13, 16, 21, 0));
+    pointer-events: none;
+    line-height: 1.5;
+    color: #b9c0cc;
+    font: 500 11.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    b { color: #ece9e2; font-weight: 600; }
+    i { color: #ff6b5e; font-style: normal; }
+    u { color: #7be495; text-decoration: none; }
+}
+.sim-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    padding: 10px 14px;
+    background: #141920;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    min-height: 30px;
+}
+.sim-btn {
+    font: 500 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #ece9e2;
+    background: #1d242d;
+    border: 1px solid #2c3540;
+    border-radius: 999px;
+    padding: 5px 13px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.sim-btn:hover { border-color: #ff6b5e; }
+.sim-btn:focus-visible, .sim-slider input:focus-visible { outline: 2px solid #5ad1e6; outline-offset: 2px; }
+.sim-btn[aria-pressed="true"] {
+    background: #ff6b5e;
+    border-color: #ff6b5e;
+    color: #14100f;
+}
+.sim-choice {
+    display: inline-flex;
+    .sim-btn { border-radius: 0; margin-left: -1px; }
+    .sim-btn:first-child { border-radius: 999px 0 0 999px; margin-left: 0; }
+    .sim-btn:last-child { border-radius: 0 999px 999px 0; }
+}
+.sim-slider {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #8a93a3;
+    font: 500 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    input { width: 110px; accent-color: #ff6b5e; }
+    output { color: #ece9e2; min-width: 2.5em; }
+}
+.paper .sim-caption {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.sim-gate, .sim-busy {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    line-height: 1.4;
+    background: radial-gradient(ellipse at center, rgba(20, 25, 32, 0.55), rgba(13, 16, 21, 0.92));
+    color: #b9c0cc;
+    font: 500 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.sim-busy { pointer-events: none; }
+.sim-gate-btn {
+    font-size: 13px;
+    padding: 10px 20px;
+    background: #ff6b5e;
+    border-color: #ff6b5e;
+    color: #14100f;
+}
+.sim-gate-btn:hover { background: #ff8477; }
+
+.paper .faq {
+    margin: 0;
+    dt { font-weight: 700; font-size: 15px; margin-top: 14px; color: var(--heading); }
+    dd { margin: 4px 0 0 0; font-size: 15px; line-height: 1.6; }
+}

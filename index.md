@@ -80,6 +80,7 @@ Representative publications <span class="highlight-note">are highlighted.</span>
       | <button type="button" onclick="toggleInfo('info{{ forloop.index }}')">Why?</button>
       | <button type="button" onclick="toggleInfo('contribution{{ forloop.index }}')">Contribution</button>
       | <button type="button" onclick="toggleInfo('bib{{ forloop.index }}')">Bibtex</button>
+      {% if pub.demo %}| <a href="{{ pub.url | relative_url }}#sim">Simulator</a>{% endif %}
       | <a href="{{ pub.url | relative_url }}">Details</a>
     </div>
     <div id="info{{ forloop.index }}" class="hidden-info" hidden>

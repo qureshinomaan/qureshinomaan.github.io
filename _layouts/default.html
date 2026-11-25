@@ -177,6 +177,19 @@
       "url": "{{ url }}"
     }
     </script>
+    {%- if page.faq %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for item in page.faq %}
+        { "@type": "Question", "name": {{ item.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | jsonify }} } }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    }
+    </script>
+    {%- endif %}
     {%- elsif page.collection == "posts" %}
     <script type="application/ld+json">
     {

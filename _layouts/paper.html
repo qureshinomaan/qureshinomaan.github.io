@@ -14,16 +14,55 @@ layout: default
     {% if page.code_link %}<a href="{{ page.code_link }}">Code</a>{% endif %}
     {% if page.video_link %}<a href="{{ page.video_link }}">Video</a>{% endif %}
   </p>
-  {% if page.image %}
-  <p class="paper-figure"><img src="{{ page.image | relative_url }}" alt="Teaser figure for {{ page.title | escape }}" loading="lazy"></p>
+  {% if page.demo %}
+  <h2>{{ page.demo_title | default: "Try it" }}</h2>
+  <p>{{ page.demo_text }}</p>
+  <div class="sim-card">
+    <div class="sim-titlebar"><span class="dot live"></span><span class="dot"></span><span class="dot"></span><span class="name">{{ page.short | default: page.title }}</span><span class="tag">interactive 3D</span></div>
+    <div id="sim" data-label="{{ page.demo_title | escape }}"><noscript><p class="sim-fallback">This simulator needs JavaScript. The description above and the abstract below cover the same idea in text.</p></noscript></div>
+  </div>
+  <p class="sim-caption">A simplified toy model written for this page to illustrate the idea. It is not the paper's code and produces no results from the paper.</p>
+  <script type="importmap">
+  { "imports": {
+      "three": "{{ '/js/vendor/three/three.module.min.js' | relative_url }}",
+      "three/addons/": "{{ '/js/vendor/three/addons/' | relative_url }}",
+      "@sparkjsdev/spark": "{{ '/js/vendor/spark/spark.module.min.js' | relative_url }}"
+  } }
+  </script>
+  <script type="module" src="{{ '/js/sim/' | append: page.demo | append: '.js' | relative_url }}"></script>
+  <script>
+    window.addEventListener("error", function (e) {
+      var box = document.getElementById("sim");
+      if (box && !box.querySelector("canvas")) box.innerHTML = '<p class="sim-fallback">The simulator could not load in this browser. The text on this page covers the same idea.</p>';
+    }, true);
+  </script>
   {% endif %}
 
   <h2>In short</h2>
   <p>{{ page.tldr }}</p>
 
+  {% if page.image %}
+  <p class="paper-figure"><img src="{{ page.image | relative_url }}" alt="Teaser figure for {{ page.title | escape }}" loading="lazy"></p>
+  {% endif %}
+
   {% if page.abstract %}
   <h2>Abstract</h2>
   <p>{{ page.abstract }}</p>
+  {% endif %}
+
+  {% if page.agent_note %}
+  <h2>{{ page.agent_note_title }}</h2>
+  <p>{{ page.agent_note }}</p>
+  {% endif %}
+
+  {% if page.faq %}
+  <h2>Questions and answers</h2>
+  <dl class="faq">
+    {% for item in page.faq %}
+    <dt>{{ item.q }}</dt>
+    <dd>{{ item.a }}</dd>
+    {% endfor %}
+  </dl>
   {% endif %}
 
   {{ content }}
