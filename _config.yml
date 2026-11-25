@@ -7,6 +7,10 @@ baseurl: "" # the subpath of your site, e.g. /blog
 og_image: "/images/nomaan.png"
 twitter_username: qunomaan
 
+# Google Analytics. tracking_id is the original tag; set ga4_id (starts with "G-") to use the current GA4 tag instead.
+tracking_id: UA-172754754-1
+ga4_id: ""
+
 # Paste the codes from Google Search Console and Bing Webmaster Tools here to verify the site.
 google_site_verification: ""
 bing_site_verification: ""
