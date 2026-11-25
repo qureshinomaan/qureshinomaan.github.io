@@ -13,8 +13,9 @@ mount((s) => {
   const paint = painterly(s, { radius: 3, vignette: 0.7, saturation: 0.95 });
   s.lights.sun.position.set(-2.5, 3, 2); s.lights.sun.color.set(0xffe8cf); s.lights.sun.intensity = 2.2;
   s.lights.hemi.intensity = 1.2; s.lights.hemi.color.set(0xc9c4c0); s.lights.hemi.groundColor.set(0x4a4038); s.lights.rim.color.set(0xefb765); s.lights.rim.intensity = 9; s.lights.rim.position.set(2.6, 1.0, -2);
-  const ground = new THREE.Mesh(new THREE.CircleGeometry(3.2, 64), paintMat(0x5f6076, { freq: 1.6, amount: 0.4, shade: 0x34336b })); ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; s.scene.add(ground);
+  const ground = new THREE.Mesh(new THREE.CircleGeometry(3.2, 64), paintMat(0x3a3970, { freq: 1.6, amount: 0.4, shade: 0x0b101b })); ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; s.scene.add(ground);
   const plat = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.14, 0.32), paintMat(0x163b36, { freq: 6, amount: 0.3 })); plat.position.set(0.42, 0.07, 0); plat.castShadow = plat.receiveShadow = true; s.scene.add(plat);
+  const pool = new THREE.PointLight(0xefb765, 2.4, 1.5); pool.position.set(0.42, 0.32, 0.25); s.scene.add(pool);
   const dust = motes(s, { count: 28, box: [3, 1.4, 2.4], center: [0, 0.6, 0], color: 0xefb765, size: 9 });
 
   /* the demonstration (ground truth): carried along an arc, released, falls, rests on the block */
@@ -55,7 +56,7 @@ mount((s) => {
 
   /* the sculpture */
   const boxG = new THREE.BoxGeometry(2 * H, 2 * H, 2 * H), ghosts = [];
-  for (let i = 0; i < N; i += 4) { const m = new THREE.Mesh(boxG, new THREE.MeshBasicMaterial({ color: 0x91c6ba, transparent: true, opacity: 0.06 + 0.12 * (i / N), depthWrite: false })); const w = new THREE.LineSegments(new THREE.EdgesGeometry(boxG), new THREE.LineBasicMaterial({ color: 0x91c6ba, transparent: true, opacity: 0.55 })); m.add(w); m.userData.i = i; s.scene.add(m); ghosts.push(m); }
+  for (let i = 0; i < N; i += 4) { const m = new THREE.Mesh(boxG, new THREE.MeshBasicMaterial({ color: 0x91c6ba, transparent: true, opacity: 0.08 + 0.42 * (i / N), depthWrite: false })); const w = new THREE.LineSegments(new THREE.EdgesGeometry(boxG), new THREE.LineBasicMaterial({ color: 0x91c6ba, transparent: true, opacity: 0.55 })); m.add(w); m.userData.i = i; s.scene.add(m); ghosts.push(m); }
   const solid = new THREE.Mesh(boxG, paintMat(0xd8c9a4, { freq: 9, amount: 0.25 })); solid.castShadow = true; s.scene.add(solid);
   const pathL = s.trail(0x91c6ba, N + 2, 0.9), truthL = s.trail(0xd8c9a4, N + 2, 0.25);
   truthL.set(truth);
@@ -85,7 +86,7 @@ mount((s) => {
     paint.render(s.scene, s.camera);
     const o = s.o;
     // the input video, as the camera sees it: positions in the image, no depth
-    const w = Math.min(220, s.w * 0.28), h = w * 0.62, r = { x: 12, y: s.h - h - 12, w, h };
+    const w = s.w * 0.23, h = w * 0.62, r = { x: 12, y: s.h - h - 12, w, h };
     o.fillStyle = "rgba(11,16,27,0.85)"; o.fillRect(r.x, r.y, r.w, r.h);
     const f = clamp(time / 4, 0, 0.999) * (N - 1), cur = Math.floor(f);
     for (let i = 0; i < N; i++) {
@@ -101,4 +102,4 @@ mount((s) => {
   s.slider("depth ambiguity", 0.04, 0.3, sigma, 0.01, (v) => { sigma = v; reset(); }, (v) => (v * 100).toFixed(0) + " cm");
   s.button("Start over", reset);
   return { update, render };
-}, { floor: false, bg: "#6f6a78", fogNear: 5, fogFar: 15, cam: [2.2, 1.15, 1.9], target: [0, 0.28, 0.1], minDist: 1.6, maxDist: 6 });
+}, { floor: false, bg: "#72759b", fogNear: 5, fogFar: 15, cam: [1.62, 0.92, 1.42], target: [0.02, 0.26, 0.05], minDist: 1.6, maxDist: 6 });

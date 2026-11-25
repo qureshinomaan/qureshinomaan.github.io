@@ -35,6 +35,7 @@ faq:
     a: "The scene is captured once as Gaussian splats. Each splat is assigned to the simulator body it belongs to, such as a robot link or an object, and is moved rigidly with that body as the physics simulator updates its pose. The interactive demo on this page does this with the real capture in the browser."
   - q: "Where can I find the SplatSim code and project page?"
     a: "Code: https://github.com/qureshinomaan/SplatSim. Project page: https://splatsim.github.io. Paper: https://arxiv.org/abs/2409.10161."
+demo_credit: "Scene: the UR5 workspace and the apple, banana and plate captures released with SplatSim, reduced for the web."
 bibtex: |
   @inproceedings{qureshi2025splatsim,
     title         = {SplatSim: Zero-Shot Sim2Real Transfer of RGB Manipulation Policies Using Gaussian Splatting},

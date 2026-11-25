@@ -34,6 +34,7 @@ faq:
     a: "Tasks such as long-range navigation and manipulation without predefined goal images, including scenarios with minimal overlap between the initial and target views. The paper validates the framework with real-world experiments."
 agent_note_title: "Why optical flow is useful for robot agents"
 agent_note: "Optical flow between the current camera image and a goal image tells a robot, for every tracked point, which way and how far the image still has to move. A visual-servoing controller turns that flow directly into a velocity command and stops when the flow vanishes. So an agent that can produce, retrieve or imagine a goal image can hand the low-level motion to visual servoing, without a 3D model of the scene or a hand-written motion plan, and it can read the remaining flow as a dense, interpretable measure of how far it is from done."
+demo_credit: "Scene: the UR5 workspace capture released with SplatSim, used here only as an environment; it is not from the Imagine2Servo paper."
 bibtex: |
   @inproceedings{pathre2024imagine2servo,
     title         = {Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks},

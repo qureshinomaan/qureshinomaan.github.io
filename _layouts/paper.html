@@ -21,7 +21,7 @@ layout: default
     <div class="sim-titlebar"><span class="dot live"></span><span class="dot"></span><span class="dot"></span><span class="name">{{ page.short | default: page.title }}</span><span class="tag">interactive 3D</span></div>
     <div id="sim" data-label="{{ page.demo_title | escape }}"><noscript><p class="sim-fallback">This simulator needs JavaScript. The description above and the abstract below cover the same idea in text.</p></noscript></div>
   </div>
-  <p class="sim-caption">A simplified toy model written for this page to illustrate the idea. It is not the paper's code and produces no results from the paper.</p>
+  <p class="sim-caption">A simplified toy model written for this page to illustrate the idea. It is not the paper's code and produces no results from the paper.{% if page.demo_credit %} {{ page.demo_credit }}{% endif %}</p>
   <script type="importmap">
   { "imports": {
       "three": "{{ '/js/vendor/three/three.module.min.js' | relative_url }}",

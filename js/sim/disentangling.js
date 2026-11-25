@@ -101,25 +101,27 @@ mount((s) => {
     o.drawImage(paper, 0, 0, s.w, s.h);
     sc = Math.min((s.w - 60) / WW, (s.h - 96) / WH); ox = (s.w - WW * sc) / 2; oy = 56 + (s.h - 96 - WH * sc) / 2;
     // table edge and faint grid
-    o.strokeStyle = "rgba(11,16,27,0.06)"; o.lineWidth = 1; o.beginPath();
+    { const g = o.createRadialGradient(X(goal.x), Y(goal.y), 20, X(goal.x), Y(goal.y), s.w * 0.75); g.addColorStop(0, "rgba(240,226,190,0.6)"); g.addColorStop(1, "rgba(96,86,62,0.42)"); o.fillStyle = g; o.fillRect(0, 0, s.w, s.h); }
+    o.strokeStyle = "rgba(11,16,27,0.03)"; o.lineWidth = 1; o.beginPath();
     for (let x = 0; x <= WW + 1e-6; x += 0.1) { o.moveTo(X(x), Y(0)); o.lineTo(X(x), Y(WH)); } for (let y = 0; y <= WH + 1e-6; y += 0.1) { o.moveTo(X(0), Y(y)); o.lineTo(X(WW), Y(y)); } o.stroke();
     ink([[0, 0], [WW, 0], [WW, WH], [0, WH], [0, 0]], "rgba(11,16,27,0.75)", 1.6);
     // clutter: a light green wash with an ink outline and hatching
     for (const c of clutter) {
-      o.fillStyle = "rgba(22,59,54,0.2)"; o.beginPath(); o.arc(X(c.x), Y(c.y), c.r * sc, 0, 6.2832); o.fill();
+      o.save(); o.shadowColor = "rgba(11,16,27,0.3)"; o.shadowBlur = 10; o.shadowOffsetX = 4; o.shadowOffsetY = 6; o.fillStyle = "rgba(190,196,170,1)"; o.beginPath(); o.arc(X(c.x), Y(c.y), c.r * sc, 0, 6.2832); o.fill(); o.restore();
+      o.fillStyle = "rgba(22,59,54,0.22)"; o.beginPath(); o.arc(X(c.x), Y(c.y), c.r * sc, 0, 6.2832); o.fill();
       o.save(); o.beginPath(); o.arc(X(c.x), Y(c.y), c.r * sc, 0, 6.2832); o.clip(); o.strokeStyle = "rgba(22,59,54,0.35)"; o.lineWidth = 1; o.beginPath();
       for (let k = -c.r * 2; k < c.r * 2; k += 0.022) { o.moveTo(X(c.x + k), Y(c.y - c.r)); o.lineTo(X(c.x + k + c.r), Y(c.y + c.r)); } o.stroke(); o.restore();
-      ink(circle(c.x, c.y, c.r), "rgba(22,59,54,0.9)", 1.5);
+      ink(circle(c.x, c.y, c.r), "rgba(22,59,54,0.95)", 2);
     }
     // goal: a dashed ring with a cross
     ink(circle(goal.x, goal.y, RO + 0.022), "rgba(11,16,27,0.8)", 1.3, [5, 4]);
-    ink([[goal.x - 0.02, goal.y], [goal.x + 0.02, goal.y]], "rgba(11,16,27,0.8)", 1.2); ink([[goal.x, goal.y - 0.02], [goal.x, goal.y + 0.02]], "rgba(11,16,27,0.8)", 1.2);
-    s.text("destination", X(goal.x) + (RO + 0.03) * sc, Y(goal.y) - 10, "rgba(11,16,27,0.8)", 11);
+    s.line(X(goal.x) - 8, Y(goal.y), X(goal.x) + 8, Y(goal.y), "#0B101B", 1.6); s.line(X(goal.x), Y(goal.y) - 8, X(goal.x), Y(goal.y) + 8, "#0B101B", 1.6);
+    s.text("destination", X(goal.x) + (RO + 0.03) * sc, Y(goal.y) - 10, "rgba(11,16,27,0.85)", 13);
     // the plan: dry-ink waypoints that appear one after another
     if (state !== "grasp") {
       const pts = [[trace[0][0], trace[0][1]]].concat(way.map((w) => [w.x, w.y])), shown = Math.min(pts.length, 1 + Math.floor(inkT * 9));
-      ink(pts.slice(0, shown), "rgba(11,16,27,0.55)", 1.3, [2, 6]);
-      way.forEach((w, i) => { if (i + 1 < shown) { o.fillStyle = i >= wi ? "#0B101B" : "rgba(11,16,27,0.3)"; o.beginPath(); o.arc(X(w.x), Y(w.y), 3.2, 0, 6.2832); o.fill(); if (i < way.length - 1) s.text(String(i + 1), X(w.x) + 7, Y(w.y) - 8, "rgba(11,16,27,0.7)", 10); } });
+      ink(pts.slice(0, shown), "rgba(11,16,27,0.7)", 1.7, [2, 6]);
+      way.forEach((w, i) => { if (i + 1 < shown) { o.fillStyle = i >= wi ? "#0B101B" : "rgba(11,16,27,0.3)"; o.beginPath(); o.arc(X(w.x), Y(w.y), 3.2, 0, 6.2832); o.fill(); if (i < way.length - 1) s.text(String(i + 1), X(w.x) + 8, Y(w.y) - 10, "rgba(11,16,27,0.85)", 14, "left", "700"); } });
     }
     // contact trace: where the object has actually been pushed
     if (trace.length > 1) ink(trace, "rgba(255,107,94,0.95)", 3);

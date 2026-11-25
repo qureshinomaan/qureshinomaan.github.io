@@ -15,7 +15,7 @@ Nomaan Qureshi publishes as "M. Nomaan Qureshi" and "Mohammad Nomaan Qureshi"; t
 
 ## Publications
 
-Each page below has a short summary, the abstract where available, questions and answers, links and a BibTeX entry. Each page also has an interactive 3D simulator that illustrates the paper's idea; the SplatSim, RTVS and Imagine2Servo simulators run inside a Gaussian splat of a real robot workspace. When citing a paper, please cite the paper itself using the BibTeX on its page.
+Each page below has a short summary, the abstract where available, questions and answers, links and a BibTeX entry. Each page also has an interactive visual that illustrates the paper's idea with a toy model. The SplatSim page runs the paper's real robot workspace capture as Gaussian splats in the browser, with the robot's splats attached to its kinematic chain; the RTVS and Imagine2Servo pages show visual servoing with optical flow inside real captured scenes. When citing a paper, please cite the paper itself using the BibTeX on its page.
 {% for p in papers %}
 - [{{ p.title }}]({{ p.url | absolute_url }}): {{ p.authors | join: ", " | remove: "*" }}. {{ p.venue }}, {{ p.year }}{% if p.note %} ({{ p.note }}){% endif %}. {{ p.tldr | strip }} Paper: {{ p.paper_link }}
 {%- endfor %}

@@ -25,21 +25,24 @@ mount((s) => {
     f2.set([fx / fl * 0.95, fy / fl * 0.95, fz / fl * 0.95], i * 3);
   }
   forms.push(f0, f1, f2);
-  const pos = new Float32Array(N * 3), kick = new Float32Array(N * 3), bright = new Float32Array(N), wave = new Float32Array(N);
-  for (let i = 0; i < N; i++) { pos.set([(rnd() - 0.5) * 5, (rnd() - 0.5) * 3, (rnd() - 0.5) * 5], i * 3); bright[i] = rnd() < 0.2 ? 0.75 + rnd() * 0.25 : 0.1 + rnd() * 0.16; }
+  const pos = new Float32Array(N * 3), kick = new Float32Array(N * 3), bright = new Float32Array(N), wave = new Float32Array(N), tone = new Float32Array(N);
+  for (let i = 0; i < N; i++) { pos.set([(rnd() - 0.5) * 5, (rnd() - 0.5) * 3, (rnd() - 0.5) * 5], i * 3); const u = rnd(); tone[i] = u < 0.6 ? 0 : u < 0.9 ? 1 : 2; bright[i] = tone[i] === 2 ? 0.7 + rnd() * 0.2 : tone[i] === 1 ? 0.35 + rnd() * 0.2 : 0.14 + rnd() * 0.12; }
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
   geo.setAttribute("bright", new THREE.BufferAttribute(bright, 1));
   geo.setAttribute("wave", new THREE.BufferAttribute(wave, 1));
-  const uni = { uScale: { value: 400 }, uMint: { value: new THREE.Color(C.mint) }, uAmber: { value: new THREE.Color(C.amber) } };
+  geo.setAttribute("tone", new THREE.BufferAttribute(tone, 1));
+  const uni = { uScale: { value: 400 }, uMint: { value: new THREE.Color(C.mint) }, uAmber: { value: new THREE.Color(C.amber) }, uViolet: { value: new THREE.Color(0x5b5aa8) }, uParch: { value: new THREE.Color(C.parch) }, uDist: { value: 4 } };
   const pts = new THREE.Points(geo, new THREE.ShaderMaterial({
     uniforms: uni, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-    vertexShader: `attribute float bright, wave; uniform float uScale; varying float vB, vW;
-      void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); vB = bright; vW = wave;
-        gl_PointSize = (0.02 + 0.03 * bright + 0.04 * wave) * uScale / -mv.z; gl_Position = projectionMatrix * mv; }`,
-    fragmentShader: `uniform vec3 uMint, uAmber; varying float vB, vW;
+    vertexShader: `attribute float bright, wave, tone; uniform float uScale, uDist; varying float vB, vW, vT, vD;
+      void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); vB = bright; vW = wave; vT = tone;
+        vD = mix(0.14, 1.0, smoothstep(uDist + 1.1, uDist - 1.1, -mv.z)); // rear particles recede
+        gl_PointSize = (0.02 + 0.028 * bright + 0.04 * wave) * uScale / -mv.z; gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform vec3 uMint, uAmber, uViolet, uParch; varying float vB, vW, vT, vD;
       void main(){ vec2 d = gl_PointCoord - 0.5; float a = smoothstep(0.5, 0.0, length(d)); a *= a;
-        vec3 c = mix(uMint * (0.5 + vB), uAmber * 2.2, clamp(vW, 0.0, 1.0)); gl_FragColor = vec4(c * a * (0.7 + 0.7 * vB + vW), 1.0); }`
+        vec3 base = vT < 0.5 ? uViolet : vT < 1.5 ? uMint : uParch;
+        vec3 c = mix(base * (0.45 + vB), uAmber * 1.6, clamp(vW, 0.0, 1.0)); gl_FragColor = vec4(c * a * vD * (0.8 + 0.8 * vB + 0.9 * vW), 1.0); }`
   }));
   pts.frustumCulled = false; s.scene.add(pts);
   /* dim attractor fields in the background: where each system wants things to be */
@@ -69,6 +72,7 @@ mount((s) => {
     geo.attributes.position.needsUpdate = true; geo.attributes.wave.needsUpdate = true;
     if (auto && ((meanD < 0.012 && stageT > 1.6) || stageT > 9)) next();
     ghosts.forEach((m, i) => { m.material.opacity += ((i === k ? 0.55 : 0.0) - m.material.opacity) * Math.min(1, dt * 2); });
+    uni.uDist.value = s.camera.position.length();
     uni.uScale.value = s.h * s.renderer.getPixelRatio() / (2 * Math.tan(THREE.MathUtils.degToRad(s.camera.fov) / 2));
     s.orbit.autoRotate = true; s.orbit.autoRotateSpeed = 0.35;
   }
@@ -79,8 +83,8 @@ mount((s) => {
     for (let i = 0; i < 3; i++) {
       const x = x0 + i * 92, on = i === k;
       s.line(x + 12, y0, x + 80, y0, i < 2 ? "rgba(216,201,164,0.3)" : "rgba(0,0,0,0)", 1);
-      s.dot(x, y0, on ? 5 : 3.5, on ? C.coral : "rgba(216,201,164,0.55)");
-      s.text("A" + "₁₂₃"[i] + ", g" + "₁₂₃"[i], x + 10, y0 - 12, on ? C.parch : "rgba(216,201,164,0.5)", 11);
+      s.dot(x, y0, on ? 5.5 : 3, on ? C.coral : "rgba(216,201,164,0.55)");
+      s.text("A" + "₁₂₃"[i] + ", g" + "₁₂₃"[i], x + 10, y0 - 13, on ? C.parch : "rgba(216,201,164,0.5)", 13);
     }
     s.hud("<b>system " + (k + 1) + " of 3</b> is active · <i>x′ = A<sub>" + (k + 1) + "</sub>(g<sub>" + (k + 1) + "</sub> − x)</i> for each of " + N.toLocaleString() + " particles · mean distance to attractor " + (meanD * 100).toFixed(1) + " cm");
   }
@@ -90,4 +94,4 @@ mount((s) => {
   s.slider("stiffness", 0.6, 6, gain, 0.1, (v) => { gain = v; }, (v) => v.toFixed(1));
   s.slider("swirl", 0, 2.5, swirl, 0.05, (v) => { swirl = v; }, (v) => v.toFixed(2));
   return { update, render };
-}, { floor: false, fog: false, bg: "#05070d", cam: [0.0, 0.85, 3.2], target: [0, 0, 0], minDist: 1.5, maxDist: 7, maxPolar: Math.PI });
+}, { floor: false, fog: false, bg: "#05070d", cam: [0.0, 1.0, 3.7], target: [0, -0.05, 0], minDist: 1.5, maxDist: 7, maxPolar: Math.PI });

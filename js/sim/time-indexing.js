@@ -11,7 +11,7 @@ mount((s) => {
   s.lights.sun.position.set(-3, 4, 2.5); s.lights.sun.intensity = 2.0; s.lights.sun.color.set(0xd8c9a4);
   s.lights.hemi.intensity = 1.1; s.lights.rim.color.set(0x72759b); s.lights.rim.intensity = 14; s.lights.rim.position.set(3, 1.5, -3);
   const R = 1.25;
-  const disk = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.55, R + 0.7, 0.08, 96), paintMat(0x343866, { freq: 2.2, amount: 0.5 }));
+  const disk = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.55, R + 0.7, 0.08, 96), paintMat(0x2b2d47, { freq: 2.2, amount: 0.45 }));
   disk.position.y = -0.06; disk.receiveShadow = true; s.scene.add(disk);
   const dust = motes(s, { count: 30, box: [4, 2, 4], center: [0, 0.9, 0], color: 0xefb765, size: 10 });
   /* ring sectors, rebuilt when K changes */
@@ -23,16 +23,16 @@ mount((s) => {
     for (let i = 0; i < K; i++) {
       const gap = 0.045, a0 = i / K * 6.2832 + gap, a1 = (i + 1) / K * 6.2832 - gap;
       const g = new THREE.TorusGeometry(R, 0.05, 12, 64, a1 - a0);
-      const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x72759b, emissive: 0xff6b5e, emissiveIntensity: 0, roughness: 0.6 }));
+      const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x34336b, emissive: 0xff6b5e, emissiveIntensity: 0, roughness: 0.6 }));
       m.rotation.x = -Math.PI / 2; m.rotation.z = -a1 + Math.PI / 2; m.position.y = 0.03; m.castShadow = true; ringG.add(m); sectors.push(m);
     }
   }
   buildRing();
   const hand = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.02, R), new THREE.MeshStandardMaterial({ color: 0xd8c9a4, emissive: 0xd8c9a4, emissiveIntensity: 0.6 }));
   hand.geometry.translate(0, 0, -R / 2); hand.position.y = 0.06; s.scene.add(hand);
-  const puck = new THREE.Mesh(new THREE.SphereGeometry(0.055, 24, 16), new THREE.MeshStandardMaterial({ color: 0xffe2b0, emissive: 0xefb765, emissiveIntensity: 1.4 }));
+  const puck = new THREE.Mesh(new THREE.SphereGeometry(0.055, 24, 16), new THREE.MeshStandardMaterial({ color: 0xffe2b0, emissive: 0xefb765, emissiveIntensity: 0.9 }));
   puck.castShadow = true; s.scene.add(puck);
-  const glow = new THREE.PointLight(0xefb765, 2.2, 2.2); puck.add(glow);
+  const glow = new THREE.PointLight(0xefb765, 1.2, 1.3); puck.add(glow);
 
   /* the manoeuvre: a figure-eight in 3D that crosses itself, so one place is visited in two different slices */
   const NP = 420, path = [];
@@ -45,7 +45,7 @@ mount((s) => {
     puck.position.lerpVectors(path[i], path[i + 1], u);
     hand.rotation.y = -f * 6.2832;
     const h = headOf(f);
-    sectors.forEach((m, k) => { m.material.emissiveIntensity += ((k === h ? 1.3 : 0) - m.material.emissiveIntensity) * Math.min(1, dt * 10); m.material.color.set(k === h ? 0xff6b5e : 0x72759b); });
+    sectors.forEach((m, k) => { m.material.emissiveIntensity += ((k === h ? 0.65 : 0) - m.material.emissiveIntensity) * Math.min(1, dt * 10); m.material.color.set(k === h ? 0xff6b5e : 0x4a4990); });
     dome.tick(t, s.camera); dust.tick(t);
   }
   // scrub by dragging around the ring
@@ -63,17 +63,19 @@ mount((s) => {
       const a = Math.floor(k / K * NP), b = Math.min(upto, Math.floor((k + 1) / K * NP)); if (b <= a) continue;
       o.beginPath();
       for (let i = a; i <= b; i++) { const q = s.project(path[i]); if (i === a) o.moveTo(q.x, q.y); else o.lineTo(q.x, q.y); }
-      o.strokeStyle = k === h ? "rgba(255,107,94,0.95)" : k % 2 ? "rgba(114,117,155,0.85)" : "rgba(216,201,164,0.8)"; o.lineWidth = k === h ? 6 : 4; o.stroke();
+      o.strokeStyle = k === h ? "rgba(255,107,94,0.95)" : "rgba(145,198,186,0.3)"; o.lineWidth = k === h ? 6 : 3.5; o.stroke();
+      if (k === h) { o.strokeStyle = "rgba(216,201,164,0.95)"; o.lineWidth = 2.5; o.stroke(); }
     }
     o.restore();
     // the heads: a trunk that branches into K outputs, only the active one lit
-    const bx = s.w - 150, by = 54;
-    s.text("policy", bx - 46, by + (K - 1) * 11, C.parch, 11, "right"); s.dot(bx - 36, by + (K - 1) * 11, 4, C.parch);
+    const bx = s.w - 130, by = 58;
+    o.fillStyle = "rgba(11,16,27,0.8)"; o.fillRect(bx - 106, by - 20, 222, K * 22 + 18);
+    s.text("policy", bx - 46, by + (K - 1) * 11, C.parch, 13, "right"); s.dot(bx - 36, by + (K - 1) * 11, 4, C.parch);
     for (let k = 0; k < K; k++) {
       const y = by + k * 22, on = k === h;
       s.line(bx - 36, by + (K - 1) * 11, bx + 20, y, on ? C.coral : "rgba(114,117,155,0.7)", on ? 2 : 1);
       s.dot(bx + 20, y, on ? 5 : 3.5, on ? C.coral : "rgba(114,117,155,0.9)");
-      s.text("head " + (k + 1), bx + 32, y, on ? C.parch : "rgba(216,201,164,0.5)", 11);
+      s.text("head " + (k + 1), bx + 32, y, on ? C.parch : "rgba(216,201,164,0.5)", 13);
     }
     const cross = s.project(new THREE.Vector3(0, 0.34 + 0.2 * Math.sin(0.6), 0));
     s.dot(cross.x, cross.y, 8, null, "rgba(216,201,164,0.9)"); s.text("same place, twice", cross.x + 14, cross.y - 12, C.parch, 11);
@@ -83,4 +85,4 @@ mount((s) => {
   s.slider("heads K", 1, 6, K, 1, (v) => { K = v; buildRing(); });
   s.toggle("Pause", false, (v) => { playing = !v; });
   return { update, render };
-}, { floor: false, fogNear: 4, fogFar: 14, bg: "#070a14", cam: [0.0, 2.05, 3.0], target: [0, 0.3, 0], minDist: 2, maxDist: 6.5 });
+}, { floor: false, fogNear: 4, fogFar: 14, bg: "#070a14", cam: [0.0, 2.35, 3.55], target: [0, 0.02, 0], minDist: 2, maxDist: 6.5 });

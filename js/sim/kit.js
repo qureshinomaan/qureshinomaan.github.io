@@ -62,7 +62,7 @@ export function mount(init, opts = {}) {
   scene.background = new THREE.Color(opts.bg || C.bg);
   if (opts.fog !== false) scene.fog = new THREE.Fog(opts.bg || C.bg, opts.fogNear || 5, opts.fogFar || 16);
 
-  const camera = new THREE.PerspectiveCamera(opts.fov || 40, 16 / 9, 0.02, 200);
+  const camera = new THREE.PerspectiveCamera(opts.fov || 40, 16 / 9, opts.near || 0.05, opts.far || 1500);
   camera.position.fromArray(opts.cam || [1.7, 1.25, 1.9]);
 
   const hemi = new THREE.HemisphereLight(0xcfe0ff, 0x1c1612, 1.0);
@@ -303,6 +303,8 @@ export function mount(init, opts = {}) {
       return line;
     },
     arm(o2) { return makeArm(scene, o2); },
+    /** Colour-grade a photoreal (splat) scene: desaturate a little and darken the periphery. */
+    grade(sat, vig) { canvas.style.filter = "saturate(" + sat + ") contrast(1.06)"; s.vignette = vig; },
     /** A poster with a button; resolves when the visitor chooses to load a heavy scene. */
     gate(label, sub) {
       let auto = false;
@@ -361,7 +363,8 @@ export function mount(init, opts = {}) {
       const dpr = renderer.getPixelRatio();
       o.setTransform(dpr, 0, 0, dpr, 0, 0);
       o.clearRect(0, 0, s.w, s.h);
-      orbit.update();
+      if (s.vignette) { const g = o.createRadialGradient(s.w * 0.52, s.h * 0.55, s.h * 0.28, s.w * 0.5, s.h * 0.5, s.w * 0.72); g.addColorStop(0, "rgba(11,16,27,0)"); g.addColorStop(1, "rgba(11,16,27," + s.vignette + ")"); o.fillStyle = g; o.fillRect(0, 0, s.w, s.h); }
+      if (opts.orbit !== false) orbit.update(); // first-person scenes drive the camera themselves
       while (ff > 0 && sim.update) { ff--; s.t += 1 / 60; sim.update(s.t, 1 / 60); }
       if (sim.update) sim.update(s.t, dt);
       if (sim.render) sim.render();

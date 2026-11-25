@@ -12,8 +12,8 @@ mount((s) => {
   const spots = [P(0.52, -0.25, 0), P(0.5, 0.25, 0)];   // apple start, plate (simulator frame, z up)
   let appleAt = 0, steps = [], k = 0, u = 0;
   const home = P(0.4, 0.0, 0.4), from = home.clone(), cur = home.clone();
-  const skel = s.trail(0x5ad1e6, 10, 1); skel.material.depthTest = false; skel.renderOrder = 10;
-  const path = s.trail(0xff6b5e, 700, 0.85); path.material.depthTest = false; path.renderOrder = 9;
+  const skel = s.trail(0x91c6ba, 10, 0.7); skel.material.depthTest = false; skel.renderOrder = 10;
+  const path = s.trail(0xff6b5e, 700, 0.55); path.material.depthTest = false; path.renderOrder = 9;
   let tz = 0, GRASP = 0.05;
   function plan() {
     const a = spots[appleAt].clone(), b = spots[1 - appleAt].clone();
@@ -30,7 +30,7 @@ mount((s) => {
       b.objects.plate.position.set(spots[1].x, spots[1].y, tz);
       b.objects.apple.position.set(spots[0].x, spots[0].y, tz);
       b.objects.banana.position.set(0.7, 0.02, tz + 0.02); b.objects.banana.rotation.z = 0.6;
-      b.setQ(b.ik(home, b.q, 60)); plan(); bot = b; s.busy(null);
+      b.setQ(b.ik(home, b.q, 60)); plan(); bot = b; s.busy(null); s.grade(0.82, 0.5);
     } catch (err) { s.busy(null); s.hud("<b>Could not load the scene.</b> " + String(err.message || err)); }
   });
 
@@ -57,7 +57,7 @@ mount((s) => {
   function render() {
     s.renderer.setScissorTest(false); s.renderer.setViewport(0, 0, s.w, s.h); s.renderer.render(s.scene, s.camera);
     if (!bot) return;
-    if (showSim) for (const p of bot.skeleton()) { const q = s.project(p); if (!q.behind) s.dot(q.x, q.y, 3.2, C.cyan, "#0d1015"); }
+    if (showSim) for (const p of bot.skeleton()) { const q = s.project(p); if (!q.behind) { s.dot(q.x, q.y, 7, "rgba(145,198,186,0.15)"); s.dot(q.x, q.y, 3, C.mint); } }
     s.hud("<b>" + (bot.splats + bot.sceneSplats + bot.objectSplats).toLocaleString() + "</b> Gaussians from real captures · <b>" + (bot.splats + bot.objectSplats).toLocaleString() +
       "</b> ride on simulator bodies (7 robot links, 3 objects): <i>μ′ = T<sub>body</sub>·μ</i><br>joints q = [" + bot.q.map((v) => (v * 180 / Math.PI).toFixed(0) + "°").join(", ") + "]" + (held ? " · <u>apple attached to the gripper</u>" : ""));
   }
@@ -66,4 +66,4 @@ mount((s) => {
   s.toggle("Pause", false, (v) => { paused = v; });
   s.note("drag to orbit · scroll to zoom");
   return { update, render };
-}, { cam: [1.5, 0.8, 0.45], target: [0.3, 0.25, 0.0], floor: false, fog: false, minDist: 0.5, maxDist: 2.2 });
+}, { cam: [1.36, 0.74, 0.44], target: [0.33, 0.27, 0.0], floor: false, fog: false, minDist: 0.5, maxDist: 2.2 });

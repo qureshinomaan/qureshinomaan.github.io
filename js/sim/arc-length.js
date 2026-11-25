@@ -10,12 +10,12 @@ import { painterly, sky, paintMat, motes } from "./paint.js";
 mount((s) => {
   const dome = sky(s, { top: 0x18203a, horizon: 0xb8744a, cloud: 0xefb765, clouds: 0.6, stars: 0.3, moon: [0, -1, 0] });
   const paint = painterly(s, { radius: 3, vignette: 0.75, saturation: 1.12 });
-  s.lights.sun.position.set(-2.6, 3.2, 2.2); s.lights.sun.color.set(0xffe2b0); s.lights.sun.intensity = 2.6;
+  s.lights.sun.position.set(-2.6, 3.2, 2.2); s.lights.sun.color.set(0xffd9a0); s.lights.sun.intensity = 2.0;
   s.lights.hemi.intensity = 1.5; s.lights.hemi.color.set(0xb7d6cf); s.lights.hemi.groundColor.set(0x6a4a30); s.lights.rim.color.set(0xefb765); s.lights.rim.intensity = 10; s.lights.rim.position.set(2.5, 1.2, -2.2);
-  const table = s.table(1.7, 1.15, 0x7a6243); table.userData.top.material = paintMat(0x8a6f4a, { freq: 5, amount: 0.3, shade: 0x163b36 });
+  const table = s.table(1.7, 1.15, 0x7a6243); table.userData.top.material = paintMat(0x9d895d, { freq: 5, amount: 0.22, shade: 0x163b36 });
   // shadowed shelving in the background
   const shelfM = paintMat(0x16302c, { freq: 1.5, amount: 0.5 });
-  for (let i = 0; i < 7; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.5 + (i % 3) * 0.2, 0.5 + ((i * 7) % 5) * 0.28, 0.4), shelfM); m.position.set(-2.2 + i * 0.75, 0.1 + m.geometry.parameters.height / 2 - 0.7, -1.9 - (i % 2) * 0.3); s.scene.add(m); }
+  for (let i = 0; i < 9; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.7 + (i % 3) * 0.3, 0.7 + ((i * 7) % 5) * 0.35, 0.5), shelfM); m.position.set(-4 + i * 1.05, m.geometry.parameters.height / 2 - 0.72, -4.2 - (i % 2) * 0.5); s.scene.add(m); }
   const dust = motes(s, { count: 26, box: [3, 1.6, 2.4], center: [0, 0.7, 0], color: 0xefb765, size: 9 });
   const arm = s.arm({ base: [0, 0, -0.34], color: 0xe9dfc4, joint: 0x2f6f66 });
   const cols = [0xff6b5e, 0x91c6ba, 0xefb765, 0x72759b], NJ = 4;
@@ -58,7 +58,7 @@ mount((s) => {
   const SPEED = 2.4; // constant speed along the joint-space path, rad/s
   function update(t, dt) {
     dome.tick(t, s.camera); dust.tick(t);
-    s.camera.setViewOffset(s.w, s.h, Math.round(s.w * 0.2), 0, s.w, s.h);
+    s.camera.setViewOffset(s.w, s.h, Math.round(s.w * 0.14), 0, s.w, s.h);
     if (!run || drag) return;
     const P = plans[which];
     if (run.done) { run.wait -= dt; if (run.wait < 0) start(); return; }
@@ -87,9 +87,9 @@ mount((s) => {
     const o = s.o, P = plans[which], Q = plans[1 - which];
     P.order.forEach((ci, n) => s.label(String(n + 1), picks[ci].clone().setY(0.1), C.parch, -4));
     // the motion score: one lane per joint, x = accumulated joint-space arc length
-    const px = Math.round(s.w * 0.57), pw = s.w - px - 16, py = 58, ph = s.h - py - 70, maxL = Math.max(P.len, Q.len), lane = ph / 3, names = ["base", "shoulder", "elbow"];
-    o.fillStyle = "rgba(11,16,27,0.78)"; o.fillRect(px - 12, py - 30, pw + 24, ph + 82);
-    s.text("MOTION SCORE", px, py - 16, C.parch, 10.5, "left", "700"); s.text("joint angle against joint-space arc length", px + 96, py - 16, "rgba(216,201,164,0.6)", 10);
+    const px = Math.round(s.w * 0.69), pw = s.w - px - 16, py = 58, ph = s.h - py - 70, maxL = Math.max(P.len, Q.len), lane = ph / 3, names = ["base", "shoulder", "elbow"];
+    o.fillStyle = "rgba(11,16,27,0.94)"; o.fillRect(px - 12, py - 30, pw + 24, ph + 82);
+    s.text("MOTION SCORE", px, py - 16, C.parch, 10.5, "left", "700"); 
     const draw = (plan, color, lw) => {
       for (let j = 0; j < 3; j++) {
         o.beginPath(); let first = true;
@@ -97,8 +97,8 @@ mount((s) => {
         o.strokeStyle = color; o.lineWidth = lw; o.lineJoin = "round"; o.stroke();
       }
     };
-    for (let j = 0; j < 3; j++) { const y = py + j * lane; s.line(px, y + lane / 2, px + pw, y + lane / 2, "rgba(216,201,164,0.14)", 1); s.text(names[j], px, y + 9, "rgba(216,201,164,0.7)", 10); }
-    draw(Q, "rgba(114,117,155,0.55)", 1.2); draw(P, C.mint, 1.8);
+    for (let j = 0; j < 3; j++) { const y = py + j * lane; s.line(px, y + lane / 2, px + pw, y + lane / 2, "rgba(216,201,164,0.14)", 1); s.text(names[j], px, y + 10, "rgba(216,201,164,0.8)", 12); }
+    draw(Q, "rgba(114,117,155,0.45)", 1); draw(P, C.mint, 2);
     const hx = px + (run ? run.s : 0) / maxL * pw; s.line(hx, py, hx, py + ph, C.amber, 2); s.dot(hx, py, 4, C.amber);
     s.line(px + P.len / maxL * pw, py, px + P.len / maxL * pw, py + ph, "rgba(145,198,186,0.6)", 1, [3, 3]);
     // the two measures of distance
@@ -106,8 +106,8 @@ mount((s) => {
     plans.forEach((pl, i) => {
       const on = i === which, y = by + i * 18;
       s.dot(px + 4, y, 3.5, on ? C.mint : "rgba(114,117,155,0.9)");
-      s.text("order by " + pl.name, px + 14, y, on ? C.parch : "rgba(216,201,164,0.55)", 10.5);
-      s.text(pl.cart.toFixed(2) + " m · " + pl.len.toFixed(1) + " rad", px + pw, y, on ? C.parch : "rgba(216,201,164,0.55)", 10.5, "right");
+      s.text(i ? "joint-shortest" : "gripper-shortest", px + 14, y, on ? C.parch : "rgba(216,201,164,0.55)", 11);
+      s.text(pl.cart.toFixed(1) + " m, " + pl.len.toFixed(1) + " rad", px + pw, y, on ? C.parch : "rgba(216,201,164,0.55)", 11, "right");
     });
     const same = plans[0].order.join() === plans[1].order.join(), d = plans[0].len - plans[1].len;
     s.hud("picking order <b>" + P.order.map((i) => i + 1).join(" → ") + "</b>" + (same || d < 0.05 ? " · both criteria cost the joints the same for this layout" : " · the shortest gripper path costs the joints <i>" + d.toFixed(1) + " rad more</i>") + "<br>drag the cubes to change the problem");
@@ -115,4 +115,4 @@ mount((s) => {
   s.choice(["Shortest gripper path", "Shortest joint path"], 1, (i) => { which = i; start(); });
   s.button("Shuffle", () => { layout(Math.random); start(); });
   return { update, render };
-}, { floorY: -0.72, grid: false, floorColor: 0x2a2a3c, bg: "#18203a", fogNear: 5, fogFar: 14, cam: [1.25, 0.95, 1.9], target: [0, 0.12, 0.02], minDist: 1.6, maxDist: 4.5 });
+}, { floorY: -0.72, grid: false, floorColor: 0x4a3a3c, bg: "#3a2c30", fogNear: 6, fogFar: 30, cam: [1.45, 0.62, 2.1], target: [0, 0.22, 0.0], minDist: 1.6, maxDist: 4.5 });

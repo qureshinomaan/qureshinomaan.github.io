@@ -11,7 +11,7 @@ mount((s) => {
   const K = 6;
   let st = null, imgs = null, v = {}, mode = 1, k = 0, state = "idle", born = -9, res = { n: 0, err: NaN, pairs: [] }, acc = 0, showFlow = true;
   const startC = ghost(), fin = ghost(), subs = [];
-  pose(startC, [0.02, 0.72, 0.42], [-0.48, 0.86, 0.42]);        // close-up of a poster on the left wall
+  pose(startC, [0.2, -0.72, 0.3], [-0.48, -0.75, 0.22]);        // close-up of a poster on the wall        // close-up of a poster on the left wall
   pose(fin, [0.62, -0.16, 0.42], [0.66, -0.2, -0.02]);           // looking down at the mark on the table
   for (let i = 1; i <= K; i++) {
     const c = ghost(), u = i / K;
@@ -53,25 +53,23 @@ mount((s) => {
     if (!st) return;
     st.afterRender();
     if (!imgs) { s.hud("pre-rendering the sub-goal images…"); return; }
-    if (showFlow) st.drawFlow(res.pairs);
-    // the filmstrip: imagined frames that bridge the start view and the task goal
-    const o = s.o, n = K, gap = 6, W = Math.min(s.w - 20, 860), tw = (W - gap * (n - 1)) / n, th = tw * 9 / 16, x0 = (s.w - W) / 2, y0 = s.h - th - 12;
-    o.fillStyle = "rgba(13,16,21,0.72)"; o.fillRect(x0 - 8, y0 - 22, W + 16, th + 30);
-    s.text(mode === 1 ? "IMAGINED SUB-GOALS \u2192 TASK GOAL" : "TASK GOAL ONLY", x0, y0 - 11, C.dim, 10);
+    if (showFlow) st.drawFlow(res.pairs, { cols: 4, rgb: "255,107,94", alpha: 0.5, clearBottom: s.h * 0.24 });
+    // the filmstrip: imagined frames that bridge the start view and the task goal; frames appear only once imagined
+    const o = s.o, n = K, gap = 8, th = Math.round(Math.min(s.h * 0.16, (s.w - 40 - 5 * 8) / 6 * 9 / 16)), tw = th * 16 / 9, W = n * tw + (n - 1) * gap, x0 = (s.w - W) / 2, y0 = s.h - th - 14;
+    o.fillStyle = "rgba(11,16,27,0.82)"; o.fillRect(x0 - 10, y0 - 24, W + 20, th + 34);
+    s.text(mode === 1 ? "IMAGINED" : "TASK GOAL", x0, y0 - 12, C.parch, 11, "left", "700");
+    s.text(mode === 1 ? "sub-goal images, not camera observations" : "the only image the controller is given", x0 + (mode === 1 ? 68 : 78), y0 - 12, "rgba(216,201,164,0.6)", 11);
     const age = s.t - born;
     for (let i = 0; i < n; i++) {
       const x = x0 + i * (tw + gap), last = i === n - 1;
-      const shown = mode === 0 ? last : (i < k || (i === k) || state === "done");
-      if (shown) o.drawImage(imgs[i], x, y0, tw, th); else { o.fillStyle = "#12161c"; o.fillRect(x, y0, tw, th); s.text("?", x + tw / 2, y0 + th / 2, "#3a4350", 18, "center", "700"); }
-      if (mode === 1 && i === k && age < 0.9 && state !== "done") { // "denoising" reveal
-        const a = 1 - age / 0.9, cw = tw / 14, ch = th / 8;
-        for (let c = 0; c < 14; c++) for (let rr = 0; rr < 8; rr++) if (noise() < a) { o.fillStyle = "hsl(" + Math.floor(noise() * 360) + " 55% " + (30 + noise() * 40) + "%)"; o.fillRect(x + c * cw, y0 + rr * ch, cw + 0.5, ch + 0.5); }
-      }
+      const shown = mode === 0 ? last : (i <= k || state === "done");
+      if (!shown) { o.strokeStyle = "rgba(145,198,186,0.18)"; o.lineWidth = 1; o.setLineDash([3, 4]); o.strokeRect(x + 0.5, y0 + 0.5, tw - 1, th - 1); o.setLineDash([]); continue; }
+      const fresh = mode === 1 && i === k && state !== "done" ? Math.min(1, age / 0.9) : 1;
+      o.globalAlpha = fresh; o.drawImage(imgs[i], x, y0, tw, th); o.globalAlpha = 1;
       const active = (mode === 1 ? i === k : last) && state !== "done", reached = mode === 1 && (i < k || state === "done");
-      o.lineWidth = active ? 2.5 : 1; o.strokeStyle = active ? C.yellow : reached ? C.green : last ? "rgba(123,228,149,0.6)" : "rgba(255,255,255,0.25)";
-      o.strokeRect(x + 0.5, y0 + 0.5, tw - 1, th - 1);
-      if (reached) { s.dot(x + tw - 9, y0 + 9, 5.5, C.green); s.text("\u2713", x + tw - 9, y0 + 9.5, "#0d1015", 9, "center", "700"); }
-      if (last) s.text("goal", x + 5, y0 + th - 8, C.green, 9.5);
+      o.lineWidth = active ? 2 : 1; o.strokeStyle = active ? C.amber : "rgba(145,198,186,0.7)"; o.strokeRect(x + 0.5, y0 + 0.5, tw - 1, th - 1);
+      if (reached) { s.dot(x + tw - 9, y0 + 9, 5.5, C.mint); s.text("\u2713", x + tw - 9, y0 + 9.5, "#0B101B", 9, "center", "700"); }
+      if (last) s.text("task goal", x + 5, y0 + th - 8, C.parch, 10);
     }
     const msg = state === "stuck" ? "<i>stuck: the goal image shares no features with the current view, so there is no flow to follow</i>"
       : state === "done" ? "<u>reached the task goal" + (mode === 1 ? " through " + K + " imagined sub-goals" : "") + "</u>"
